@@ -1,3 +1,6 @@
 FROM nginx:latest
 EXPOSE 80
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+RUN cd client && npm run build && cd ..
+COPY client/public/index.html /var/www/html
+COPY client/public/static /var/www/html/public
