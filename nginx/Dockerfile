@@ -1,12 +1,12 @@
-FROM node:latest-alpine as build-stage
+FROM node:19-alpine as build-stage
 
 WORKDIR /client
 
-COPY package*.json /client/
+COPY /client/package*.json /client/
 
 RUN npm install
 
-COPY ./ /client/
+COPY /client /client/
 
 RUN npm run build
 
