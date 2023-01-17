@@ -7,7 +7,6 @@ import (
 
 	"github.com/callummclu/callummclu.co.uk/auth"
 	"github.com/callummclu/callummclu.co.uk/configs"
-	"github.com/lib/pq"
 )
 
 type User struct {
@@ -78,8 +77,7 @@ func (u *User) SaveUser() error {
 				return err
 			}
 			defer insert_stmt.Close()
-			var emptyString []string = nil
-			_, err = insert_stmt.Exec(u.Name, u.Surname, u.Username, u.Email, hashedPassword, "", "", pq.Array(emptyString))
+			_, err = insert_stmt.Exec(u.Name, u.Surname, u.Username, u.Email, hashedPassword, "")
 
 			return err
 		} else {

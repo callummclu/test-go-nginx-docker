@@ -15,8 +15,8 @@ interface AuthContextType {
     user?: User;
     loading: boolean;
     error?: any;
-    login: (loginParams:LogInUser) => void;
-    signUp: (signupParams:SignUpUser) => void;
+    login: (loginParams:LogInUser,callback?:Function) => void;
+    signUp: (signupParams:SignUpUser,callback?:Function) => void;
     logout: () => void;
     reload: () => void;
     loggedIn: boolean
@@ -66,7 +66,7 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
             .finally(()=>setLoading(false))
     }
 
-    function login({username,password}:LogInUser){
+    function login({username,password}:LogInUser,callback?:Function){
         setLoading(true)
         SessionsApi.login({username,password})
             .then(async (res:any) => {
@@ -89,10 +89,13 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
                 }
             }).catch((error)=>{
                 setError(error)
-            }).finally(()=>setLoading(false))
+            }).finally(()=>{
+                setLoading(false)
+                callback?.()
+            })
     }
 
-    function signUp(signupParams:SignUpUser){
+    function signUp(signupParams:SignUpUser,callback?:Function){
         setLoading(true)
 
         UsersApi.signup(signupParams)
@@ -105,7 +108,10 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
             }
         }).catch((error)=>{
             setError(error)
-        }).finally(()=> setLoading(false))
+        }).finally(()=>{
+            callback?.()
+            setLoading(false)
+        })
     }
 
     function logout(){
@@ -122,7 +128,7 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
             loggedIn,
             reload
         }),
-        [user,loading,error]
+        [user, loading, signUp, loggedIn]
     )
 
     return (
