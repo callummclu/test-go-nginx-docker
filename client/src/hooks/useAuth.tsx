@@ -1,4 +1,4 @@
-import { LogInUser, SignUpUser, User, CheckUser } from "../Types/auth";
+import { LogInUser, SignUpUser, User, CheckUser } from "../types/auth";
 import React, {
     createContext,
     ReactNode,

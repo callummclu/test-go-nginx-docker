@@ -1,4 +1,4 @@
-import { LogInUser } from "../Types/auth"
+import { LogInUser } from "../types/auth"
 
 export async function login(loginParams: LogInUser){
     const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/login`,{
