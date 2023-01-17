@@ -28,8 +28,6 @@ services:
       dockerfile: ./nginx/Dockerfile
     ports:
       - "80:80"
-    depends_on:
-      - "goservice"
 volumes:
   db:
     driver: local
