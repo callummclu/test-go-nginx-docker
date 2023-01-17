@@ -52,7 +52,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: home/callum/callummclu.co.uk/client/build
+      device: ~/callum/callummclu.co.uk/client/build
       o: bind
 networks:
   app-network:
