@@ -1,5 +1,6 @@
-import { Anchor, Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack } from '@mantine/core';
-import { useRef } from 'react';
+import { Anchor, Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, LoadingOverlay } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { useEffect, useRef } from 'react';
 import useAuth from '../hooks/useAuth';
 
 
@@ -7,33 +8,34 @@ export const Login = () => {
     let usernameRef = useRef<HTMLInputElement>(null)
     let passwordRef = useRef<HTMLInputElement>(null)
 
-    const { login, loggedIn,logout } = useAuth()
+    const { login, loggedIn,logout, loading, error } = useAuth()
 
     const submitRequest = () => {
         login({
             username:usernameRef.current!.value,
             password:passwordRef.current!.value
-        },()=>{
-            window.location.href !== window.location.origin && window.location.replace(window.location.origin)
         })
     }
 
-    const signOutHandler = () => {
-        logout()
-        window.location.reload()
-    }
+    useEffect(()=>{
+      if(!error && loggedIn){
+        window.location.replace(window.location.origin)
+      } else if(error?.length > 0) {
+        showNotification({
+          color:'red',
+          title: 'Error',
+          message: error,
+        })
+
+      }
+    },[error,loggedIn])
 
     return (
         <>
-        
+        {loggedIn ? <></> :
         <Container h="100vh" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-          <Card shadow={'sm'} p="xl" w={350} withBorder>
-          {loggedIn ?
-            <Center>
-                <Button onClick={signOutHandler} color={'red'}>Sign out</Button>
-            </Center>
-            :
-            <>
+          <Card shadow={'sm'} p="xl" w={350} withBorder pos={'relative'}>
+          <LoadingOverlay visible={loading} overlayBlur={2} />
               <Stack m={"md"} mb="xl" spacing={0}>
               <Center>
               <Title>
@@ -56,10 +58,8 @@ export const Login = () => {
               Not a member yet? <Anchor href='signup'>Signup</Anchor>
             </Text>
             </Center>
-            </>
-            }
           </Card>
         </Container>
-        </>
+      }</>
       );
 }

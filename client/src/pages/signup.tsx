@@ -1,5 +1,6 @@
-import { Anchor, Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, Group } from '@mantine/core';
-import { useRef, useState } from 'react';
+import { Anchor, Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, Group, LoadingOverlay } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
+import { useEffect, useRef, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 
 
@@ -11,7 +12,7 @@ export const Signup = () => {
     let passwordRef = useRef<HTMLInputElement>(null)
     let confirmRef = useRef<HTMLInputElement>(null)
     const [errorInput,setErrorInput] = useState(false)
-    const { signUp, loggedIn,logout } = useAuth()
+    const { signUp, loggedIn, logout, loading, error } = useAuth()
 
     const submitRequest = () => {
 
@@ -24,8 +25,6 @@ export const Signup = () => {
                 username: usernameRef.current!.value,
                 email: emailRef.current!.value,
                 password: passwordRef.current!.value
-            },()=>{
-                window.location.href !== window.location.origin && window.location.replace(window.location.origin)
             })
         } else {
             setErrorInput(true)
@@ -37,10 +36,25 @@ export const Signup = () => {
         window.location.reload()
     }
 
+    useEffect(()=>{
+      if(!error && loggedIn){
+        window.location.replace(window.location.origin)
+      } else if(error?.length > 0) {
+        showNotification({
+          color:'red',
+          title: 'Error',
+          message: error,
+        })
+
+      }
+    },[error,loggedIn])
+
 
     return (
         <Container h="100vh" style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-          <Card shadow={'sm'} p="xl" w={350} withBorder>
+          <Card shadow={'sm'} p="xl" w={350} withBorder pos="relative">
+          <LoadingOverlay visible={loading} overlayBlur={2} />
+
           {loggedIn ?
             <Center>
                 <Button onClick={signOutHandler} color={'red'}>Sign out</Button>

@@ -45,6 +45,9 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
                         let res_json = await res.json()
                         setUser(res_json.data)
                     })
+                    .catch((err) => {
+                        setError(err)
+                    })
             })
             .catch((_errpr)=>{})
             .finally(()=> setLoadingInitial(false))
@@ -81,6 +84,9 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
                                 .then(async (res:any) => {
                                     let res_json = await res.json()
                                     setUser(res_json.data)
+                                })
+                                .catch((err) => {
+                                    setError(err)
                                 })
                         })
                         .catch((_error)=>{})
@@ -121,6 +127,7 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
     const memoedValue = useMemo(
         () => ({
             user,
+            error,
             loading,
             login,
             signUp,
