@@ -8,6 +8,10 @@ RUN npm install
 
 COPY /client /client/
 
+COPY callummclu.co.uk_ssl_certificate.cer /usr/share/nginx/callummclu.co.uk_ssl_certificate.cer
+
+COPY domain_private_key.key /usr/share/nginx/domain_private_key.key
+
 RUN npm run build
 
 
