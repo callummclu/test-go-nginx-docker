@@ -12,7 +12,7 @@ export const Signup = () => {
     let passwordRef = useRef<HTMLInputElement>(null)
     let confirmRef = useRef<HTMLInputElement>(null)
     const [errorInput,setErrorInput] = useState(false)
-    const { signUp, loggedIn, logout, loading, error } = useAuth()
+    const { signUp, loggedIn, logout, loading, error, clearError } = useAuth()
 
     const submitRequest = () => {
 
@@ -45,6 +45,7 @@ export const Signup = () => {
           title: 'Error',
           message: error,
         })
+        clearError()
 
       }
     },[error,loggedIn])

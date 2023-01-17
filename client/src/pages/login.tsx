@@ -8,7 +8,7 @@ export const Login = () => {
     let usernameRef = useRef<HTMLInputElement>(null)
     let passwordRef = useRef<HTMLInputElement>(null)
 
-    const { login, loggedIn,logout, loading, error } = useAuth()
+    const { login, loggedIn, loading, error, clearError } = useAuth()
 
     const submitRequest = () => {
         login({
@@ -26,6 +26,7 @@ export const Login = () => {
           title: 'Error',
           message: error,
         })
+        clearError()
 
       }
     },[error,loggedIn])

@@ -20,6 +20,7 @@ interface AuthContextType {
     logout: () => void;
     reload: () => void;
     loggedIn: boolean
+    clearError: any;
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
@@ -101,6 +102,10 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
             })
     }
 
+    function clearError(){
+        setError("")
+    }
+
     function signUp(signupParams:SignUpUser,callback?:Function){
         setLoading(true)
 
@@ -130,12 +135,13 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
             error,
             loading,
             login,
+            clearError,
             signUp,
             logout,
             loggedIn,
             reload
         }),
-        [user, loading, signUp, loggedIn]
+        [user, loading, signUp, loggedIn,error]
     )
 
     return (
