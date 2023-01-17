@@ -1,20 +1,9 @@
-// main.go
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
-
-	"github.com/gorilla/mux"
+	"github.com/callummclu/callummclu.co.uk/controllers"
 )
 
 func main() {
-	router := mux.NewRouter()
-	router.HandleFunc("/", DoHealthCheck).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", router))
-}
-func DoHealthCheck(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, i'm a golang microservice")
-	w.WriteHeader(http.StatusAccepted) //RETURN HTTP CODE 202
+	controllers.BaseController()
 }
