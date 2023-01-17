@@ -18,7 +18,6 @@ func getEnvByName(name string) string {
 func EnvPORT() string {
 
 	port := "8080"
-
 	env_port := getEnvByName("PORT")
 
 	if len(env_port) > 0 {
