@@ -32,9 +32,19 @@ services:
       - "443:443"
     depends_on:
       - goservice
-    volumes:
-      - /data/certs:/etc/nginx/certs
+    # volumes:
+      # - /data/certs:/etc/nginx/certs
 
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts
+    privileged: true
+    env_file: .env
+    user: root
+    ports:
+      - 8081:8081
+      - 50000:50000
+    
 volumes:
   db:
     driver: local
