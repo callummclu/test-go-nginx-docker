@@ -13,8 +13,8 @@ export const Home = () => {
     const formatJSON = (str:string) => str?.split('{')?.join('{\n\t')?.split(',')?.join(',\n\t')?.split('}')?.join('\n}')
     return (
         <Container p="xl">
-            <Group position="apart">
-                <Title mt={'xl'}>Callummclu.co.uk</Title>
+            <Group position="apart" align={'center'}>
+                <Title order={2} mt={'xl'}>Callummclu.co.uk</Title>
                 <Button color={'red'} onClick={logoutHandler}>Logout</Button>
             </Group>
             <Divider my={'xl'}/>
