@@ -35,15 +35,15 @@ services:
     volumes:
       - /data/certs:/etc/nginx/certs
 
-  jenkins:
-    container_name: jenkins
-    image: jenkins/jenkins:lts
-    privileged: true
-    env_file: .env
-    user: root
-    ports:
-      - 8081:8081
-      - 50000:50000
+  # jenkins:
+  #   container_name: jenkins
+  #   image: jenkins/jenkins:lts
+  #   privileged: true
+  #   env_file: .env
+  #   user: root
+  #   ports:
+  #     - 8081:8081
+  #     - 50000:50000
     
 volumes:
   db:
