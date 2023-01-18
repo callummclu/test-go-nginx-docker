@@ -10,7 +10,6 @@ export interface SignUpUser {
   email: string;
   password: string;
 }
-
 export interface User {
   name: string;
   surname: string;
