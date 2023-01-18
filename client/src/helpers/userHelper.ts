@@ -1,5 +1,3 @@
-import { User } from "../types/auth";
-
 export function getUser(searchParameters: string, page: number) {
   return fetch(
     `${process.env.REACT_APP_BACKEND_URI}/user?searchParams=${searchParameters}&itemsPerPage=20&page=${page}`
