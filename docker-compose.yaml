@@ -32,8 +32,8 @@ services:
       - "443:443"
     depends_on:
       - goservice
-    # volumes:
-      # - /data/certs:/etc/nginx/certs
+    volumes:
+      - /data/certs:/etc/nginx/certs
 
   jenkins:
     container_name: jenkins
