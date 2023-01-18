@@ -1,5 +1,6 @@
-# Full stack web app
-a small web app built with speed in mind
+<h1><a href="https://callummclu.co.uk">callummclu.co.uk</a></h1>
+
+a small web app built to serve my personal portfolio, built specifically with speed and architecture in mind.
 <div style="display:flex; gap: 10px">
 <image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145113-6edd1580-87c8-41b5-9adc-913a5b2476e6.png"/>
 <image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145394-c6d8717a-fe27-4f92-ba62-01f700c1245a.png"/>
