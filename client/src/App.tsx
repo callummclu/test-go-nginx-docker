@@ -1,4 +1,4 @@
-import './App.scss';
+import './index.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from './pages/login';
 import { Signup } from './pages/signup';
@@ -6,6 +6,12 @@ import useAuth from './hooks/useAuth';
 import { Home } from './pages/home';
 import { Error } from './pages/error';
 import {BiError} from 'react-icons/bi'
+import { LandingPage } from './pages/landingpage';
+import { Nav } from './components/nav';
+import { About } from './pages/about';
+import { Container } from './components/Container';
+
+const isAdmin = () => window.location.href.includes('/admin')
 
 function App() {
 
@@ -13,12 +19,19 @@ function App() {
 
   return (
     <BrowserRouter>
+    {!isAdmin() && <Nav/>}
+    <Container>
       <Routes>
         <Route path="*" element={<Error code={404} message="Page not found." icon={<BiError size={80}/>}/>}/>
-        <Route path="" element={loggedIn ? <Home/> :<Login/>}/>
-        <Route path="login" element={<Login/>}/>
-        <Route path="signup" element={<Signup/>}/>
+        
+          <Route path="" element={<LandingPage/>}/>
+          <Route path="about" element={<About/>}/>
+        <Route path="admin" element={loggedIn ? <Home/> :<Login/>}/>
+        <Route path="admin/login" element={<Login/>}/>
+        <Route path="admin/signup" element={<Signup/>}/>
       </Routes>
+      </Container>
+
     </BrowserRouter>
   );
 }
