@@ -1,10 +1,16 @@
 import "../styles/sass/projects.scss"
+import { ProjectItem } from "./project_item"
 
 export const Projects = () => {
     return (
+        <>
+            <h1 style={{textAlign:'center'}}>Projects / Work</h1>
         <div className="projects">
-            <h1>Projects / Work</h1>
-            <p>backend hasnt been programmed to show projects yet.</p>
+            <ProjectItem/>
+            <ProjectItem/>
+            <ProjectItem/>
+            <ProjectItem/>
         </div>
+        </>
     )
 }

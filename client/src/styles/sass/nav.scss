@@ -2,13 +2,28 @@
     position: fixed;
     left: 0;
     top:0;
-    width: 100%;
+    width: calc(100% - 100px);
     display: flex;
     align-items: center;
     gap:50px;
+    justify-content: space-between;
     padding-left: 50px;
+    padding-right: 50px;
     height: 60px;
     background: white;
+    z-index: 10000;
+
+    & .section{
+        display: flex;
+        gap:50px;
+        align-items: center;
+
+        & .mantine-Anchor-root{
+            margin:0;
+            padding:0;
+            line-height: 0;
+        }
+    }
 
     border-bottom: 0.25px solid lavender;
 

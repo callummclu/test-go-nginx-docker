@@ -2,6 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap:25px;
+    margin-top: 50px;
 
+    & .project-item{
+        min-width: 350px;
+        width:clamp(350px, 50vw, 500px);
+        aspect-ratio: 16 / 9;
+    }
 }
