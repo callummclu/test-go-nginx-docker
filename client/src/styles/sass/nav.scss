@@ -12,9 +12,47 @@
     height: 60px;
     background: white;
     z-index: 10000;
+    transition-duration: 0s;
+
+    &.open{
+        height:fit-content;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    @media screen and (max-width: 500px) {
+        justify-content: center;
+        &.open{
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        gap:40px;
+     } 
+
+    & .hamburger {
+        display: none;
+
+        @media screen and (max-width: 500px) {
+            display: block; 
+         } 
+    }
 
     & .section{
         display: flex;
+
+        @media screen and (max-width: 500px) {
+           flex-direction: column; 
+           display: none;
+
+           &.show{
+               display: flex;
+            &.icons{
+                margin-top: 20px;
+                flex-direction: row;
+            }
+           }
+        }  
+
         gap:50px;
         align-items: center;
 
