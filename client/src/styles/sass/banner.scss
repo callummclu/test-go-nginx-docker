@@ -1,16 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .banner{
     width:100%;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - 60px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap-reverse;
     column-gap: 40px;
-
     & .text-container{
+
+        @media screen and (max-width:940px) {
+            text-align: center;
+            & h1{
+                margin-top: 0;
+                padding-top: 0;
+            }
+        }
+
         min-width: 300px;
         max-width: 500px;
+
+        & .name{
+            font-family: 'Varela Round', sans-serif;
+        }
     }
 
     & .image{
