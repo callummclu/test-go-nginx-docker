@@ -15,7 +15,7 @@ export const ProjectItem = ({title,description,image,id}:ProjectPost) => {
             <Card className="project-item" withBorder >
                 <div className="image" style={image ? {backgroundImage:`url(${image})`} : {}}/>
                 <div className="description">
-                    <h1>{title}</h1>
+                    <h3>{title}</h3>
                     <p>{description}</p>
                 </div>
             </Card>
