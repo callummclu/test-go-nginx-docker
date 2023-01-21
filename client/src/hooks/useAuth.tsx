@@ -1,4 +1,4 @@
-import { LogInUser, SignUpUser, User } from "../types/auth";
+import { LogInUser, User } from "../types/auth";
 import React, {
     createContext,
     ReactNode,
@@ -16,7 +16,6 @@ interface AuthContextType {
     loading: boolean;
     error?: any;
     login: (loginParams:LogInUser,callback?:Function) => void;
-    signUp: (signupParams:SignUpUser,callback?:Function) => void;
     logout: () => void;
     reload: () => void;
     loggedIn: boolean
@@ -106,25 +105,6 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
         setError("")
     }
 
-    function signUp(signupParams:SignUpUser,callback?:Function){
-        setLoading(true)
-
-        UsersApi.signup(signupParams)
-        .then(async (res:any) => {
-            let res_json = await res.json()
-            if (Object.hasOwn(res_json,'error')){
-                setError(res_json.error)
-            } else {
-                return login({username:signupParams.username,password:signupParams.password})
-            }
-        }).catch((error)=>{
-            setError(error)
-        }).finally(()=>{
-            callback?.()
-            setLoading(false)
-        })
-    }
-
     function logout(){
         SessionsApi.logOut().then(()=>setUser(undefined))
     }
@@ -136,12 +116,11 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
             loading,
             login,
             clearError,
-            signUp,
             logout,
             loggedIn,
             reload
         }),
-        [user, loading, signUp, loggedIn,error]
+        [user, loading, loggedIn,error]
     )
 
     return (

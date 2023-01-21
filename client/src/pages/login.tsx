@@ -55,8 +55,8 @@ export const Login = () => {
             <br/>
             <Divider m="lg"/>
             <Center>
-            <Text color={'gray'}>
-              Not a member yet? <Anchor href='signup'>Signup</Anchor>
+            <Text ta="center" color={'gray'}>
+              Signups are closed as this area is used to edit site content.
             </Text>
             </Center>
           </Card>

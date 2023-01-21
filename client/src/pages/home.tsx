@@ -1,26 +1,36 @@
-import { Container, Title, Text, Divider, Group, Button, Skeleton } from "@mantine/core"
-import { Prism } from "@mantine/prism"
+import { Container, Title, Button, Stack, LoadingOverlay, Loader, Group } from "@mantine/core"
+import { useEffect, useState } from "react"
+import { getAllPosts } from "../api/posts"
+import { AdminNav } from "../components/adminnav"
+import { AdminProjectItem } from "../components/admin_project_item"
+import { ProjectItem, ProjectPost } from "../components/project_item"
 import useAuth from "../hooks/useAuth"
 
 export const Home = () => {
     const { user, logout } = useAuth()
 
-    const logoutHandler = () => {
-        logout()
-        window.location.reload()
-    }
+    const [posts, setPosts] = useState<{data: ProjectPost[]}>({data:[]})
 
-    const formatJSON = (str:string) => str?.split('{')?.join('{\n\t')?.split(',')?.join(',\n\t')?.split('}')?.join('\n}')
+    useEffect(()=>{
+        getAllPosts().then(async (res:any) => {
+            let res_json = await res.json()
+            console.log(res_json)
+            setPosts(res_json) 
+        })
+    },[])
+
+
     return (
         <Container p="xl">
-            <Group position="apart" align={'center'}>
-                <Button color={'red'} onClick={logoutHandler}>Logout</Button>
+            <AdminNav/>
+            <Group mt={60} position="apart">
+            <Title>Posts</Title>
+            <Button>New Post</Button>
             </Group>
-            <Divider variant="dashed" my={'xl'}/>
-            <Skeleton visible={!user} mb="sm"><Title mb="sm" order={2}>Welcome, {user?.username} 😊</Title></Skeleton>
-            <Skeleton visible={!user} mb="sm"><Text>Welcome to my site, so far this is just a landing page and there is no content, this will change in the future but for now here are you user details </Text></Skeleton>
+            <div className="projects">
+                {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <AdminProjectItem key={item.id} {...item} />) : <p>No data...</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
+            </div>
 
-            <Skeleton visible={!user}><Prism mt="xl" withLineNumbers language="json">{formatJSON(JSON.stringify(user) || "") || ""}</Prism></Skeleton>
         </Container>
     )
 }
