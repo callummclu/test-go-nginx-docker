@@ -10,8 +10,8 @@ func PostController() {
 	{
 		api.Use(middleware.CORSMiddleware("*"))
 		api.GET("", services.CreatePost)
-		api.GET("", services.ReadPosts)
-		api.GET(":id", services.UpdatePost)
-		api.GET(":id", services.DeletePost)
+		api.POST("", services.ReadPosts)
+		api.PUT(":id", services.UpdatePost)
+		api.DELETE(":id", services.DeletePost)
 	}
 }
