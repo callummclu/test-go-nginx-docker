@@ -8,7 +8,7 @@ export const AboutBanner = () => {
             <div className='text-container'>
                 <h1>Hey, I'm Callum McLuskey. </h1>
                 <p>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</p>
-                <p>Outside of software and work I love to draw, right now im focused on architecture and the buildings all about Glasgow.</p>
+                <p>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</p>
             </div>
         </div>
     )
