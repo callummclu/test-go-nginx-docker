@@ -1,25 +1,24 @@
-import { Card, LoadingOverlay, Skeleton } from "@mantine/core"
-import { useState } from "react"
+import { Anchor, Card} from "@mantine/core"
 
-const SkeletonContent = () => {
-    return (
-        <>
-            <Skeleton height={'65%'} radius="md"/>
-            <Skeleton height={'12.5%'} mt={6} radius="md" />
-            <Skeleton height={'7%'} mt={6} radius="xl" />
-            <Skeleton height={'7%'} mt={6} width="90%" radius="xl" />
-        </>
-    )
+export interface ProjectPost{
+    title:string;
+    description:string;
+    image:string;
+    id:string|number;
 }
 
-export const ProjectItem = () => {
-
-    const [loading,setLoading] = useState(true)
+export const ProjectItem = ({title,description,image,id}:ProjectPost) => {
 
     return (
 
-        <Card className="project-item" withBorder >
-            {loading ? <SkeletonContent/> : "Content"}
-        </Card>
+        <Anchor style={{textDecoration:'none'}} href={`${window.location.origin}/p/${id}`}>
+            <Card className="project-item" withBorder >
+                <div className="image" style={image ? {backgroundImage:`url(${image})`} : {}}/>
+                <div className="description">
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </div>
+            </Card>
+        </Anchor>
     )
 }

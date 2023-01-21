@@ -10,6 +10,7 @@ import { LandingPage } from './pages/landingpage';
 import { Nav } from './components/nav';
 import { About } from './pages/about';
 import { Container } from './components/Container';
+import { PostPage } from './pages/postpage';
 
 const isAdmin = () => window.location.href.includes('/admin')
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="*" element={<Error code={404} message="Page not found." icon={<BiError size={80}/>}/>}/>
           <Route path="" element={<LandingPage/>}/>
           <Route path="about" element={<About/>}/>
+          <Route path="p/:id" element={<PostPage/>}/>
           <Route path="admin" element={loggedIn ? <Home/> :<Login/>}/>
           <Route path="admin/login" element={<Login/>}/>
           <Route path="admin/signup" element={<Signup/>}/>

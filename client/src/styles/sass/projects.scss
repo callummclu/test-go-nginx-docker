@@ -1,14 +1,43 @@
+.page{
+    position: relative;
+    min-height: calc(100vh - 200px);
+    height:fit-content;
+}
+
 .projects{
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
     gap:25px;
     margin-top: 50px;
+    min-height: 200px;
 
     & .project-item{
         min-width: 350px;
         width:clamp(350px, 50vw, 500px);
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 16 / 13;
+        position: relative;
+
+        & .image{
+            background-image: url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png);
+            background-size: cover;
+            background-position: center;
+            height:calc(100% - 70px);
+        }
+        & .description{
+
+            & p,h1{
+                margin:0;
+                padding: 0;
+                line-height: 30px;
+            }
+
+            & h1{
+                margin-top: 10px;
+            }
+        }
     }
 }
