@@ -66,6 +66,7 @@ func ReadPosts(c *gin.Context) {
 		}
 
 		posts = append(posts, models.AllPostsViewModel{
+			ID:          ID,
 			Title:       Title,
 			Description: Description,
 			Image:       Image,
