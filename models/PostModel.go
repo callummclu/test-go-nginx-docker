@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/callummclu/callummclu.co.uk/configs"
 )
@@ -46,6 +47,7 @@ func (p *Post) SavePost() error {
 }
 
 func (p *Post) GetPostById(query string) error {
+	fmt.Println(query)
 	db, err := configs.GetDB()
 	if err != nil {
 		err = errors.New("DB connection error")
@@ -53,7 +55,7 @@ func (p *Post) GetPostById(query string) error {
 	}
 	defer db.Close()
 
-	err = db.QueryRow("SELECT id, title, description, body, image FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Description, &p.Image)
+	err = db.QueryRow("SELECT id, title, description, body, image FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image)
 
 	return err
 }

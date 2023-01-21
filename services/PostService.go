@@ -61,7 +61,7 @@ func ReadPosts(c *gin.Context) {
 			Image       string
 		)
 
-		if err := rows.Scan(&ID, &Title, &Description); err != nil {
+		if err := rows.Scan(&ID, &Title, &Description, &Image); err != nil {
 			fmt.Print(err)
 		}
 
@@ -88,7 +88,7 @@ func ReadSinglePost(c *gin.Context) {
 	err := post.GetPostById(id)
 
 	if err != nil {
-		c.JSON(400, gin.H{"error": "Cannot find post"})
+		c.JSON(400, gin.H{"error": "post not found"})
 		return
 	}
 
