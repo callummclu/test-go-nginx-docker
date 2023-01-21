@@ -46,7 +46,7 @@
     & .project-item{
         min-width: 350px;
         width:clamp(350px, 50vw, 400px);
-        aspect-ratio: 16 / 13;
+        // aspect-ratio: 16 / 13;
         position: relative;
 
         &.admin{
@@ -54,12 +54,14 @@
         }
 
         & .image{
+            width:100%;
             background-image: url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png);
             background-size: cover;
             background-position: center;
-            height:calc(100% - 70px);
+            height:calc(200px);
         }
         & .description{
+            height:fit-content;
 
             & p,h3{
                 margin:0;
