@@ -1,7 +1,9 @@
+import { AboutBanner } from "../components/aboutBanner"
+
 export const About = () => {
     return (
         <>
-            <p>Page not implemented yet :(</p>
+            <AboutBanner/>
         </>
     )
 }
