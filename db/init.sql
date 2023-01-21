@@ -8,3 +8,10 @@ CREATE TABLE users (
     password varchar(255) NOT NULL,
     created_at timestamp DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    title varchar(255) NOT NULL,
+    description varchar(255) NOT NULL,
+    body varchar(10485760) NOT NULL
+);

@@ -1,8 +1,8 @@
 import '../styles/sass/container.scss'
 
-export const Container = ({children}:any) => {
+export const Container = ({children,isAdmin}:any) => {
     return (
-        <div className="container">
+        <div className={`${!isAdmin && "container"}`}>
             {children}
         </div>
     )

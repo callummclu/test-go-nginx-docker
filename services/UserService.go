@@ -212,18 +212,7 @@ func DeleteOneUser(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "user successfully deleted"})
 		return
 	}
-
-	c.JSON(400, gin.H{"error": err})
-	return
 }
-
-/*
-
-	----------------------------------------
-	THESE TWO FUNCTIONS BELOW ARE UNFINISHED
-	----------------------------------------
-
-*/
 
 func EditOneUser(c *gin.Context) {
 	var user models.LogInUser

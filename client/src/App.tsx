@@ -19,19 +19,17 @@ function App() {
 
   return (
     <BrowserRouter>
-    {!isAdmin() && <Nav/>}
-    <Container>
-      <Routes>
-        <Route path="*" element={<Error code={404} message="Page not found." icon={<BiError size={80}/>}/>}/>
-        
+      {!isAdmin() && <Nav/>}
+      <Container isAdmin={isAdmin()}>
+        <Routes>
+          <Route path="*" element={<Error code={404} message="Page not found." icon={<BiError size={80}/>}/>}/>
           <Route path="" element={<LandingPage/>}/>
           <Route path="about" element={<About/>}/>
-        <Route path="admin" element={loggedIn ? <Home/> :<Login/>}/>
-        <Route path="admin/login" element={<Login/>}/>
-        <Route path="admin/signup" element={<Signup/>}/>
-      </Routes>
+          <Route path="admin" element={loggedIn ? <Home/> :<Login/>}/>
+          <Route path="admin/login" element={<Login/>}/>
+          <Route path="admin/signup" element={<Signup/>}/>
+        </Routes>
       </Container>
-
     </BrowserRouter>
   );
 }
