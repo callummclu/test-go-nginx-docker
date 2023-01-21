@@ -16,7 +16,7 @@ type Post struct {
 }
 
 type AllPostsViewModel struct {
-	ID          int64  `json:"-"`
+	ID          int64  `json:"id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Image       string `json:"image"`
