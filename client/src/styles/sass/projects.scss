@@ -56,7 +56,8 @@
         & .image{
             width:100%;
             background-image: url(https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png);
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center;
             height:calc(200px);
         }
