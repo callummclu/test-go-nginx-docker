@@ -14,7 +14,6 @@ export const Home = () => {
     useEffect(()=>{
         getAllPosts().then(async (res:any) => {
             let res_json = await res.json()
-            console.log(res_json)
             setPosts(res_json) 
         })
     },[])
@@ -28,8 +27,6 @@ export const Home = () => {
 
     const newPost = (e:any) => {
         e.preventDefault();
-
-        console.log(e.target)
 
 
         createPost({

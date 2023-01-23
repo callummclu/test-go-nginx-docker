@@ -20,10 +20,10 @@ export const Nav = () => {
             </div>
             <div className={`section ${menuOpen && 'show icons'}`}>
                 <Anchor href="https://github.com/callummclu">
-                    <BsGithub color={'gray'} size={18}/>
+                    <BsGithub aria-label="github" color={'gray'} size={18}/>
                 </Anchor>
                 <Anchor href="https://www.linkedin.com/in/callummclu/">
-                    <BsLinkedin color={'gray'} size={18}/>
+                    <BsLinkedin aria-label="linkedin" color={'gray'} size={18}/>
                 </Anchor>
             </div>
         </div>

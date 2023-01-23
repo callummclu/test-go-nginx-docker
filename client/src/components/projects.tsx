@@ -11,14 +11,13 @@ export const Projects = () => {
     useEffect(()=>{
         getAllPosts().then(async (res:any) => {
             let res_json = await res.json()
-            console.log(res_json)
             setPosts(res_json) 
         })
     },[])
 
     return (
         <>
-            <h1 style={{textAlign:'center'}}>Projects / Work</h1>
+            <h2 style={{textAlign:'center', fontSize:30}}>Projects / Work</h2>
             <p style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</p>
             <div className="projects">
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <ProjectItem key={item.id} {...item} />) : <p>No data...</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}

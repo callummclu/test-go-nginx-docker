@@ -14,7 +14,6 @@ export const PostPage = () => {
     useEffect(()=>{
         getSinglePost(id as string).then(async (res:any) => {
             let res_json = await res.json()
-            console.log(res_json)
             setPost(res_json) 
         })
     },[id])
