@@ -13,7 +13,7 @@ export const Nav = () => {
 
     return (
         <div className={`nav ${menuOpen && 'open'}`}>
-            <UnstyledButton onClick={openMenu} className='hamburger'>{menuOpen ? <IoMdClose color={'grey'} size={24}/> :<BiMenu color={'gray'} size={24}/>}</UnstyledButton>
+            <UnstyledButton onClick={openMenu} className='hamburger'>{menuOpen ? <IoMdClose aria-label="menu button" color={'grey'} size={24}/> :<BiMenu color={'gray'} size={24}/>}</UnstyledButton>
             <div className={`section ${menuOpen && 'show'}`}>
                 <a href="/">Home</a>
                 <a href="/about">About</a>

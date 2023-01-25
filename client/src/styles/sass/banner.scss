@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
+.name{
+    font-family: 'Varela Round', sans-serif;
+}
+
+.otw{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .banner{
 
     @media screen and (max-width:940px) {
@@ -32,10 +43,6 @@
 
         min-width: 300px;
         max-width: 500px;
-
-        & .name{
-            font-family: 'Varela Round', sans-serif;
-        }
     }
 
     & .image{
