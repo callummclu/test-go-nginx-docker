@@ -25,8 +25,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "gzipper":"gzipper",
     "start": "react-scripts start",
-    "build": "react-scripts build && gzipper --verbose ./build && serve -s build",
+    "build": "react-scripts build && gzipper compress ./build && serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
