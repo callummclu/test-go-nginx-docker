@@ -36,11 +36,13 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
     },[window.location.pathname])
 
     useEffect(() => {
-        UsersApi.checkAuth()
+            UsersApi.checkAuth()
             .then(async (res:any) => {
                 let res_json = await res.json()
-                setLoggedIn(res_json.isAuthenticated)
-                UsersApi.getUserDetails(res_json.username)
+                if(res_json.username){
+                    
+                    setLoggedIn(res_json.isAuthenticated)
+                    UsersApi.getUserDetails(res_json.username)
                     .then(async (res:any) => {
                         let res_json = await res.json()
                         setUser(res_json.data)
@@ -48,10 +50,11 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
                     .catch((err) => {
                         setError(err)
                     })
+                }
             })
             .catch((_errpr)=>{})
             .finally(()=> setLoadingInitial(false))
-    },[])
+        },[])
 
     function reload(){
         setLoading(true)
