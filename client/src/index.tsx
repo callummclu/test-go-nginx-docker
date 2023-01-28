@@ -20,4 +20,4 @@ root.render(
   </MantineProvider>
 );
 
-serviceWorkerRegistration.unregister();
+serviceWorkerRegistration.register();
