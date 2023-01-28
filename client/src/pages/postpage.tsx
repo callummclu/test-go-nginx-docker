@@ -1,4 +1,4 @@
-import { Divider, Loader, LoadingOverlay, Text, Title } from "@mantine/core"
+import { Divider, Loader, LoadingOverlay, Text, Title, Image, Group, Stack, Avatar } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getSinglePost } from "../api/posts"
@@ -21,16 +21,15 @@ export const PostPage = () => {
         <>
         <div className="page">
         <LoadingOverlay loader={<Loader color="green" />}  visible={!post} overlayBlur={2} />
-            <div className="image-container">
-            <div className="image" style={{backgroundImage:`url(${post?.data.image})`}}></div>
-            <div className="image-overlay"></div>
-                <div className="content">
-                <Title>{post?.data.title}</Title>
-                <Text mb="md">{post?.data.description}</Text>
-                </div>
-            </div>
+            <Group>
+                <Stack spacing={0}>
+                    <Title>{post?.data.title}</Title>
+                    <Text mb="md">{post?.data.description}</Text>
+                </Stack>
+            </Group>
             {post && <Divider variant="dashed"/>}
             <Text>
+
                 <ReactMarkdown children={post?.data.body}/>
             </Text>
         </div>
