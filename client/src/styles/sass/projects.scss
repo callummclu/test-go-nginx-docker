@@ -1,8 +1,13 @@
 .page{
+
+    background-color: white;
+    -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);  
     position: relative;
     min-height: calc(100vh - 200px);
     height:fit-content;
-
+    background-size: cover;
+    
     & .image-container{
         height:200px;
         border-radius: 10px;
