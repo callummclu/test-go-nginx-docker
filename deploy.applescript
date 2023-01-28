@@ -1,5 +1,5 @@
 tell application "Terminal"
-	set currentTab to do script ("ssh root@134.122.105.245;")
+	set currentTab to do script ("ssh " & system attribute "SERVER_USER" & " @ " & system attribute "SERVER_ROOT")
 	delay 2
 	
 	do script (system attribute "SERVER_PASS") in currentTab
