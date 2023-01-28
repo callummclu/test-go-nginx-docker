@@ -1,13 +1,11 @@
-import { Container, Title, Button, Text, LoadingOverlay, Loader, Group, Modal, TextInput, Textarea } from "@mantine/core"
+import { Container, Title, Button, Group, Modal, TextInput, Textarea } from "@mantine/core"
 import { useEffect, useRef, useState } from "react"
 import { createPost, getAllPosts } from "../api/posts"
 import { AdminNav } from "../components/adminnav"
 import { AdminProjectItem } from "../components/admin_project_item"
-import { ProjectItem, ProjectPost } from "../components/project_item"
-import useAuth from "../hooks/useAuth"
+import { ProjectPost } from "../components/project_item"
 
 export const Home = () => {
-    const { user, logout } = useAuth()
 
     const [posts, setPosts] = useState<{data: ProjectPost[]}>({data:[]})
 

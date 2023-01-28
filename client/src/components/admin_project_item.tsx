@@ -1,4 +1,4 @@
-import { Anchor, Badge, Card, Group, Indicator} from "@mantine/core"
+import { Badge, Card, Group} from "@mantine/core"
 
 export interface ProjectPost{
     title:string;

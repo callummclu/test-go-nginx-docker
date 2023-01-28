@@ -1,8 +1,7 @@
-import { Code, Divider, Loader, LoadingOverlay, Text, Title } from "@mantine/core"
+import { Divider, Loader, LoadingOverlay, Text, Title } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getSinglePost } from "../api/posts"
-import { ProjectPost } from "../components/project_item"
 import ReactMarkdown from 'react-markdown'
 
 export const PostPage = () => {

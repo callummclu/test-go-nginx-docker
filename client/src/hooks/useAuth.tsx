@@ -1,5 +1,5 @@
 import { LogInUser, User } from "../types/auth";
-import React, {
+import {
     createContext,
     ReactNode,
     useContext,

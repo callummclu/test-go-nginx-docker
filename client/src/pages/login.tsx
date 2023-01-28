@@ -1,4 +1,4 @@
-import { Anchor, Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, LoadingOverlay } from '@mantine/core';
+import { Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, LoadingOverlay } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useEffect, useRef } from 'react';
 import useAuth from '../hooks/useAuth';
