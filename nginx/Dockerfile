@@ -14,6 +14,5 @@ RUN npm run build
 # production environment
 FROM nginx:stable-alpine
 COPY --from=build-stage /client/build/ /usr/share/nginx/html
-COPY sitemap.xml /usr/share/nginx/html/
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
