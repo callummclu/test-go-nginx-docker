@@ -34,7 +34,14 @@ services:
       - goservice
     volumes:
       - /data/certs:/etc/nginx/certs
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
 
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
   # jenkins:
   #   container_name: jenkins
   #   image: jenkins/jenkins:lts
