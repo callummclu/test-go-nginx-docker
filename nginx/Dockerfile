@@ -2,6 +2,8 @@ FROM node:19-alpine as build-stage
 
 WORKDIR /client
 
+COPY sitemap.xml /client/sitemap.xml
+
 COPY /client/package*.json /client/
 
 RUN npm install
@@ -15,5 +17,4 @@ RUN npm run build
 FROM nginx:stable-alpine
 COPY --from=build-stage /client/build/ /usr/share/nginx/html
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
 EXPOSE 80
