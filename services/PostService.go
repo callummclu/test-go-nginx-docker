@@ -47,11 +47,15 @@ func ReadPosts(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err})
 	}
 
+	defer db.Close()
+
 	rows, err := db.Query("select id, title, description, image from posts")
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		var (

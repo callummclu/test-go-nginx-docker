@@ -22,6 +22,9 @@ func GetAllUsers(c *gin.Context) {
 		err = errors.New("DB connection error")
 		c.JSON(400, gin.H{"error": err})
 	}
+
+	defer db.Close()
+
 	var query string = c.Query("searchParams")
 
 	limit, err := strconv.Atoi(c.Query("itemsPerPage"))
@@ -47,6 +50,9 @@ func GetAllUsers(c *gin.Context) {
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 	}
+
+	defer rows.Close()
+
 	var results int
 
 	results_sum, err := db.Query("select count(*) from users where strpos(username, $1) > 0 OR strpos(name, $1) > 0 OR strpos(surname, $1) > 0", query)
@@ -178,6 +184,8 @@ func DeleteOneUser(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "DB Failed to Connect"})
 		return
 	}
+
+	defer db.Close()
 
 	stmt, err := db.Prepare("SELECT username,password FROM users WHERE username = $1 OR email = $1")
 	if err != nil {
