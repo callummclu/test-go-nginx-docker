@@ -21,12 +21,15 @@ export const PostPage = () => {
         <>
         <div className="page">
         <LoadingOverlay loader={<Loader color="green" />}  visible={!post} overlayBlur={2} />
-            <Group>
+
+                    <Group>
+                        <Avatar size={'lg'} src={post?.data.image}/>
                 <Stack spacing={0}>
                     <Title>{post?.data.title}</Title>
                     <Text mb="md">{post?.data.description}</Text>
                 </Stack>
-            </Group>
+                    </Group>
+
             {post && <Divider variant="dashed"/>}
             <Text>
 

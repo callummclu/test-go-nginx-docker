@@ -47,7 +47,7 @@ export const About = () => {
     return (
         <>
             <div className="banner">
-                <div className='image' style={{backgroundImage:'url(https://i.imgur.com/VXrSp2r.jpg)'}}>
+                <div className='image' style={{backgroundImage:`url(${window.location.origin+"/banner_image.svg"})`}}>
                 </div>
                 <div className='text-container'>
                     <h1>Hey, I'm Callum McLuskey. </h1>
