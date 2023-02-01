@@ -39,11 +39,11 @@ export const ProjectItem = ({title,description,image,id}:ProjectPost) => {
                 {/* <div className="image" style={image ? {backgroundImage:`url(${image})`} : {}}/> */}
                 <div className="description">
                     <Group>
-                        <Avatar src={image ? image : ""}/>
+                        <Avatar alt={title} src={image ? image : ""}/>
                     <h2>{title}</h2>
                     </Group>
                     <p>{description}</p>
-                    <Anchor style={{color:"#12b886",textDecoration:'none'}} href={`${window.location.origin}/p/${id}`}>
+                    <Anchor style={{color:"darkgreen",textDecoration:'none'}} href={`${window.location.origin}/p/${id}`}>
                         visit here
                     </Anchor>
                     
