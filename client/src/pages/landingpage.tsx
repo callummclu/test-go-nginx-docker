@@ -57,7 +57,7 @@ export const LandingPage = () => {
         </div>
             </motion.div>
             </motion.div>
-        <h2 style={{textAlign:'center', fontSize:30}}>Personal Projects</h2>
+        <h2 className="about-content-container"  style={{textAlign:'center', fontSize:30, marginBottom:0}}>Personal Projects</h2>
             <p style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</p>
             <div className="projects">
 
