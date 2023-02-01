@@ -1,4 +1,5 @@
 import { Stack } from "@mantine/core"
+import { motion, Variants } from "framer-motion";
 import { ExperienceItem, ExperienceProps } from "../components/experienceItem"
 import '../styles/sass/banner.scss'
 
@@ -43,9 +44,28 @@ const experiences:ExperienceProps[] = [
 
 ]
 
+   const cardVariants: Variants = {
+        onscreen: {
+          y: 50,
+          transition: {
+            type: "spring",
+            bounce: 0.5,
+            duration: 0.8
+          }
+        }
+      };
+
 export const About = () => {
     return (
         <>
+                            <motion.div
+      className="card-container-banner"
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.8 }}
+    >
+                    <motion.div className="card" variants={cardVariants}>
+
             <div className="banner">
                 <div className='image' style={{backgroundImage:`url(${window.location.origin+"/banner_image.svg"})`}}>
                 </div>
@@ -55,6 +75,8 @@ export const About = () => {
                     <p>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</p>
                 </div>
             </div>
+            </motion.div>
+            </motion.div>
             <Stack spacing={0} mb="xl">
                 <h2 style={{textAlign:'center', fontSize:30}}>Work Experience</h2>
                 <p style={{textAlign:'center'}}>Places ive worked since the start of my career.</p>

@@ -1,5 +1,5 @@
 import { Card, Title, Text, Group, Stack, Image } from "@mantine/core"
-
+import { motion, Variants } from "framer-motion";
 export interface ExperienceProps{
     company:string;
     title:string;
@@ -9,8 +9,32 @@ export interface ExperienceProps{
     image?:string;
 }
 
+const cardVariants: Variants = {
+    offscreen: {
+      y: 300
+    },
+    onscreen: {
+      y: 50,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
+  };
+
 export const ExperienceItem = ({company,title, period, description,current,image}:ExperienceProps) => {
     return (
+        <motion.div
+        className="card-container"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.8 }}
+        style={{width:'100%',marginBottom:20}}
+      >
+  
+                      <motion.div className="card" variants={cardVariants}>
+  
         <Card withBorder bg={current ? "rgba(0,0,0,0.025)" : "white"} w={'100%'}>
             <Group mb="sm">
                     <Image src={image || undefined} width={50} maw={50} height={50} radius="sm" withPlaceholder></Image>
@@ -26,5 +50,10 @@ export const ExperienceItem = ({company,title, period, description,current,image
             </Text>
 
         </Card>
+        </motion.div>
+
+            
+
+        </motion.div>
     )
 }
