@@ -78,7 +78,7 @@ export const About = () => {
             </motion.div>
             </motion.div>
             <Stack className="about-content-container" spacing={0} my="xl">
-                <h2 style={{textAlign:'center', fontSize:30, marginBottom:0}}>Work Experience</h2>
+                <h2 style={{textAlign:'center', fontSize:30, marginBottom:0}}>💻 Work Experience</h2>
                 <p style={{textAlign:'center'}}>Places ive worked since the start of my career.</p>
                 <div style={{marginTop:40,display:'flex', flexDirection:'column-reverse', justifyContent:'center', alignItems:'center', gap:20}}>
                     {experiences.map((exp) => <ExperienceItem {...exp}/>)}
