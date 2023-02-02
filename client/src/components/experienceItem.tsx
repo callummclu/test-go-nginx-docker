@@ -36,7 +36,7 @@ export const ExperienceItem = ({company,title, period, description,current,image
             <Text fw={400} c={'rgb(60,60,60)'}>{period}</Text>
             </Stack>
             </Group>
-            <Text c={'rgb(60,60,60)'}>
+            <Text color={"gray"} c={'rgb(60,60,60)'}>
                 {description}
             </Text>
 

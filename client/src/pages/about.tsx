@@ -1,4 +1,4 @@
-import { Stack } from "@mantine/core"
+import { Group, Stack, Timeline, Title, Text, Avatar } from "@mantine/core"
 import { motion, Variants } from "framer-motion";
 import { ExperienceItem, ExperienceProps } from "../components/experienceItem"
 import '../styles/sass/banner.scss'
@@ -77,13 +77,27 @@ export const About = () => {
             </div>
             </motion.div>
             </motion.div>
-            <Stack className="about-content-container" spacing={0} my="xl">
-                <h2 style={{textAlign:'center', fontSize:30, marginBottom:0}}>💻 Work Experience</h2>
+            <h2 style={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</h2>
+            <Timeline color="green" mt={75}>
+                {experiences.map((exp) => <Timeline.Item bullet={<Avatar src={exp.image}/>} title={exp.company}>
+                    <Stack spacing={0}>
+            <Group spacing={5} w={"100%"}>
+            <Text size="md" sx={{fontWeight:200}}>{exp.title}</Text>
+            </Group>
+            <Text size="sm" color={'dimmed'}>{exp.period}</Text>
+            </Stack>
+            <Text size="xs" mt={3} color={"gray"} c={'rgb(60,60,60)'}>
+                {exp.description}
+            </Text>
+                </Timeline.Item>)}
+            </Timeline>
+            {/* <Stack className="about-content-container" spacing={0} my="xl">
+                
                 <p style={{textAlign:'center'}}>Places ive worked since the start of my career.</p>
                 <div style={{marginTop:40,display:'flex', flexDirection:'column-reverse', justifyContent:'center', alignItems:'center', gap:20}}>
                     {experiences.map((exp) => <ExperienceItem {...exp}/>)}
                 </div>
-            </Stack>
+            </Stack> */}
         </>
     )
 }
