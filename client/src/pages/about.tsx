@@ -1,7 +1,15 @@
 import { Group, Stack, Timeline, Title, Text, Avatar } from "@mantine/core"
 import { motion, Variants } from "framer-motion";
-import { ExperienceItem, ExperienceProps } from "../components/experienceItem"
 import '../styles/sass/banner.scss'
+
+interface ExperienceProps {
+    company:string;
+    title:string;
+    period:string;
+    description:JSX.Element;
+    current:boolean;
+    image:string;
+}
 
 const experiences:ExperienceProps[] = [
     {
@@ -13,7 +21,7 @@ const experiences:ExperienceProps[] = [
         <br/>•	Followed agile methodologies with heavy emphasis on retrospectives, scrum meetings and pair programming.
         <br/>• During this position I learned how to adapt and overcome the usage of unknown technologies to solve a common problem</>,
         current:false,
-        image:"https://pbs.twimg.com/profile_images/2737178867/b07a030f3f94e8e08852b9621c0c4ef2_400x400.jpeg"
+        image:"https://static.callummclu.co.uk/experience/create-logo.webp"
     },
     {
         company:"Evata",
@@ -25,7 +33,7 @@ const experiences:ExperienceProps[] = [
         <br/>•	Utilised Jira and Miro to enforce an agile work flow utilising a kanban board along with regular retrospectives and pair programming.
         <br/>• This position pushed me to work on all aspects of the stack and gain a deeper understanding of how it all communicates and functions together</>,
         current:false,
-        image:"https://media.licdn.com/dms/image/C4E0BAQETmo2TuHH_0g/company-logo_200_200/0/1643144682676?e=1682553600&v=beta&t=um7cMbGwqUtSxLrmzJ8yQh6QJ7bgpTTnFOT146Ciqkg"
+        image:"https://static.callummclu.co.uk/experience/evata-logo.webp"
     },
     {
         company:"Guitarguitar",
@@ -39,7 +47,7 @@ const experiences:ExperienceProps[] = [
              • During my time here I learned how to work on a massive piece of software and understand the methods used to keep a system like this running 24/7.
         </>,
         current:true,
-        image:"https://pbs.twimg.com/profile_images/1231894269138526210/-w2y5V38_400x400.jpg"
+        image:"https://static.callummclu.co.uk/experience/guitarguitar-logo.webp"
     },
 
 ]
@@ -70,16 +78,16 @@ export const About = () => {
                 <div className='image' style={{backgroundImage:`url(https://static.callummclu.co.uk/main/banner_image.webp)`}}>
                 </div>
                 <div className='text-container'>
-                    <h1>Hey 👋, I'm Callum McLuskey. </h1>
-                    <p>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</p>
-                    <p>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</p>
+                    <Title>Hey 👋, I'm Callum McLuskey. </Title>
+                    <Text>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</Text>
+                    <Text>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</Text>
                 </div>
             </div>
             </motion.div>
             </motion.div>
-            <h2 style={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</h2>
+            <Title order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
             <Timeline color="green" mt={75}>
-                {experiences.map((exp) => <Timeline.Item bullet={<Avatar src={exp.image}/>} title={exp.company}>
+                {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
             <Group spacing={5} w={"100%"}>
             <Text size="md" sx={{fontWeight:200}}>{exp.title}</Text>
@@ -91,13 +99,6 @@ export const About = () => {
             </Text>
                 </Timeline.Item>)}
             </Timeline>
-            {/* <Stack className="about-content-container" spacing={0} my="xl">
-                
-                <p style={{textAlign:'center'}}>Places ive worked since the start of my career.</p>
-                <div style={{marginTop:40,display:'flex', flexDirection:'column-reverse', justifyContent:'center', alignItems:'center', gap:20}}>
-                    {experiences.map((exp) => <ExperienceItem {...exp}/>)}
-                </div>
-            </Stack> */}
         </>
     )
 }
