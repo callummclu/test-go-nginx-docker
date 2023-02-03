@@ -91,12 +91,13 @@ export default function About(){
             </motion.div>
             </motion.div>
             <Title order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
+            <Text sx={{textAlign:'center',marginTop:0, fontSize:30, marginBottom:0, fontWeight:300}}>Some commercial experience ive gained over the years.</Text>
             <Container>
             <Timeline color="green" mt={75}>
                 {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
             <Group spacing={5} w={"100%"}>
-            <Text size="md" sx={{fontWeight:200}}>{exp.title}</Text>
+            <Text size="md" sx={{fontWeight:300}}>{exp.title}</Text>
             </Group>
             <Text size="sm" color={'dimmed'}>{exp.period}</Text>
             </Stack>
