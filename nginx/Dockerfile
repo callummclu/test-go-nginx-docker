@@ -15,7 +15,7 @@ RUN npm run build
 
 # production environment
 FROM nginx:stable-alpine
-COPY --from=build-stage /client/build/ /usr/share/nginx/html
+COPY --from=build-stage /client/out/ /usr/share/nginx/html
 RUN mkdir /usr/share/nginx/cdn
 COPY /cdn/ /usr/share/nginx/cdn
 COPY nginx/nginx.conf /etc/nginx/nginx.conf

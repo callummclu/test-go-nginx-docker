@@ -1,20 +1,24 @@
 import { Container, Title, Button, Group, Modal, TextInput, Textarea } from "@mantine/core"
 import { useEffect, useRef, useState } from "react"
-import { createPost, getAllPosts } from "../api/posts"
-import { AdminNav } from "../components/adminnav"
-import { AdminProjectItem } from "../components/admin_project_item"
-import { ProjectPost } from "../components/project_item"
+import { createPost, getAllPosts } from "../../api/posts"
+import { AdminNav } from "../../components/adminnav"
+import { AdminProjectItem } from "../../components/admin_project_item"
+import { ProjectPost } from "../../components/project_item"
+import useAuth from "../../hooks/useAuth"
 
-export const Home = () => {
+export default function Home() {
 
     const [posts, setPosts] = useState<{data: ProjectPost[]}>({data:[]})
 
     useEffect(()=>{
         getAllPosts().then(async (res:any) => {
-            let res_json = await res.json()
+            const res_json = await res.json()
             setPosts(res_json) 
         })
     },[])
+
+    const { loggedIn } = useAuth();
+
 
     const [modalOpen, setModalOpen] = useState(false)
 
@@ -36,7 +40,7 @@ export const Home = () => {
     }
 
     return (
-        <>
+        <>{loggedIn ? <>
         <Modal
         style={{top:50}}
         opened={modalOpen}
@@ -64,6 +68,6 @@ export const Home = () => {
             
 
         </Container>
-        </>
+        </> : typeof window !== "undefined" && window.location.replace(window.location.origin+'/admin/login')}</>
     )
 }

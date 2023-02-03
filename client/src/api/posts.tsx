@@ -1,12 +1,12 @@
 export async function getAllPosts(){
-    const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/post`,{
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/post`,{
         method:"GET"
     })
     return response
 }
 
 export async function getSinglePost(id:string | number){
-    const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/post/${id}`,{
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/post/${id}`,{
         method:"GET"
     })
     return response

@@ -1,4 +1,5 @@
 import { Center, Stack, Text, Title } from "@mantine/core";
+import { BiError } from "react-icons/bi";
 
 interface ErrorProps{
     code:number;
@@ -6,9 +7,9 @@ interface ErrorProps{
     icon?:any;
 }
 
-export const Error = ({code,message,icon}:ErrorProps) => {
+export default function Error({code=404,message="Page not found.",icon=<BiError size={80}/>}:ErrorProps) {
     return (
-        <Stack justify={'center'} h="100vh" spacing={0}>
+        <Stack justify={'center'} h="calc(100vh - 60px)" spacing={0}>
             <Center>
                 {icon}
             </Center>

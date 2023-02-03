@@ -1,7 +1,7 @@
 import { LogInUser } from "../types/auth"
 
 export async function login(loginParams: LogInUser){
-    const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/login`,{
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/login`,{
         method:"POST",body:JSON.stringify(loginParams)
     })
     return response

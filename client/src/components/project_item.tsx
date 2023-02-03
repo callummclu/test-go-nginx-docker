@@ -1,6 +1,6 @@
 import { Anchor, Avatar, Card, Divider, Group} from "@mantine/core"
 import { motion, Variants } from "framer-motion";
-
+import styles from "../styles/sass/projects.module.scss"
 export interface ProjectPost{
     title:string;
     description:string;
@@ -27,17 +27,16 @@ export const ProjectItem = ({title,description,image,id}:ProjectPost) => {
     return (
         <>
         <motion.div
-      className="card-container"
+      className={styles["card-container"]}
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.8 }}
     >
 
-                    <motion.div className="card" variants={cardVariants}>
+                    <motion.div className={styles.card} variants={cardVariants}>
 
-            <Card className="project-item">
-                {/* <div className="image" style={image ? {backgroundImage:`url(${image})`} : {}}/> */}
-                <div className="description">
+            <Card className={styles["project-item"]}>
+                <div className={styles.description}>
                     <Group>
                         <Avatar alt={title} src={image ? image : ""}/>
                     <h2>{title}</h2>

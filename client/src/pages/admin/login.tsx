@@ -1,12 +1,12 @@
 import { Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, LoadingOverlay } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useEffect, useRef } from 'react';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 
-export const Login = () => {
-    let usernameRef = useRef<HTMLInputElement>(null)
-    let passwordRef = useRef<HTMLInputElement>(null)
+export default function Login(){
+    const usernameRef = useRef<HTMLInputElement>(null)
+    const passwordRef = useRef<HTMLInputElement>(null)
 
     const { login, loggedIn, loading, error, clearError } = useAuth()
 
@@ -19,7 +19,7 @@ export const Login = () => {
 
     useEffect(()=>{
       if(!error && loggedIn){
-        window.location.replace(window.location.origin)
+        window.location.replace(window.location.origin+"/admin")
       } else if(error?.length > 0) {
         showNotification({
           color:'red',

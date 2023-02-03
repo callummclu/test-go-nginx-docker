@@ -1,5 +1,5 @@
 import { Anchor, UnstyledButton } from '@mantine/core'
-import '../styles/sass/nav.scss'
+import styles from '../styles/sass/nav.module.scss'
 import { BsGithub,BsLinkedin } from 'react-icons/bs'
 import { BiMenu } from 'react-icons/bi'
 import { IoMdClose } from 'react-icons/io'
@@ -12,13 +12,13 @@ export const Nav = () => {
     const openMenu = () => setMenuOpen(!menuOpen)
 
     return (
-        <div className={`nav ${menuOpen && 'open'}`}>
-            <UnstyledButton aria-label="menu button" onClick={openMenu} className='hamburger'>{menuOpen ? <IoMdClose color={'grey'} size={24}/> :<BiMenu color={'gray'} size={24}/>}</UnstyledButton>
-            <div className={`section ${menuOpen && 'show'}`}>
+        <div className={`${styles.nav} ${menuOpen && styles.open}`}>
+            <UnstyledButton aria-label="menu button" onClick={openMenu} className={styles.hamburger}>{menuOpen ? <IoMdClose color={'grey'} size={24}/> :<BiMenu color={'gray'} size={24}/>}</UnstyledButton>
+            <div className={`${styles.section} ${menuOpen && styles.show}`}>
                 <a href="/">Home</a>
                 <a href="/about">About</a>
             </div>
-            <div className={`section ${menuOpen && 'show icons'}`}>
+            <div className={`${styles.section} ${menuOpen && `${styles.show} ${styles.icons}`}`}>
                 <Anchor href="https://github.com/callummclu">
                     <BsGithub aria-label="github" color={'gray'} size={18}/>
                 </Anchor>

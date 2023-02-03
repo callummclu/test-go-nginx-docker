@@ -1,6 +1,6 @@
 import { Group, Stack, Timeline, Title, Text, Avatar, Container } from "@mantine/core"
 import { motion, Variants } from "framer-motion";
-import '../styles/sass/banner.scss'
+import styles from '../styles/sass/banner.module.scss'
 
 interface ExperienceProps {
     company:string;
@@ -63,21 +63,21 @@ const experiences:ExperienceProps[] = [
         }
       };
 
-export const About = () => {
+export default function About(){
     return (
         <>
                             <motion.div
-      className="card-container-banner"
+      className={styles["card-container-banner"]}
       initial="offscreen"
       whileInView="onscreen"
       viewport={{ once: true, amount: 0.8 }}
     >
-                    <motion.div className="card" variants={cardVariants}>
+                    <motion.div className={styles.card} variants={cardVariants}>
 
-            <div className="banner">
-                <div className='image' style={{backgroundImage:`url(https://static.callummclu.co.uk/main/banner_image.webp)`}}>
+            <div className={styles.banner}>
+                <div className={styles.image} style={{backgroundImage:`url(https://static.callummclu.co.uk/main/banner_image.webp)`}}>
                 </div>
-                <div className='text-container'>
+                <div className={styles['text-container']}>
                     <Title>Hey 👋, I'm Callum McLuskey. </Title>
                     <Text>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</Text>
                     <Text>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</Text>

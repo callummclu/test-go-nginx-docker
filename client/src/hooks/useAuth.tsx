@@ -15,7 +15,7 @@ interface AuthContextType {
     user?: User;
     loading: boolean;
     error?: any;
-    login: (loginParams:LogInUser,callback?:Function) => void;
+    login: (loginParams:LogInUser,callback?:any) => void;
     logout: () => void;
     reload: () => void;
     loggedIn: boolean
@@ -33,26 +33,28 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
 
     useEffect(()=>{
         if (error) setError(null)
-    },[window.location.pathname])
+    },[])
 
     useEffect(() => {
             UsersApi.checkAuth()
             .then(async (res:any) => {
-                let res_json = await res.json()
-                if(res_json.username){
-                    
-                    setLoggedIn(res_json.isAuthenticated)
-                    UsersApi.getUserDetails(res_json.username)
-                    .then(async (res:any) => {
-                        let res_json = await res.json()
-                        setUser(res_json.data)
-                    })
-                    .catch((err) => {
-                        setError(err)
-                    })
+                if(res !== 'error'){
+
+                    const res_json = await res.json()
+                    if(res_json.username){
+                        
+                        setLoggedIn(res_json.isAuthenticated)
+                        UsersApi.getUserDetails(res_json.username)
+                        .then(async (res:any) => {
+                            const res_json = await res.json()
+                            setUser(res_json.data)
+                        })
+                        .catch((err) => {
+                            setError(err)
+                        })
+                    }
                 }
             })
-            .catch((_errpr)=>{})
             .finally(()=> setLoadingInitial(false))
         },[])
 
@@ -60,39 +62,37 @@ export function AuthProvider({children}:{children:ReactNode}):JSX.Element {
         setLoading(true)
         UsersApi.checkAuth()
             .then(async (res:any) => {
-                let res_json = await res.json()
+                const res_json = await res.json()
                 setLoggedIn(res_json.isAuthenticated)
                 UsersApi.getUserDetails(res_json.username)
                     .then(async (res:any) => {
-                        let res_json = await res.json()
+                        const res_json = await res.json()
                         setUser(res_json.data)
                     })
             })
-            .catch((_error)=>{})
             .finally(()=>setLoading(false))
     }
 
-    function login({username,password}:LogInUser,callback?:Function){
+    function login({username,password}:LogInUser,callback?:any){
         setLoading(true)
         SessionsApi.login({username,password})
             .then(async (res:any) => {
-                let res_json = await res.json()
+                const res_json = await res.json()
                 if (!Object.hasOwn(res_json,'error')){
                     localStorage.setItem("gocial_auth_token",res_json.token)
                     UsersApi.checkAuth()
                         .then(async (res:any) => {
-                            let res_json = await res.json()
+                            const res_json = await res.json()
                             setLoggedIn(res_json.isAuthenticated)
                             UsersApi.getUserDetails(res_json.username)
                                 .then(async (res:any) => {
-                                    let res_json = await res.json()
+                                    const res_json = await res.json()
                                     setUser(res_json.data)
                                 })
                                 .catch((err) => {
                                     setError(err)
                                 })
                         })
-                        .catch((_error)=>{})
                 } else {
                     setError(res_json.error)
                 }
