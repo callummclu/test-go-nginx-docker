@@ -1,5 +1,6 @@
 import { Group, Stack, Timeline, Title, Text, Avatar, Container } from "@mantine/core"
 import { motion, Variants } from "framer-motion";
+import { Head } from "next/document";
 import styles from '../styles/sass/banner.module.scss'
 
 interface ExperienceProps {
@@ -66,6 +67,10 @@ const experiences:ExperienceProps[] = [
 export default function About(){
     return (
         <>
+        <Head>
+            <title>Callum McLuskey - About</title>
+            <meta name="description" content="Hi i'm Callum McLuskey a 4th year student at Glasgow University and avid Full stack software engineer working at guitarguitar." />
+        </Head>
                             <motion.div
       className={styles["card-container-banner"]}
       initial="offscreen"
@@ -88,7 +93,7 @@ export default function About(){
             <Title order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
             <Container>
             <Timeline color="green" mt={75}>
-                {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar src={exp.image}/>} title={exp.company}>
+                {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
             <Group spacing={5} w={"100%"}>
             <Text size="md" sx={{fontWeight:200}}>{exp.title}</Text>

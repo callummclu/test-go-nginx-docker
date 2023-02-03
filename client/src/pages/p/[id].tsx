@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { getSinglePost } from "../../api/posts"
 import ReactMarkdown from 'react-markdown'
 import { useRouter } from "next/router"
+import { Head } from "next/document"
 
 export default function PostPage(){
 
@@ -21,6 +22,10 @@ export default function PostPage(){
 
     return (
         <>
+        <Head>
+            <title>Callum McLuskey - {post?.data?.title}</title>
+            <meta name="description" content="Hi i'm Callum McLuskey a 4th year student at Glasgow University and avid Full stack software engineer working at guitarguitar." />
+        </Head>
         <div className="page">
         <LoadingOverlay loader={<Loader color="green" />}  visible={!post} overlayBlur={2} />
 

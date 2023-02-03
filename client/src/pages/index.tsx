@@ -7,6 +7,7 @@ import { getAllPosts } from "../api/posts"
 import "../styles/sass/projects.module.scss"
 import { ProjectItem, ProjectPost } from "../components/project_item"
 import { motion, Variants } from 'framer-motion'
+import Head from 'next/head'
 
 export default function LandingPage(){
 
@@ -32,6 +33,10 @@ export default function LandingPage(){
 
     return (
         <>
+        <Head>
+            <title>Callum McLuskey</title>
+            <meta name="description" content="Hi i'm Callum McLuskey a 4th year student at Glasgow University and avid Full stack software engineer working at guitarguitar." />
+        </Head>
                     <motion.div
       className={styles['card-container-banner']}
       initial="offscreen"
