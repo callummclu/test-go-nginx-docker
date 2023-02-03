@@ -52,7 +52,7 @@ export const LandingPage = () => {
                 </Text><br/></h1><h1>A Full stack engineer</h1>
                 <p>Gradute software engineer with a variety of professional and personal experience working across the full-stack of software development.</p>
             </div>
-            <div className='image' style={{backgroundImage:`url(${window.location.origin+"/logo512.png"})`}}>
+            <div className='image' style={{backgroundImage:`url(https://static.callummclu.co.uk/main.me.png)`}}>
             </div>
         </div>
             </motion.div>
