@@ -1,4 +1,4 @@
-import { Group, Stack, Timeline, Title, Text, Avatar } from "@mantine/core"
+import { Group, Stack, Timeline, Title, Text, Avatar, Container } from "@mantine/core"
 import { motion, Variants } from "framer-motion";
 import '../styles/sass/banner.scss'
 
@@ -86,6 +86,7 @@ export const About = () => {
             </motion.div>
             </motion.div>
             <Title order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
+            <Container>
             <Timeline color="green" mt={75}>
                 {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
@@ -99,6 +100,7 @@ export const About = () => {
             </Text>
                 </Timeline.Item>)}
             </Timeline>
+            </Container>
         </>
     )
 }
