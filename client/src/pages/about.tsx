@@ -67,7 +67,7 @@ export const About = () => {
                     <motion.div className="card" variants={cardVariants}>
 
             <div className="banner">
-                <div className='image' style={{backgroundImage:`url(${window.location.origin+"/banner_image.svg"})`}}>
+                <div className='image' style={{backgroundImage:`url(https://static.callummclu.co.uk/main/banner_image.webp)`}}>
                 </div>
                 <div className='text-container'>
                     <h1>Hey 👋, I'm Callum McLuskey. </h1>

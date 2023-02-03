@@ -9,13 +9,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://static.callummclu.co.uk/client/logo192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "logo512.png",
+      "src": "https://static.callummclu.co.uk/client/logo512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
