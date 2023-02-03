@@ -1,12 +1,14 @@
 
-import { MantineProvider } from '@mantine/core';
+import { Affix, Button, MantineProvider, Transition } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useEffect } from 'react';
 import { Container } from '../components/Container';
 import { Nav } from '../components/nav';
-import useAuth, { AuthProvider } from '../hooks/useAuth';
+import { AuthProvider } from '../hooks/useAuth';
 import '../styles/sass/index.scss'
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
+import {AiOutlineArrowUp} from 'react-icons/ai'
+import { useWindowScroll } from '@mantine/hooks';
 
 export default function MyApp({Component, pageProps}:any){
     const isAdmin = () => {
@@ -24,9 +26,25 @@ export default function MyApp({Component, pageProps}:any){
             }
         }
     },[])
+    const [scroll, scrollTo] = useWindowScroll();
+
 
     return (
         <>
+             <Affix position={{ bottom: 20, right: 20 }}>
+        <Transition transition="slide-up" mounted={scroll.y > 0}>
+          {(transitionStyles) => (
+            <Button
+              color={'green'}
+              leftIcon={<AiOutlineArrowUp size={16} />}
+              style={transitionStyles}
+              onClick={() => scrollTo({ y: 0 })}
+            >
+              Scroll to top
+            </Button>
+          )}
+        </Transition>
+      </Affix>
             <MantineProvider>
                 <NotificationsProvider>
                     <AuthProvider>
