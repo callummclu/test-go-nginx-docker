@@ -1,7 +1,7 @@
 
 import { Affix, Button, MantineProvider, Transition } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from '../components/Container';
 import { Nav } from '../components/nav';
 import { AuthProvider } from '../hooks/useAuth';
@@ -28,6 +28,15 @@ export default function MyApp({Component, pageProps}:any){
     },[])
     const [scroll, scrollTo] = useWindowScroll();
 
+    const [awayFromTop, setAwayFromTop] = useState(false);
+
+    useEffect(()=>{
+        if(scroll.y > 300){
+            setAwayFromTop(true)
+        } else {
+            setAwayFromTop(false)
+        }
+    },[scroll])
 
     return (
         <>
@@ -48,7 +57,7 @@ export default function MyApp({Component, pageProps}:any){
             <MantineProvider>
                 <NotificationsProvider>
                     <AuthProvider>
-                        {!isAdmin() && <Nav/>}
+                        {!isAdmin() && <Nav awayFromTop={awayFromTop}/>}
                         <Container isAdmin={isAdmin()}>
                             <Component {...pageProps}/>
                         </Container>

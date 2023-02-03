@@ -3,16 +3,18 @@ import styles from '../styles/sass/nav.module.scss'
 import { BsGithub,BsLinkedin } from 'react-icons/bs'
 import { BiMenu } from 'react-icons/bi'
 import { IoMdClose } from 'react-icons/io'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-export const Nav = () => {
+export const Nav = ({awayFromTop}:{awayFromTop:boolean}) => {
 
     const [menuOpen,setMenuOpen] = useState(false)
 
     const openMenu = () => setMenuOpen(!menuOpen)
 
+
+
     return (
-        <div className={`${styles.nav} ${menuOpen && styles.open}`}>
+        <div className={`${styles.nav} ${menuOpen && styles.open} ${awayFromTop && styles.navBorder}`}>
             <UnstyledButton aria-label="menu button" onClick={openMenu} className={styles.hamburger}>{menuOpen ? <IoMdClose color={'grey'} size={24}/> :<BiMenu color={'gray'} size={24}/>}</UnstyledButton>
             <div className={`${styles.section} ${menuOpen && styles.show}`}>
                 <a href="/">Home</a>
