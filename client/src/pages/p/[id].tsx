@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { getSinglePost } from "../../api/posts"
 import ReactMarkdown from 'react-markdown'
 import { useRouter } from "next/router"
-import { Head } from "next/document"
+import Head from "next/head"
 
 export default function PostPage(){
 

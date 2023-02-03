@@ -1,6 +1,6 @@
 import { Group, Stack, Timeline, Title, Text, Avatar, Container } from "@mantine/core"
 import { motion, Variants } from "framer-motion";
-import { Head } from "next/document";
+import Head from "next/head";
 import styles from '../styles/sass/banner.module.scss'
 
 interface ExperienceProps {
