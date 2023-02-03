@@ -22,4 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 out
-.next/cache
+.next
