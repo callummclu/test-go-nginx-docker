@@ -1,8 +1,8 @@
 export function checkAuth(){
-    let token = localStorage.getItem("gocial_auth_token")
+    const token = localStorage.getItem("gocial_auth_token")
     if(token){
 
-        const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/auth/${token}`)
+        const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/auth/${token}`)
         return response
     }
     return new Promise((rej)=>{
@@ -11,6 +11,6 @@ export function checkAuth(){
 }
 
 export function getUserDetails(username:string){
-    const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/user/${username}`)
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/user/${username}`)
     return response
 }  
