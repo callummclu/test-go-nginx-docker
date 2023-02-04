@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/callummclu/callummclu.co.uk/configs"
+	"github.com/lib/pq"
 )
 
 type Post struct {
@@ -57,7 +58,7 @@ func (p *Post) GetPostById(query string) error {
 	}
 	defer db.Close()
 
-	err = db.QueryRow("SELECT id, title, description, body, image, technologies FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image, &p.Technologies)
+	err = db.QueryRow("SELECT id, title, description, body, image, technologies FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image, pq.Array(&p.Technologies))
 
 	return err
 }
