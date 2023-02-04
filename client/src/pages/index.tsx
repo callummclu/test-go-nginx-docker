@@ -66,16 +66,17 @@ export default function LandingPage(){
             </motion.div>
             </motion.div>
 
-        <div style={{background:'#009473', backgroundSize:'cover', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
-            <div style={{height:200, width:'100%',background:'url(https://static.callummclu.co.uk/main/wave.svg)', backgroundSize:'cover'}}></div>
-            <Title className="dark-text" order={2} sx={{textAlign:'center',marginTop:100, fontSize:40, marginBottom:0}}>Personal Projects</Title>
+            <div style={{ width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
+            <div className={styles.wave}></div>
+            <div style={{background:'#009473', paddingTop:100}}>
+            <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:40, marginBottom:0}}>Personal Projects</Title>
             <Text px={50} size='lg' className='dark-text' style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</Text>
-            
             <div className={styles.projects}>
-            <Container my={75}>
+            <Container py={75}>
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <ProjectItem key={item.id} {...item} />) : <p>No data...</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
 
             </Container>
+            </div>
             </div>
         </div>
         </>

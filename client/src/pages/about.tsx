@@ -98,7 +98,7 @@ export default function About(){
             </motion.div>
             </motion.div>
             <div style={{ width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
-            <div style={{height:200, width:'100%',background:'url(https://static.callummclu.co.uk/main/wave.svg)', backgroundSize:'cover'}}></div>
+            <div className={styles.wave}></div>
             <div style={{background:'#009473', paddingTop:100}}>
             <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:40, marginBottom:0}}>💻 Work Experience</Title>
             <Text px={50} className="dark-text" sx={{textAlign:'center',marginTop:5, marginBottom:0}} size='lg'>Some commercial experience ive gained over the years.</Text>
