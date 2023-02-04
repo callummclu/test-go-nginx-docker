@@ -24,6 +24,8 @@ func CreatePost(c *gin.Context) {
 	post.Description = strings.TrimSpace(post.Description)
 	post.Body = strings.TrimSpace(post.Body)
 	post.Image = strings.TrimSpace(post.Image)
+	post.GithubLink = strings.TrimSpace(post.GithubLink)
+	post.SiteLink = strings.TrimSpace(post.SiteLink)
 
 	err := post.SavePost()
 
@@ -50,7 +52,7 @@ func ReadPosts(c *gin.Context) {
 
 	defer db.Close()
 
-	rows, err := db.Query("select id, title, description, image, technologies from posts")
+	rows, err := db.Query("select id, title, description, image, technologies, github,site from posts")
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
@@ -65,9 +67,11 @@ func ReadPosts(c *gin.Context) {
 			Description  string
 			Image        string
 			Technologies []string
+			GithubLink   string
+			SiteLink     string
 		)
 
-		if err := rows.Scan(&ID, &Title, &Description, &Image, pq.Array(&Technologies)); err != nil {
+		if err := rows.Scan(&ID, &Title, &Description, &Image, pq.Array(&Technologies), &GithubLink, &SiteLink); err != nil {
 			fmt.Print(err)
 		}
 
@@ -77,6 +81,8 @@ func ReadPosts(c *gin.Context) {
 			Description:  Description,
 			Image:        Image,
 			Technologies: Technologies,
+			GithubLink:   GithubLink,
+			SiteLink:     SiteLink,
 		})
 	}
 

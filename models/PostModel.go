@@ -14,6 +14,8 @@ type Post struct {
 	Description  string   `json:"description"`
 	Body         string   `json:"body"`
 	Image        string   `json:"image"`
+	GithubLink   string   `json:"github"`
+	SiteLink     string   `json:"site"`
 	Technologies []string `json:"technologies"`
 }
 
@@ -22,6 +24,8 @@ type AllPostsViewModel struct {
 	Title        string   `json:"title"`
 	Description  string   `json:"description"`
 	Image        string   `json:"image"`
+	GithubLink   string   `json:"github"`
+	SiteLink     string   `json:"site"`
 	Technologies []string `json:"technologies"`
 }
 
@@ -37,7 +41,7 @@ func (p *Post) SavePost() error {
 	}
 	defer db.Close()
 
-	insert_stmt, err := db.Prepare("INSERT INTO posts (title,description,body,image,technologes) VALUES ($1,$2,$3,$4,$5)")
+	insert_stmt, err := db.Prepare("INSERT INTO posts (title,description,body,image,technologes,github,site) VALUES ($1,$2,$3,$4,$5,$6,$7)")
 
 	if err != nil {
 		return err
@@ -58,7 +62,7 @@ func (p *Post) GetPostById(query string) error {
 	}
 	defer db.Close()
 
-	err = db.QueryRow("SELECT id, title, description, body, image, technologies FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image, pq.Array(&p.Technologies))
+	err = db.QueryRow("SELECT id, title, description, body, image, technologies, github, site  FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image, pq.Array(&p.Technologies), &p.GithubLink, &p.SiteLink)
 
 	return err
 }

@@ -1,15 +1,17 @@
-import { Divider, Loader, LoadingOverlay, Text, Title, Group, Stack, Avatar } from "@mantine/core"
+import { Divider, Loader, LoadingOverlay, Text, Title, Group, Stack, Avatar, Box, Badge, Container, ActionIcon, Anchor } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getSinglePost } from "../../api/posts"
 import ReactMarkdown from 'react-markdown'
 import { useRouter } from "next/router"
 import Head from "next/head"
-
+import { getTechnologyBadgeContent } from "../../helpers/technologyBadges"
+import { SiGithub } from "react-icons/si"
+import {CgWebsite} from 'react-icons/cg'
 export default function PostPage(){
 
     const router = useRouter()
     const { id } = router.query;
-    
+
 
     const [post, setPost] = useState<any>()
 
@@ -28,20 +30,38 @@ export default function PostPage(){
         </Head>
         <div className="page">
         <LoadingOverlay loader={<Loader color="green" />}  visible={!post} overlayBlur={2} />
-
+                
                     <Group>
-                        <Avatar alt={post?.data?.title} size={'lg'} src={post?.data?.image}/>
+
+                        <Avatar alt={post?.data?.title} size={'xl'} src={post?.data?.image}/>
                 <Stack spacing={0}>
+                    <Group>
                     <Title>{post?.data?.title}</Title>
-                    <Text mb="md">{post?.data?.description}</Text>
+                    <Anchor href={post?.data?.github}>
+                    <ActionIcon>
+                        <SiGithub/>
+                    </ActionIcon>
+                    </Anchor>
+                    {post?.data?.site.length > 0 &&
+                        <Anchor href={post?.data?.site}>
+                        <ActionIcon>
+                            <CgWebsite/>
+                        </ActionIcon>
+                        </Anchor>
+                    }
+                    </Group>
+                    <Text>{post?.data?.description}</Text>
+                    <Box mt="xs">{post?.data?.technologies && post?.data?.technologies.map((technology:string)=>getTechnologyBadgeContent(technology)).map((technology:any)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
                 </Stack>
                     </Group>
 
-            {post && <Divider variant="dashed"/>}
+            <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 32px)"}}>
             <Text>
-
+                <Container>
                 <ReactMarkdown children={post?.data?.body}/>
+                </Container>
             </Text>
+            </Box>
         </div>
         </>
     )
