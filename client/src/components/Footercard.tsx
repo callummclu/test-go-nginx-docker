@@ -24,7 +24,7 @@ export function UserInfoIcons({ avatar, name, title, phone, email }: UserInfoIco
   return (
     <div>
       <Group noWrap>
-        <Avatar src={avatar} size={94} radius={500} />
+        <Avatar alt="callum mcluskey" src={avatar} size={94} radius={500} />
         <div>
           <Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed">
             {title}

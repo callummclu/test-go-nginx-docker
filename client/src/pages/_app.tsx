@@ -44,6 +44,7 @@ export default function MyApp({Component, pageProps}:any){
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
             <ActionIcon
+                aria-name='scroll to top'
                 radius='xl'
                 variant='filled'
                 onClick={() => scrollTo({ y: 0 })}

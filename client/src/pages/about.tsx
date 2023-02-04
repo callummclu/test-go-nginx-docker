@@ -84,7 +84,7 @@ export default function About(){
                     <motion.div className={styles.card} variants={cardVariants}>
 
             <div className={styles.banner}>
-                <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/banner_image.webp' ?? ''}>
+                <Avatar alt="callum mcluskey" radius={200} size={300} src={'https://static.callummclu.co.uk/main/banner_image.webp' ?? ''}>
 
             </Avatar>
             <Space h="md"></Space>

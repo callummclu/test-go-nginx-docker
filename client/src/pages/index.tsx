@@ -60,7 +60,7 @@ export default function LandingPage(){
                 <Text size="lg" color='dimmed'>Gradute software engineer with a variety of professional and personal experience working across the full-stack of software development.</Text>
             </div>
             <Space h="xl"></Space>
-            <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/me.webp' ?? ''}>
+            <Avatar alt="callum mcluskey" radius={200} size={300} src={'https://static.callummclu.co.uk/main/me.webp' ?? ''}>
 
             </Avatar>
         </div>

@@ -30,7 +30,7 @@ export default function PostPage(){
         <LoadingOverlay loader={<Loader color="green" />}  visible={!post} overlayBlur={2} />
 
                     <Group>
-                        <Avatar size={'lg'} src={post?.data?.image}/>
+                        <Avatar alt={post?.data?.title} size={'lg'} src={post?.data?.image}/>
                 <Stack spacing={0}>
                     <Title>{post?.data?.title}</Title>
                     <Text mb="md">{post?.data?.description}</Text>
