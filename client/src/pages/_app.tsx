@@ -1,5 +1,5 @@
 
-import { Affix, Button, MantineProvider, Transition } from '@mantine/core';
+import { ActionIcon, Affix, Button, MantineProvider, Transition } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import { Container } from '../components/Container';
@@ -43,14 +43,16 @@ export default function MyApp({Component, pageProps}:any){
              <Affix position={{ bottom: 20, right: 20 }}>
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
-            <Button
-              color={'green'}
-              leftIcon={<AiOutlineArrowUp size={16} />}
-              style={transitionStyles}
-              onClick={() => scrollTo({ y: 0 })}
+            <ActionIcon
+                radius='xl'
+                variant='filled'
+                onClick={() => scrollTo({ y: 0 })}
+                style={transitionStyles}
+                color={'teal'}
+                size="xl"
             >
-              
-            </Button>
+                <AiOutlineArrowUp size={30} />
+            </ActionIcon>
           )}
         </Transition>
       </Affix>
