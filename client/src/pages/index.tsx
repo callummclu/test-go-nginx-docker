@@ -1,6 +1,6 @@
 import styles from '../styles/sass/banner.module.scss'
 
-import { Container, Text } from '@mantine/core'
+import { Avatar, Container, Text } from '@mantine/core'
 import { Loader, LoadingOverlay } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../api/posts"
@@ -59,8 +59,9 @@ export default function LandingPage(){
                 </Text><br/></h1><h1>A Full stack engineer</h1>
                 <p>Gradute software engineer with a variety of professional and personal experience working across the full-stack of software development.</p>
             </div>
-            <div className={styles.image} style={{backgroundImage:`url(https://static.callummclu.co.uk/main/me.webp)`}}>
-            </div>
+            <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/me.webp' ?? ''}>
+
+            </Avatar>
         </div>
             </motion.div>
             </motion.div>

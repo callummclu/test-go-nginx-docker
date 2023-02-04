@@ -1,4 +1,5 @@
 import { Group, Stack, Timeline, Title, Text, Avatar, Container } from "@mantine/core"
+import { useWindowScroll } from "@mantine/hooks";
 import { motion, Variants } from "framer-motion";
 import Head from "next/head";
 import styles from '../styles/sass/banner.module.scss'
@@ -64,6 +65,9 @@ const experiences:ExperienceProps[] = [
         }
       };
 
+    //   const [scroll, scrollTo] = useWindowScroll();
+
+
 export default function About(){
     return (
         <>
@@ -80,8 +84,9 @@ export default function About(){
                     <motion.div className={styles.card} variants={cardVariants}>
 
             <div className={styles.banner}>
-                <div className={styles.image} style={{backgroundImage:`url(https://static.callummclu.co.uk/main/banner_image.webp)`}}>
-                </div>
+                <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/banner_image.webp' ?? ''}>
+
+            </Avatar>
                 <div className={styles['text-container']}>
                     <Title>Hey 👋, I'm Callum McLuskey. </Title>
                     <Text>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</Text>

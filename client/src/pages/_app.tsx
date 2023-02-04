@@ -7,7 +7,7 @@ import { Nav } from '../components/nav';
 import { AuthProvider } from '../hooks/useAuth';
 import '../styles/sass/index.scss'
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
-import {AiOutlineArrowUp} from 'react-icons/ai'
+import {GoArrowSmallUp} from 'react-icons/go'
 import { useWindowScroll } from '@mantine/hooks';
 
 export default function MyApp({Component, pageProps}:any){
@@ -51,7 +51,7 @@ export default function MyApp({Component, pageProps}:any){
                 color={'teal'}
                 size="xl"
             >
-                <AiOutlineArrowUp size={30} />
+                <GoArrowSmallUp size={30} />
             </ActionIcon>
           )}
         </Transition>
