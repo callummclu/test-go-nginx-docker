@@ -1,6 +1,6 @@
 import styles from '../styles/sass/banner.module.scss'
 
-import { Avatar, Container, Text } from '@mantine/core'
+import { Avatar, Card, Container, Space, Text } from '@mantine/core'
 import { Loader, LoadingOverlay } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../api/posts"
@@ -51,13 +51,13 @@ export default function LandingPage(){
             <div className={styles['text-container']}>
                 <h1>Hi 👋, I'm <Text
                     variant="gradient"
-                    className={styles.name}
                     gradient={{ from: 'darkgreen', to: 'teal', deg: 45 }}
-                    sx={{ fontFamily: 'Greycliff CF, sans-serif',display:'inline' }}
+                    sx={{display:'inline' }}
                     >
                     Callum McLuskey
                 </Text><br/></h1><h1>A Full stack engineer</h1>
-                <p>Gradute software engineer with a variety of professional and personal experience working across the full-stack of software development.</p>
+                <Space h="md"></Space>
+                <Text size="lg" color='dimmed'>Gradute software engineer with a variety of professional and personal experience working across the full-stack of software development.</Text>
             </div>
             <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/me.webp' ?? ''}>
 
@@ -65,13 +65,15 @@ export default function LandingPage(){
         </div>
             </motion.div>
             </motion.div>
-        <div style={{background:'url(https://static.callummclu.co.uk/main/content_image.svg)', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10}} >
+        <div style={{background:'#009473', backgroundSize:'cover', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10}} >
             <h2 className={`${styles["about-content-container"]} dark-text`}  style={{textAlign:'center', fontSize:30, marginBottom:0, paddingTop:75}}>😄 Personal Projects</h2>
             <p className='dark-text' style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</p>
             
             <div className={styles.projects}>
-            <Container mb={100} >
+            <Container>
+                <Card my={100}>
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <ProjectItem key={item.id} {...item} />) : <p>No data...</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
+            </Card>
             </Container>
             </div>
         </div>

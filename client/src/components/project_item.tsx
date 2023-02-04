@@ -1,4 +1,4 @@
-import { Anchor, Avatar, Badge, Card, Divider, Group, Text} from "@mantine/core"
+import { Anchor, Avatar, Badge, Box, Card, Container, Divider, Group, Stack, Text, Title} from "@mantine/core"
 import { motion, Variants } from "framer-motion";
 import { getTechnologyBadgeContent } from "../helpers/technologyBadges";
 import styles from "../styles/sass/projects.module.scss"
@@ -15,7 +15,7 @@ const cardVariants: Variants = {
       y: 300
     },
     onscreen: {
-      y: 50,
+      y: 0,
       transition: {
         type: "spring",
         bounce: 0.4,
@@ -29,28 +29,30 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
     return (
         <>
         <motion.div
-      className={styles["card-container"]}
+        
       initial="offscreen"
       whileInView="onscreen"
-      viewport={{ once: true, amount: 0.8 }}
     >
 
                     <motion.div className={styles.card} variants={cardVariants}>
 
-            <Card bg={'transparent'} className={styles["project-item"]} >
+            <Card mb={'xl'} bg="transparent" className={styles["project-item"]} >
+              <Container px="xs">
                 <div className={styles.description}>
-                    <Group style={{marginBottom:0}}>
+                  <Stack spacing={0} mb="md">
+                    <Group mb={0}>
                       <Avatar alt={title} src={image ? image : ""} radius="xl"/>
-                      <h2 style={{margin:0}}>
-                        <Anchor className="dark-text" href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
-                      </h2>
+                      <Title order={2} style={{margin:0}}>
+                        <Anchor sx={{color:'rgb(60,60,60)'}} href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
+                      </Title>
                     </Group>
-                    <p className="dark-text">{description}</p>
-                    
+                    <Text pl={54}>{description}</Text>
+                    </Stack>
                     <Text>
                     </Text>
                 </div>
-                <div>{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6} variant='filled'>{technology.technology}</Badge>)}</div>
+                <Box pl={54}>{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6} variant='light'>{technology.technology}</Badge>)}</Box>
+                </Container>
             </Card>
             
             </motion.div>

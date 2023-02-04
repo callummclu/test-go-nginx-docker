@@ -1,4 +1,4 @@
-import { Group, Stack, Timeline, Title, Text, Avatar, Container } from "@mantine/core"
+import { Group, Stack, Timeline, Title, Text, Avatar, Container, Card, Space } from "@mantine/core"
 import { useWindowScroll } from "@mantine/hooks";
 import { motion, Variants } from "framer-motion";
 import Head from "next/head";
@@ -89,16 +89,21 @@ export default function About(){
             </Avatar>
                 <div className={styles['text-container']}>
                     <Title>Hey 👋, I'm Callum McLuskey. </Title>
-                    <Text>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</Text>
-                    <Text>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</Text>
+                    <Space h={'md'}></Space>
+                    <Text color='dimmed'>I'm a recent graduate with passion for all things software, from web (as a full stack developer), mobile to cli applications. I love venturing into areas such as UI/UX incorporating graphic design wherever possible.</Text>
+                    <Space h={'xs'}></Space>
+                    <Text color='dimmed'>Outside of software and work I love sketching and photography, right now im focused on architecture and the buildings all about Glasgow and all their hidden secrets.</Text>
                 </div>
             </div>
             </motion.div>
             </motion.div>
-            <Title order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
-            <Text sx={{textAlign:'center',marginTop:5, marginBottom:0, fontWeight:300}}>Some commercial experience ive gained over the years.</Text>
-            <Container>
-            <Timeline color="green" mt={75}>
+            <div style={{background:'#009473', backgroundSize:'cover', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10}} >
+            <Title className="dark-text" pt={75} order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
+            <Text className="dark-text" sx={{textAlign:'center',marginTop:5, marginBottom:0, fontWeight:300}}>Some commercial experience ive gained over the years.</Text>
+
+            <Container pb={50}>
+                <Card mt={75} p={50}>
+            <Timeline color="green" >
                 {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
             <Group spacing={5} w={"100%"}>
@@ -112,7 +117,9 @@ export default function About(){
             </Text>
                 </Timeline.Item>)}
             </Timeline>
+            </Card>
             </Container>
+            </div>
         </>
     )
 }
