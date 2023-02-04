@@ -1,6 +1,6 @@
 import styles from '../styles/sass/banner.module.scss'
 
-import { Avatar, Card, Container, Space, Text } from '@mantine/core'
+import { Avatar, Card, Container, Space, Text, Title } from '@mantine/core'
 import { Loader, LoadingOverlay } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../api/posts"
@@ -65,15 +65,16 @@ export default function LandingPage(){
         </div>
             </motion.div>
             </motion.div>
-        <div style={{background:'#009473', backgroundSize:'cover', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10}} >
-            <h2 className={`${styles["about-content-container"]} dark-text`}  style={{textAlign:'center', fontSize:30, marginBottom:0, paddingTop:75}}>😄 Personal Projects</h2>
-            <p className='dark-text' style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</p>
+
+        <div style={{background:'#009473', backgroundSize:'cover', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
+            <div style={{height:200, width:'100%',background:'url(https://static.callummclu.co.uk/main/wave.svg)', backgroundSize:'cover'}}></div>
+            <Title className="dark-text" order={2} sx={{textAlign:'center',marginTop:100, fontSize:40, marginBottom:0}}>Personal Projects</Title>
+            <Text px={50} size='lg' className='dark-text' style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</Text>
             
             <div className={styles.projects}>
-            <Container>
-                <Card my={100}>
+            <Container my={75}>
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <ProjectItem key={item.id} {...item} />) : <p>No data...</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
-            </Card>
+
             </Container>
             </div>
         </div>

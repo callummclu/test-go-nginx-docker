@@ -36,22 +36,22 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
 
                     <motion.div className={styles.card} variants={cardVariants}>
 
-            <Card mb={'xl'} bg="transparent" className={styles["project-item"]} >
+            <Card mb={'xl'} shadow="md" className={styles["project-item"]} >
               <Container px="xs">
                 <div className={styles.description}>
+                  <Group>
+                      <Avatar size="xl" bg="white" alt={title} src={image ? image : ""} radius="xl"/>
                   <Stack spacing={0} mb="md">
-                    <Group mb={0}>
-                      <Avatar alt={title} src={image ? image : ""} radius="xl"/>
+
                       <Title order={2} style={{margin:0}}>
-                        <Anchor sx={{color:'rgb(60,60,60)'}} href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
+                        <Anchor sx={{color:"rgb(60,60,60)"}} href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
                       </Title>
-                    </Group>
-                    <Text pl={54}>{description}</Text>
+                    <Text color='dimmed'>{description}</Text>
+                    <Box mt="sm">{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
+
                     </Stack>
-                    <Text>
-                    </Text>
+                    </Group>
                 </div>
-                <Box pl={54}>{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6} variant='light'>{technology.technology}</Badge>)}</Box>
                 </Container>
             </Card>
             

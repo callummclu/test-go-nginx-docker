@@ -97,9 +97,11 @@ export default function About(){
             </div>
             </motion.div>
             </motion.div>
-            <div style={{background:'#009473', backgroundSize:'cover', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10}} >
-            <Title className="dark-text" pt={75} order={2} sx={{textAlign:'center',marginTop:100, fontSize:30, marginBottom:0}}>💻 Work Experience</Title>
-            <Text className="dark-text" sx={{textAlign:'center',marginTop:5, marginBottom:0, fontWeight:300}}>Some commercial experience ive gained over the years.</Text>
+            <div style={{ width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
+            <div style={{height:200, width:'100%',background:'url(https://static.callummclu.co.uk/main/wave.svg)', backgroundSize:'cover'}}></div>
+            <div style={{background:'#009473', paddingTop:100}}>
+            <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:40, marginBottom:0}}>💻 Work Experience</Title>
+            <Text px={50} className="dark-text" sx={{textAlign:'center',marginTop:5, marginBottom:0}} size='lg'>Some commercial experience ive gained over the years.</Text>
 
             <Container pb={50}>
                 <Card mt={75} p={50}>
@@ -119,6 +121,7 @@ export default function About(){
             </Timeline>
             </Card>
             </Container>
+            </div>
             </div>
         </>
     )
