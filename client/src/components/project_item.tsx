@@ -36,7 +36,7 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
 
                     <motion.div className={styles.card} variants={cardVariants}>
 
-            <Card mb={'xl'} shadow="md" className={styles["project-item"]} >
+            <Card radius='lg' mb={'xl'} shadow="md" className={styles["project-item"]} >
               <Container px="xs">
                 <div className={styles.description}>
                   <Group>
