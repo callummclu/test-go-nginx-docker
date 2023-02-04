@@ -37,20 +37,20 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
 
                     <motion.div className={styles.card} variants={cardVariants}>
 
-            <Card className={styles["project-item"]}>
+            <Card bg={'transparent'} className={styles["project-item"]} >
                 <div className={styles.description}>
                     <Group style={{marginBottom:0}}>
-                      <Avatar alt={title} src={image ? image : ""}/>
+                      <Avatar alt={title} src={image ? image : ""} radius="xl"/>
                       <h2 style={{margin:0}}>
-                        <Anchor sx={{color:'rgb(60,60,60)'}} href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
+                        <Anchor className="dark-text" href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
                       </h2>
                     </Group>
-                    <p>{description}</p>
+                    <p className="dark-text">{description}</p>
                     
-                    {technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6}>{technology.technology}</Badge>)}
                     <Text>
                     </Text>
                 </div>
+                <div>{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6} variant='filled'>{technology.technology}</Badge>)}</div>
             </Card>
             
             </motion.div>
@@ -59,7 +59,7 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
 
         </motion.div>
 
-<Divider/>
+
 </>
 
     )

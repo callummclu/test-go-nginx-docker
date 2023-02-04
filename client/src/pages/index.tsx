@@ -65,14 +65,16 @@ export default function LandingPage(){
         </div>
             </motion.div>
             </motion.div>
-        <h2 className={styles["about-content-container"]}  style={{textAlign:'center', fontSize:30, marginBottom:0}}>😄 Personal Projects</h2>
-            <p style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</p>
+        <div style={{background:'url(https://static.callummclu.co.uk/main/content_image.svg)', width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10}} >
+            <h2 className={`${styles["about-content-container"]} dark-text`}  style={{textAlign:'center', fontSize:30, marginBottom:0, paddingTop:75}}>😄 Personal Projects</h2>
+            <p className='dark-text' style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</p>
             
             <div className={styles.projects}>
-            <Container mb={100}>
+            <Container mb={100} >
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <ProjectItem key={item.id} {...item} />) : <p>No data...</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
             </Container>
             </div>
+        </div>
         </>
     )
 }
