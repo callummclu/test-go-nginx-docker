@@ -16,10 +16,13 @@ export default function PostPage(){
     const [post, setPost] = useState<any>()
 
     useEffect(()=>{
-        getSinglePost(id as string).then(async (res:any) => {
-            const res_json = await res.json()
-            setPost(res_json) 
-        })
+        if(id !== undefined){
+
+            getSinglePost(id as string).then(async (res:any) => {
+                const res_json = await res.json()
+                setPost(res_json) 
+            })
+        }
     },[id])
 
     return (
@@ -38,20 +41,20 @@ export default function PostPage(){
                     <Group>
                     <Title>{post?.data?.title}</Title>
                     <Anchor href={post?.data?.github}>
-                    <ActionIcon>
+                    <ActionIcon aria-label="github">
                         <SiGithub/>
                     </ActionIcon>
                     </Anchor>
                     {post?.data?.site.length > 0 &&
                         <Anchor href={post?.data?.site}>
-                        <ActionIcon>
+                        <ActionIcon aria-label="site">
                             <CgWebsite/>
                         </ActionIcon>
                         </Anchor>
                     }
                     </Group>
                     <Text>{post?.data?.description}</Text>
-                    <Box mt="xs">{post?.data?.technologies && post?.data?.technologies.map((technology:string)=>getTechnologyBadgeContent(technology)).map((technology:any)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
+                    <Box mt="xs">{post?.data?.technologies && post?.data?.technologies.map((technology:string)=>getTechnologyBadgeContent(technology)).map((technology:any)=><Badge key={technology.technology} leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
                 </Stack>
                     </Group>
 

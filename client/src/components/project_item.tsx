@@ -47,7 +47,7 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
                         <Anchor sx={{color:"rgb(60,60,60)"}} href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
                       </Title>
                     <Text color='dimmed'>{description}</Text>
-                    <Box mt="sm">{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
+                    <Box mt="sm">{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge key={technology.technology} leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
 
                     </Stack>
                     </Group>
