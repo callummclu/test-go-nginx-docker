@@ -39,17 +39,16 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
 
             <Card className={styles["project-item"]}>
                 <div className={styles.description}>
-                    <Group>
-                        <Avatar alt={title} src={image ? image : ""}/>
-                    <h2>{title}</h2>
+                    <Group style={{marginBottom:0}}>
+                      <Avatar alt={title} src={image ? image : ""}/>
+                      <h2 style={{margin:0}}>
+                        <Anchor sx={{color:'rgb(60,60,60)'}} href={`${window.location.origin}/p/${id}`}>{title}</Anchor>
+                      </h2>
                     </Group>
                     <p>{description}</p>
                     
                     {technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6}>{technology.technology}</Badge>)}
                     <Text>
-                      <Anchor style={{color:"darkgreen",textDecoration:'none'}} href={`${window.location.origin}/p/${id}`}>
-                        visit here
-                      </Anchor>
                     </Text>
                 </div>
             </Card>
