@@ -49,7 +49,7 @@ export default function MyApp({Component, pageProps}:any){
               style={transitionStyles}
               onClick={() => scrollTo({ y: 0 })}
             >
-              Scroll to top
+              
             </Button>
           )}
         </Transition>
