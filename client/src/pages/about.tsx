@@ -87,6 +87,8 @@ export default function About(){
                 <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/banner_image.webp' ?? ''}>
 
             </Avatar>
+            <Space h="md"></Space>
+
                 <div className={styles['text-container']}>
                     <Title>Hey 👋, I'm Callum McLuskey. </Title>
                     <Space h={'md'}></Space>
@@ -100,7 +102,7 @@ export default function About(){
             <div style={{ width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
             <div className={styles.wave}></div>
             <div style={{background:'#009473', paddingTop:100}}>
-            <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:40, marginBottom:0}}>💻 Work Experience</Title>
+            <Title className="dark-text"  order={2} sx={{textAlign:'center', fontSize:35, marginBottom:0}} px={40}>💻 Work Experience</Title>
             <Text px={50} className="dark-text" sx={{textAlign:'center',marginTop:5, marginBottom:0}} size='lg'>Some commercial experience ive gained over the years.</Text>
 
             <Container pb={50}>

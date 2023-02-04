@@ -2,14 +2,14 @@
 
 a small web app built to serve my personal portfolio, built specifically with speed and architecture in mind.
 
-<div style="display:flex; gap: 10px">
-<image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145113-6edd1580-87c8-41b5-9adc-913a5b2476e6.png"/>
-<image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145394-c6d8717a-fe27-4f92-ba62-01f700c1245a.png"/>
-<image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145493-2c6cdb54-e691-4446-be4a-3332e5d729d0.png"/>
-<image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145589-65bb7441-915d-46f2-ac0c-751fbf85a693.png"/>
-<image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145699-fe617d49-0710-442c-8153-d4141f5c099e.png"/>
-<image style="height:80px" src="https://user-images.githubusercontent.com/20967589/213145764-1cf3452e-4b0b-4317-8513-11fcefc72837.png"/>
-</div>
+- go
+- nextjs
+  - sass
+  - mantineUI
+- nginx
+- docker
+- digital ocean
+  - debian 11
 
 ## Running this project on a linux server
 

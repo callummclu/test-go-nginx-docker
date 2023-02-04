@@ -59,6 +59,7 @@ export default function LandingPage(){
                 <Space h="md"></Space>
                 <Text size="lg" color='dimmed'>Gradute software engineer with a variety of professional and personal experience working across the full-stack of software development.</Text>
             </div>
+            <Space h="xl"></Space>
             <Avatar radius={200} size={300} src={'https://static.callummclu.co.uk/main/me.webp' ?? ''}>
 
             </Avatar>
@@ -69,7 +70,7 @@ export default function LandingPage(){
             <div style={{ width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
             <div className={styles.wave}></div>
             <div style={{background:'#009473', paddingTop:100}}>
-            <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:40, marginBottom:0}}>🧑🏼‍💻 Personal Projects</Title>
+            <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:35, marginBottom:0}} px={40}>🧑🏼‍💻 Personal Projects</Title>
             <Text px={50} size='lg' className='dark-text' style={{textAlign:'center'}}>A selection of some of the best personal projects ive taken on.</Text>
             <div className={styles.projects}>
             <Container py={75}>
