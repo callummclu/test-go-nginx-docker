@@ -26,6 +26,7 @@ export default function Home() {
     const imageRef = useRef<HTMLInputElement>(null)
     const descriptionRef = useRef<HTMLInputElement>(null)
     const bodyRef = useRef<HTMLTextAreaElement>(null)
+    const technologyRef = useRef<HTMLInputElement>(null);
 
     const newPost = (e:any) => {
         e.preventDefault();
@@ -35,7 +36,8 @@ export default function Home() {
             title:titleRef.current?.value as string,
             description:descriptionRef.current?.value as string,
             body:bodyRef.current?.value as string,
-            image:imageRef.current?.value as string
+            image:imageRef.current?.value as string,
+            technologies: (technologyRef.current?.value as string).split(','),
         })
     }
 
