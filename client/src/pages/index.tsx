@@ -26,8 +26,9 @@ export default function LandingPage(){
 
     useEffect(()=>{
         getAllPosts().then(async (res:any) => {
-            const res_json = await res.json()
-            setPosts(res_json) 
+                const res_json = await res.json()
+                setPosts(res_json) 
+            
         })
     },[])
 

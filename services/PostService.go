@@ -8,6 +8,7 @@ import (
 	"github.com/callummclu/callummclu.co.uk/configs"
 	"github.com/callummclu/callummclu.co.uk/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lib/pq"
 )
 
 func CreatePost(c *gin.Context) {
@@ -49,7 +50,7 @@ func ReadPosts(c *gin.Context) {
 
 	defer db.Close()
 
-	rows, err := db.Query("select id, title, description, image from posts")
+	rows, err := db.Query("select id, title, description, image, technologies from posts")
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
@@ -59,21 +60,23 @@ func ReadPosts(c *gin.Context) {
 
 	for rows.Next() {
 		var (
-			ID          int64
-			Title       string
-			Description string
-			Image       string
+			ID           int64
+			Title        string
+			Description  string
+			Image        string
+			Technologies []string
 		)
 
-		if err := rows.Scan(&ID, &Title, &Description, &Image); err != nil {
+		if err := rows.Scan(&ID, &Title, &Description, &Image, pq.Array(&Technologies)); err != nil {
 			fmt.Print(err)
 		}
 
 		posts = append(posts, models.AllPostsViewModel{
-			ID:          ID,
-			Title:       Title,
-			Description: Description,
-			Image:       Image,
+			ID:           ID,
+			Title:        Title,
+			Description:  Description,
+			Image:        Image,
+			Technologies: Technologies,
 		})
 	}
 

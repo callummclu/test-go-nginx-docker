@@ -17,6 +17,7 @@ interface Post{
     description:string;
     body:string;
     image:string;
+    technologies:string[];
 }
 
 export async function createPost(post:Post){

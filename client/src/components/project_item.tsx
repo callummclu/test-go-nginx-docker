@@ -1,11 +1,13 @@
-import { Anchor, Avatar, Card, Divider, Group} from "@mantine/core"
+import { Anchor, Avatar, Badge, Card, Divider, Group, Text} from "@mantine/core"
 import { motion, Variants } from "framer-motion";
+import { getTechnologyBadgeContent } from "../helpers/technologyBadges";
 import styles from "../styles/sass/projects.module.scss"
 export interface ProjectPost{
     title:string;
     description:string;
     image:string;
     id:string|number;
+    technologies?:string[];
 }
 
 const cardVariants: Variants = {
@@ -22,7 +24,7 @@ const cardVariants: Variants = {
     }
   };
 
-export const ProjectItem = ({title,description,image,id}:ProjectPost) => {
+export const ProjectItem = ({title,description,image,id,technologies}:ProjectPost) => {
 
     return (
         <>
@@ -42,10 +44,13 @@ export const ProjectItem = ({title,description,image,id}:ProjectPost) => {
                     <h2>{title}</h2>
                     </Group>
                     <p>{description}</p>
-                    <Anchor style={{color:"darkgreen",textDecoration:'none'}} href={`${window.location.origin}/p/${id}`}>
-                        visit here
-                    </Anchor>
                     
+                    {technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge leftSection={technology.icon} color={technology.color} px="sm" mx={5} mb={6}>{technology.technology}</Badge>)}
+                    <Text>
+                      <Anchor style={{color:"darkgreen",textDecoration:'none'}} href={`${window.location.origin}/p/${id}`}>
+                        visit here
+                      </Anchor>
+                    </Text>
                 </div>
             </Card>
             
