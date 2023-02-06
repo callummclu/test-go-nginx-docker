@@ -67,7 +67,7 @@ export default function LandingPage(){
             </motion.div>
             </motion.div>
 
-            <div style={{ width:'100vw', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
+            <div style={{ width:'calc(100% + 100px)', marginLeft:-50, height:'auto',paddingBottom:10,marginTop:-100}} >
             <div className={styles.wave}></div>
             <div style={{background:'#009473', paddingTop:100}}>
             <Title className="dark-text" order={2} sx={{textAlign:'center', fontSize:35, marginBottom:0}} px={40}>🧑🏼‍💻 Personal Projects</Title>
