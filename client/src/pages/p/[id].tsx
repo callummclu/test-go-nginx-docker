@@ -58,7 +58,7 @@ export default function PostPage(){
                 </Stack>
                     </Group>
 
-            <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 32px)"}}>
+            <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 47px)"}}>
             <Text>
                 <Container>
                 <ReactMarkdown children={post?.data?.body}/>
