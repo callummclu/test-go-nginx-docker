@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - '5432:5432'
+    storage_opt:
+      size: '5G'
     volumes:
       - db:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
