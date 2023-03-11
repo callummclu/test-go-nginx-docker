@@ -8,4 +8,5 @@ cat ~/config/.env > .env
 cat ~/config/.frontend.env > client/.env
 
 # This will grab an .env file from the root directory config folder
-docker-compose --env-file ~/config/.env up --build --no-cache -d 
+docker-compose build --env-file ~/config/.env --no-cache
+docker-compose up -d 
