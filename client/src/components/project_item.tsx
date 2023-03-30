@@ -28,13 +28,9 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
 
     return (
         <>
-        <motion.div
         
-      initial="offscreen"
-      whileInView="onscreen"
-    >
 
-                    <motion.div className={styles.card} variants={cardVariants}>
+                    <div className={styles.card}>
 
             <Card radius='lg' mb={'xl'} shadow="md" className={styles["project-item"]} >
               <Container px="xs">
@@ -55,13 +51,7 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
                 </Container>
             </Card>
             
-            </motion.div>
-
-            
-
-        </motion.div>
-
-
+            </div>
 </>
 
     )
