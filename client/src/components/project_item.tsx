@@ -1,5 +1,5 @@
 import { Anchor, Avatar, Badge, Box, Card, Container, Divider, Group, Stack, Text, Title} from "@mantine/core"
-import { motion, Variants } from "framer-motion";
+
 import { getTechnologyBadgeContent } from "../helpers/technologyBadges";
 import styles from "../styles/sass/projects.module.scss"
 export interface ProjectPost{
@@ -9,20 +9,6 @@ export interface ProjectPost{
     id:string|number;
     technologies?:string[];
 }
-
-const cardVariants: Variants = {
-    offscreen: {
-      y: 300
-    },
-    onscreen: {
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 0.8
-      }
-    }
-  };
 
 export const ProjectItem = ({title,description,image,id,technologies}:ProjectPost) => {
 
