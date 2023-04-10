@@ -26,7 +26,7 @@ export default function Home() {
     </header>
     <main>
       <header>
-        <h1 className="text-center text-3xl">Callum McLuskey</h1>
+        <h1 className="text-center text-3xl" style={{color:'#3b3b3b'}}>Callum McLuskey</h1>
         <p className="text-center text-gray-500">Full stack developer</p>
       </header>
       <section className="flex flex-col items-center justify-center mt-10">
