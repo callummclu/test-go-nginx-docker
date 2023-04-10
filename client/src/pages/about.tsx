@@ -108,7 +108,7 @@ export default function About(){
             <Container pb={50}>
                 <Card mt={75} p={50}>
             <Timeline color="green" >
-                {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
+                {experiences.reverse().map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
             <Group spacing={5} w={"100%"}>
             <Text size="sm">{exp.title}</Text>
