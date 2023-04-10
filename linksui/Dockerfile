@@ -14,4 +14,4 @@ RUN npm run build
 FROM nginx:stable-alpine
 COPY --from=build-stage /linksui/out/ /usr/share/nginx/links
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-EXPOSE 46321
+EXPOSE 80
