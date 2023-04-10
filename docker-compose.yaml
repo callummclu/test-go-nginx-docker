@@ -30,7 +30,9 @@ services:
       context: ./
       dockerfile: ./linksui/Dockerfile
     ports:
-      - "46321"
+      - "80"
+    depends_on:
+      - mainsite
 
   client:
     container_name: mainsite
