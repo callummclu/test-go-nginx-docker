@@ -12,7 +12,6 @@ COPY /cdn /cdn
 
 RUN npm run build
 
-
 # production environment
 FROM nginx:stable-alpine
 COPY --from=build-stage /client/out/ /usr/share/nginx/html

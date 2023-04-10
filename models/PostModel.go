@@ -9,14 +9,15 @@ import (
 )
 
 type Post struct {
-	ID           int64    `json:"-"`
-	Title        string   `json:"title"`
-	Description  string   `json:"description"`
-	Body         string   `json:"body"`
-	Image        string   `json:"image"`
-	GithubLink   string   `json:"github"`
-	SiteLink     string   `json:"site"`
-	Technologies []string `json:"technologies"`
+	ID            int64    `json:"-"`
+	Title         string   `json:"title"`
+	Description   string   `json:"description"`
+	Body          string   `json:"body"`
+	Image         string   `json:"image"`
+	GithubLink    string   `json:"github"`
+	SiteLink      string   `json:"site"`
+	Technologies  []string `json:"technologies"`
+	StaticContent []string `json:"static_content"`
 }
 
 type AllPostsViewModel struct {
@@ -41,14 +42,14 @@ func (p *Post) SavePost() error {
 	}
 	defer db.Close()
 
-	insert_stmt, err := db.Prepare("INSERT INTO posts (title,description,body,image,technologes,github,site) VALUES ($1,$2,$3,$4,$5,$6,$7)")
+	insert_stmt, err := db.Prepare("INSERT INTO posts (title,description,body,image,technologes,github,site,static_content) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)")
 
 	if err != nil {
 		return err
 	}
 
 	defer insert_stmt.Close()
-	_, err = insert_stmt.Exec(p.Title, p.Description, p.Body, p.Image, p.Technologies)
+	_, err = insert_stmt.Exec(p.Title, p.Description, p.Body, p.Image, p.Technologies, p.StaticContent)
 
 	return err
 }
@@ -62,7 +63,7 @@ func (p *Post) GetPostById(query string) error {
 	}
 	defer db.Close()
 
-	err = db.QueryRow("SELECT id, title, description, body, image, technologies, github, site  FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image, pq.Array(&p.Technologies), &p.GithubLink, &p.SiteLink)
+	err = db.QueryRow("SELECT id, title, description, body, image, technologies, github, site, static_content  FROM posts WHERE id = $1", query).Scan(&p.ID, &p.Title, &p.Description, &p.Body, &p.Image, pq.Array(&p.Technologies), &p.GithubLink, &p.SiteLink, pq.Array(&p.StaticContent))
 
 	return err
 }
