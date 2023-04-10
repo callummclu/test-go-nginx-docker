@@ -23,18 +23,7 @@ services:
     env_file: .env
     depends_on:
       - db
-
-  links:
-    container_name: linkssite
-    build:
-      context: ./
-      dockerfile: ./linksui/Dockerfile
-    ports:
-      - "80"
-    depends_on:
-      - mainsite
-
-  client:
+  frontend:
     container_name: mainsite
     build: 
       context: ./
