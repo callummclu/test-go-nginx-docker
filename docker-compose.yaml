@@ -24,8 +24,14 @@ services:
     depends_on:
       - db
 
-  nginx:
-    container_name: nginxWebserver
+  links:
+    container_name: linkssite
+    build: "../linksui"
+    ports:
+      - "46321"
+
+  client:
+    container_name: mainsite
     build: 
       context: ./
       dockerfile: ./nginx/Dockerfile
