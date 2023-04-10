@@ -1,7 +1,7 @@
 import {Fragment} from 'react'
 import {BsMedium,BsGithub,BsLinkedin} from 'react-icons/bs'
 import {CgWebsite} from 'react-icons/cg'
-
+import Head from 'next/head'
 const iconSettings = {
   size:40,
   color:'#3b3b3b'
@@ -17,6 +17,10 @@ const links = [
 export default function Home() {
   return (
     <>
+    <Head>
+            <title>Callum McLuskey</title>
+            <meta name="description" content="Hi i'm Callum McLuskey a 4th year student at Glasgow University and avid Full stack software engineer working at guitarguitar." />
+        </Head>
     <header className="mb-24 p-4 flex flex-col items-center justify-center w-screen h-40 bg-emerald-600" style={{backgroundImage:'url("https://static.callummclu.co.uk/links/header.webp")'}}>
       <img className="absolute top-20 w-40 rounded-full" src="https://static.callummclu.co.uk/main/me2.webp"/>
     </header>
