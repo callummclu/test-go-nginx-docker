@@ -1,12 +1,12 @@
 FROM node:19-alpine as mainsite
 
-WORKDIR /client
+WORKDIR /mainui
 
-COPY /client/package*.json /client/
+COPY /mainui/package*.json /mainui/
 
 RUN npm install
 
-COPY /client /client/
+COPY /mainui /mainui/
 
 COPY /cdn /cdn
 
@@ -26,7 +26,7 @@ RUN npm run build
 
 # production environment
 FROM nginx:stable-alpine
-COPY --from=mainsite /client/out/ /usr/share/nginx/html
+COPY --from=mainsite /mainui/out/ /usr/share/nginx/html
 COPY --from=linkssite /linksui/out/ /usr/share/nginx/links
 
 RUN mkdir /usr/share/nginx/cdn
