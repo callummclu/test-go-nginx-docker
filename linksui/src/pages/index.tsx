@@ -21,7 +21,7 @@ export default function Home() {
             <title>Callum McLuskey</title>
             <meta name="description" content="Hi i'm Callum McLuskey a 4th year student at Glasgow University and avid Full stack software engineer working at guitarguitar." />
         </Head>
-    <header className="mb-24 p-4 flex flex-col items-center justify-center w-screen h-40 bg-emerald-600" style={{backgroundImage:'url("https://static.callummclu.co.uk/links/header.webp")'}}>
+    <header className="mb-24 p-4 flex flex-col items-center justify-center w-screen h-40 bg-emerald-600" style={{backgroundPosition:'center',backgroundSize:"cover",backgroundImage:'url("https://static.callummclu.co.uk/links/header.webp")'}}>
       <img className="absolute top-20 w-40 rounded-full" src="https://static.callummclu.co.uk/main/me2.webp"/>
     </header>
     <main>
