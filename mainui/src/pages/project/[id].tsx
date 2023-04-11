@@ -9,6 +9,7 @@ import { SiGithub } from "react-icons/si"
 import {CgWebsite} from 'react-icons/cg'
 import rehypeRaw from "rehype-raw";
 import remarkGfm from 'remark-gfm'
+import { BiStar } from "react-icons/bi"
 
 
 export default function PostPage(){
@@ -19,9 +20,14 @@ export default function PostPage(){
 
     const [post, setPost] = useState<any>()
     const [githubReadme, setGithubReadme] = useState<string>();
+    const [githubStats,setGithubStats] = useState<any>();
 
-    const formatGithub = (url:string) => {
+    const formatGithubReadme = (url:string) => {
         return url?.replace('https://github.com', "https://raw.githubusercontent.com")
+    }
+
+    const formatGithubStats = (url:string) => {
+        return url?.replace('https://github.com', "https://api.github.com/repos")
     }
 
     useEffect(()=>{
@@ -39,10 +45,15 @@ export default function PostPage(){
 
     useEffect(()=>{
         if (post != null){
-            fetch(`${formatGithub(post?.data?.github)}/main/README.md`).then(async (res:any) => {
+            fetch(`${formatGithubReadme(post?.data?.github)}/main/README.md`).then(async (res:any) => {
                 const res_text = await res.text()
                 setGithubReadme(res_text);
             }).catch(error => setGithubReadme(error.message.toString()))
+
+            fetch(`${formatGithubStats(post?.data?.github)}`).then(async (res:any) => {
+                const res_json = await res.json()
+                setGithubStats(res_json);
+            })
         }
     },[post])
 
@@ -78,9 +89,12 @@ export default function PostPage(){
                     <Box mt="xs">{post?.data?.technologies && post?.data?.technologies.map((technology:string)=>getTechnologyBadgeContent(technology)).map((technology:any)=><Badge key={technology.technology} leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>
                 </Stack>
                     </Group>
-
+            {/* <Box py="xs"  style={{marginLeft:-50, width:"calc(100vw)", background:'white',display:'flex',justifyContent:'center'}}>
+                <Text pt="xs" style={{color:'gray',display:"flex", justifyContent:"center", alignItems:"center", gap:5,width:"80%"}}><BiStar/> <b>{githubStats ? githubStats.stargazers_count : "?"}</b> stars</Text>
+            </Box> */}
             <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 32px)"}}>
             <Text>
+                
                 <Container>
                 {githubReadme ? <ReactMarkdown rehypePlugins={[rehypeRaw,remarkGfm]} children={githubReadme as any}/> : <LoadingOverlay visible={true} overlayBlur={2} loader={<Loader color="green"/>}/>}
                 </Container>
