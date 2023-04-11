@@ -1,5 +1,5 @@
 
-import { ActionIcon, Affix, Button, MantineProvider, Transition } from '@mantine/core';
+import { ActionIcon, Affix, Anchor, MantineProvider, Transition } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import { Container } from '../components/Container';
@@ -8,14 +8,20 @@ import { AuthProvider } from '../hooks/useAuth';
 import '../styles/sass/index.scss'
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
 import {GoArrowSmallUp} from 'react-icons/go'
-import { useWindowScroll } from '@mantine/hooks';
+import { useViewportSize } from '@mantine/hooks';
+import { motion } from 'framer-motion';
+import { CgClose, CgMenu } from 'react-icons/cg';
+import {GiHamburgerMenu} from 'react-icons/gi'
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
 export default function MyApp({Component, pageProps}:any){
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
     const isAdmin = () => {
         if (typeof window !== 'undefined') {
           return  window.location.href.includes('/admin')
         } 
     }
+    const { width } = useViewportSize();
 
     useEffect(()=>{
         if('serviceWorker' in navigator){
@@ -26,41 +32,76 @@ export default function MyApp({Component, pageProps}:any){
             }
         }
     },[])
-    const [scroll, scrollTo] = useWindowScroll();
 
-    const [awayFromTop, setAwayFromTop] = useState(false);
-
-    useEffect(()=>{
-        if(scroll.y > 300){
-            setAwayFromTop(true)
-        } else {
-            setAwayFromTop(false)
+    const Menu = () => {
+        const [menuWidth, setMenuWidth] = useState("calc(100vw - 45px)");
+        const [height, setHeight] = useState(250);
+        const [opacity, setOpacity] = useState(1)
+        const [display, setDisplay] = useState('block')
+        const close = () => {
+            setMenuWidth("0px");
+            setHeight(0);
+            setOpacity(0);
+            
+            setTimeout(()=>{
+                setDisplay('none');
+                setShowMobileMenu(false);
+            },100)
         }
-    },[scroll])
+        return (
+    
+                <Affix style={{zIndex:1000}} position={{ bottom: 20, right: 30 }}>
+                    <motion.div
+                        animate={{width:menuWidth, height, display,translateX:10}}
+                        className="mobile-menu" style={{position:"relative"}}>
+                            <motion.div 
+                            animate={{opacity}}
+                            transition={{ duration:0}}
+                            
+                            className="items">
+                                <a href="/">Home</a>
+                                <a href="/about">About</a>
+                               
+                                <div className="icons">
+                                    <Anchor href="https://github.com/callummclu">
+                                        <BsGithub aria-label="github" color={'white'} size={18}/>
+                                    </Anchor>
+                                    <Anchor href="https://www.linkedin.com/in/callummclu/">
+                                        <BsLinkedin aria-label="linkedin" color={'white'} size={18}/>
+                                    </Anchor>
+                                </div>
+                            </motion.div>
+
+
+                            <button onClick={close} className='close'>
+                                <CgClose color="white" size={30}/>
+                            </button>
+
+                    </motion.div>
+                </Affix>
+    
+        )
+    }
 
     return (
         <>
-             <Affix position={{ bottom: 20, right: 20 }}>
-        <Transition transition="slide-up" mounted={scroll.y > 0}>
-          {(transitionStyles) => (
+        {showMobileMenu && width < 500 && <Menu/>}
+             {width < 500 && <Affix position={{ bottom: 20, right: 20 }}>
             <ActionIcon
-                aria-label='scroll to top'
+                aria-label='open menu'
                 radius='xl'
                 variant='filled'
-                onClick={() => scrollTo({ y: 0 })}
-                style={transitionStyles}
+                onClick={()=>setShowMobileMenu(true)}
                 color={'teal'}
                 size="xl"
             >
-                <GoArrowSmallUp size={30} />
+                <GiHamburgerMenu size={25} />
             </ActionIcon>
-          )}
-        </Transition>
-      </Affix>
+      </Affix>}
             <MantineProvider>
                 <NotificationsProvider>
                     <AuthProvider>
-                        {!isAdmin() && <Nav awayFromTop={awayFromTop}/>}
+                        {!isAdmin() && <Nav/>}
                         <Container isAdmin={isAdmin()}>
                             <Component {...pageProps}/>
                         </Container>
@@ -70,3 +111,4 @@ export default function MyApp({Component, pageProps}:any){
         </>
     )
 }
+

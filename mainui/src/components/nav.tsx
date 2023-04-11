@@ -5,7 +5,7 @@ import { BiMenu } from 'react-icons/bi'
 import { IoMdClose } from 'react-icons/io'
 import { useEffect, useState } from 'react'
 
-export const Nav = ({awayFromTop}:{awayFromTop:boolean}) => {
+export const Nav = () => {
 
     const [menuOpen,setMenuOpen] = useState(false)
 
@@ -14,7 +14,7 @@ export const Nav = ({awayFromTop}:{awayFromTop:boolean}) => {
 
 
     return (
-        <div className={`${styles.nav} ${menuOpen && styles.open} ${awayFromTop && styles.navBorder}`}>
+        <div className={`${styles.nav} ${menuOpen && styles.open}`}>
             <UnstyledButton aria-label="menu button" onClick={openMenu} className={styles.hamburger}>{menuOpen ? <IoMdClose color={'grey'} size={24}/> :<BiMenu color={'gray'} size={24}/>}</UnstyledButton>
             <div className={`${styles.section} ${menuOpen && styles.show}`}>
                 <a href="/">Home</a>

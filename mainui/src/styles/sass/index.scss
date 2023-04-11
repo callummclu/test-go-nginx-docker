@@ -143,3 +143,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.mobile-menu{
+  width:0;
+  height:0;
+  background:#12b886;
+  border-radius: 10px;
+  display:none;
+  position:relative;
+
+  & button.close{
+    right:1px;
+    background:0;
+    border:0;
+    bottom:2px;
+    position: absolute;
+  }
+
+  & .items{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+
+    & a{
+      text-decoration: none;
+      color:white;
+      font-size: 20px;
+
+      &:visited{
+        color:white;
+      }
+    }
+
+    & .icons{
+      display:flex;
+      gap:20px;
+    }
+  }
+}
