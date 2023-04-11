@@ -1,16 +1,15 @@
 
-import { ActionIcon, Affix, Anchor, MantineProvider, Transition } from '@mantine/core';
-import { NotificationsProvider } from '@mantine/notifications';
+import { ActionIcon, Affix, Anchor, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
 import { Container } from '../components/Container';
 import { Nav } from '../components/nav';
 import { AuthProvider } from '../hooks/useAuth';
 import '../styles/sass/index.scss'
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
-import {GoArrowSmallUp} from 'react-icons/go'
 import { useViewportSize } from '@mantine/hooks';
 import { motion } from 'framer-motion';
-import { CgClose, CgMenu } from 'react-icons/cg';
+import { CgClose } from 'react-icons/cg';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 
@@ -99,14 +98,13 @@ export default function MyApp({Component, pageProps}:any){
             </ActionIcon>
       </Affix>}
             <MantineProvider>
-                <NotificationsProvider>
+                <Notifications/>
                     <AuthProvider>
                         {!isAdmin() && <Nav/>}
                         <Container isAdmin={isAdmin()}>
                             <Component {...pageProps}/>
                         </Container>
                     </AuthProvider>
-                </NotificationsProvider>
             </MantineProvider>
         </>
     )

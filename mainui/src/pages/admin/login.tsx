@@ -1,5 +1,5 @@
 import { Button, Card, Text, Container, Divider, TextInput, Title, Center, Stack, LoadingOverlay } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
+import { notifications } from '@mantine/notifications';
 import { useEffect, useRef } from 'react';
 import useAuth from '../../hooks/useAuth';
 
@@ -21,7 +21,7 @@ export default function Login(){
       if(!error && loggedIn){
         window.location.replace(window.location.origin+"/admin")
       } else if(error?.length > 0) {
-        showNotification({
+        notifications.show({
           color:'red',
           title: 'Error',
           message: error,
