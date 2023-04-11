@@ -12,6 +12,13 @@ export async function getSinglePost(id:string | number){
     return response
 }
 
+export async function getSinglePostByTitle(title:string){
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/post/title/${title}`,{
+        method:"GET"
+    })
+    return response
+}
+
 interface Post{
     title:string;
     description:string;

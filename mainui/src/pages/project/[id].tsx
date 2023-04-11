@@ -1,6 +1,6 @@
 import { Divider, Loader, LoadingOverlay, Text, Title, Group, Stack, Avatar, Box, Badge, Container, ActionIcon, Anchor } from "@mantine/core"
 import { useEffect, useState } from "react"
-import { getSinglePost } from "../../api/posts"
+import { getSinglePost, getSinglePostByTitle } from "../../api/posts"
 import ReactMarkdown from 'react-markdown'
 import { useRouter } from "next/router"
 import Head from "next/head"
@@ -21,6 +21,7 @@ export default function PostPage(){
     const [post, setPost] = useState<any>()
     const [githubReadme, setGithubReadme] = useState<string>();
     const [githubStats,setGithubStats] = useState<any>();
+    const [error, setError] = useState(false)
 
     const formatGithubReadme = (url:string) => {
         return url?.replace('https://github.com', "https://raw.githubusercontent.com")
@@ -33,11 +34,16 @@ export default function PostPage(){
     useEffect(()=>{
         if(id !== undefined){
 
-            getSinglePost(id as string).then(async (res:any) => {
-                const res_json = await res.json()
-                setPost(res_json) 
+            getSinglePostByTitle((id as string).replace("-"," ")).then(async (res:any) => {
 
-                return res_json
+                if(res.ok){
+                    const res_json = await res.json()
+                    setPost(res_json) 
+
+                } else {
+                    setError(true)
+                }
+
             }) 
         }
 
@@ -58,6 +64,10 @@ export default function PostPage(){
     },[post])
 
     return (
+        <>
+        {error ? 
+            <p>error</p>
+        :
         <>
         <Head>
             <title>Callum McLuskey - {post?.data?.title}</title>
@@ -102,5 +112,8 @@ export default function PostPage(){
             </Box>
         </div>
         </>
+}
+        </>
+
     )
 }

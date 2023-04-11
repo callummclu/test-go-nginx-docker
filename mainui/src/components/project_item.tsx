@@ -8,9 +8,12 @@ export interface ProjectPost{
     image:string;
     id:string|number;
     technologies?:string[];
+    isorganisation?:boolean;
+    isspotlight?:boolean;
+    organisation_dependencies?:string[];
 }
 
-export const ProjectItem = ({title,description,image,id,technologies}:ProjectPost) => {
+export const ProjectItem = ({title,description,image,id,technologies,isorganisation}:ProjectPost) => {
 
     return (
         <>
@@ -26,7 +29,7 @@ export const ProjectItem = ({title,description,image,id,technologies}:ProjectPos
                   <Stack spacing={0} mb="md">
 
                       <Title order={2} style={{margin:0}}>
-                        <Anchor sx={{color:"rgb(60,60,60)"}} href={`${window.location.origin}/project/${id}`}>{title}</Anchor>
+                        <Anchor sx={{color:"rgb(60,60,60)"}} href={`${window.location.origin}/${isorganisation ?"organisation":"project"}/${title.replace(" ", "-")}`}>{title}</Anchor>
                       </Title>
                     <Text color='dimmed'>{description}</Text>
                     <Box mt="sm">{technologies && technologies.map((technology)=>getTechnologyBadgeContent(technology)).map((technology)=><Badge key={technology.technology} leftSection={technology.icon} color={technology.color} px="sm" mx={5} variant='light'>{technology.technology}</Badge>)}</Box>

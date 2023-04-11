@@ -52,7 +52,7 @@ func ReadPosts(c *gin.Context) {
 
 	defer db.Close()
 
-	rows, err := db.Query("select id, title, description, image, technologies, github,site from posts")
+	rows, err := db.Query("select id, title, description, image, technologies, github, site, isorganisation, organisation_dependencies,isspotlight from posts")
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
@@ -62,27 +62,33 @@ func ReadPosts(c *gin.Context) {
 
 	for rows.Next() {
 		var (
-			ID           int64
-			Title        string
-			Description  string
-			Image        string
-			Technologies []string
-			GithubLink   string
-			SiteLink     string
+			ID                       int64
+			Title                    string
+			Description              string
+			Image                    string
+			Technologies             []string
+			GithubLink               string
+			SiteLink                 string
+			IsOrganisation           bool
+			OrganisationDependencies []string
+			IsSpotlight              bool
 		)
 
-		if err := rows.Scan(&ID, &Title, &Description, &Image, pq.Array(&Technologies), &GithubLink, &SiteLink); err != nil {
+		if err := rows.Scan(&ID, &Title, &Description, &Image, pq.Array(&Technologies), &GithubLink, &SiteLink, &IsOrganisation, pq.Array(&OrganisationDependencies), &IsSpotlight); err != nil {
 			fmt.Print(err)
 		}
 
 		posts = append(posts, models.AllPostsViewModel{
-			ID:           ID,
-			Title:        Title,
-			Description:  Description,
-			Image:        Image,
-			Technologies: Technologies,
-			GithubLink:   GithubLink,
-			SiteLink:     SiteLink,
+			ID:                       ID,
+			Title:                    Title,
+			Description:              Description,
+			Image:                    Image,
+			Technologies:             Technologies,
+			GithubLink:               GithubLink,
+			SiteLink:                 SiteLink,
+			IsOrganisation:           IsOrganisation,
+			OrganisationDependencies: OrganisationDependencies,
+			IsSpotlight:              IsSpotlight,
 		})
 	}
 
@@ -108,5 +114,18 @@ func ReadSinglePost(c *gin.Context) {
 
 	c.JSON(200, gin.H{"data": post})
 }
+
+func ReadSinglePostByPostTitle(c *gin.Context) {
+	var post models.Post
+	var title string = c.Param("title")
+	err := post.GetPostByTitle(title)
+
+	if err != nil {
+		c.JSON(400, gin.H{"error": "post not found"})
+		return
+	}
+	c.JSON(200, gin.H{"data": post})
+}
+
 func UpdatePost(c *gin.Context) { /* NOT IMPLEMENTED YET*/ }
 func DeletePost(c *gin.Context) { /* NOT IMPLEMENTED YET*/ }
