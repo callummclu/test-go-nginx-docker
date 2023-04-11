@@ -36,7 +36,7 @@ export default function PostPage(){
             getSinglePost(id as string).then(async (res:any) => {
                 const res_json = await res.json()
                 setPost(res_json) 
-                console.log(res_json)
+
                 return res_json
             }) 
         }
