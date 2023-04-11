@@ -7,6 +7,8 @@ import Head from "next/head"
 import { getTechnologyBadgeContent } from "../../helpers/technologyBadges"
 import { SiGithub } from "react-icons/si"
 import {CgWebsite} from 'react-icons/cg'
+import rehypeRaw from "rehype-raw";
+
 export default function PostPage(){
 
     const router = useRouter()
@@ -14,6 +16,11 @@ export default function PostPage(){
 
 
     const [post, setPost] = useState<any>()
+    const [githubReadme, setGithubReadme] = useState<string>();
+
+    const formatGithub = (url:string) => {
+        return url?.replace('https://github.com', "https://raw.githubusercontent.com")
+    }
 
     useEffect(()=>{
         if(id !== undefined){
@@ -21,9 +28,21 @@ export default function PostPage(){
             getSinglePost(id as string).then(async (res:any) => {
                 const res_json = await res.json()
                 setPost(res_json) 
-            })
+                console.log(res_json)
+                return res_json
+            }) 
         }
+
     },[id])
+
+    useEffect(()=>{
+        if (post != null){
+            fetch(`${formatGithub(post?.data?.github)}/main/README.md`).then(async (res:any) => {
+                const res_text = await res.text()
+                setGithubReadme(res_text);
+            }).catch(error => setGithubReadme(error.message.toString()))
+        }
+    },[post])
 
     return (
         <>
@@ -58,10 +77,10 @@ export default function PostPage(){
                 </Stack>
                     </Group>
 
-            <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 47px)"}}>
+            <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 32px)"}}>
             <Text>
                 <Container>
-                <ReactMarkdown children={post?.data?.body}/>
+                {githubReadme ? <ReactMarkdown rehypePlugins={[rehypeRaw]} children={githubReadme as any}/> : <LoadingOverlay visible={true} overlayBlur={2} loader={<Loader color="green"/>}/>}
                 </Container>
             </Text>
             </Box>

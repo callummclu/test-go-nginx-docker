@@ -15,15 +15,18 @@ interface ExperienceProps {
 
 const experiences:ExperienceProps[] = [
     {
-        company:"CREATe",
+        company:"Guitarguitar",
         title:"Software Engineer",
-        period:"Aug 2021 - Apr 2022",
-        description:<>•	Developed a backend capable of performing user authentication as well as basic REST api calls using laravel.
-        <br/>•	Used React to develop a responsive front end site to allow users easy navigation to old copyright documents including search functionality and filtering.
-        <br/>•	Followed agile methodologies with heavy emphasis on retrospectives, scrum meetings and pair programming.
-        <br/>• During this position I learned how to adapt and overcome the usage of unknown technologies to solve a common problem</>,
-        current:false,
-        image:"https://static.callummclu.co.uk/experience/create-logo.webp"
+        period:"Jun 2022 - Present",
+        description:<>            •	Helped maintain a top 100 UK e-commerce website, alongside implement new features based on the company’s different departments needs/wants.
+        <br/>•	Used React and .NET (C#) to help develop a new admin side content management system, further used these technologies to work on barcode scanning systems.
+        <br/>•	Followed many standard agile procedures, such as daily stand-ups, knowledge sharing alongside participating in spec’ing sessions in which I was the product owner.
+        <br/>•	Utilised Azure DevOps to enforce agile workflow, enabling me to take part in pull request reviews and better understand the whole system.
+        <br/>• Lead and owned the addition of the clearpay payment method to the high traffic site, utilising Test Driven Development alongside regular peer programming to both explain my process to the team and understand better methods of approaching the same problems
+             • During my time here I learned how to work on a massive piece of software and understand the methods used to keep a system like this running 24/7.
+        </>,
+        current:true,
+        image:"https://static.callummclu.co.uk/experience/guitarguitar-logo.webp"
     },
     {
         company:"Evata",
@@ -38,20 +41,17 @@ const experiences:ExperienceProps[] = [
         image:"https://static.callummclu.co.uk/experience/evata-logo.webp"
     },
     {
-        company:"Guitarguitar",
+        company:"CREATe",
         title:"Software Engineer",
-        period:"Jun 2022 - Present",
-        description:<>            •	Helped maintain a top 100 UK e-commerce website, alongside implement new features based on the company’s different departments needs/wants.
-        <br/>•	Used React and .NET (C#) to help develop a new admin side content management system, further used these technologies to work on barcode scanning systems.
-        <br/>•	Followed many standard agile procedures, such as daily stand-ups, knowledge sharing alongside participating in spec’ing sessions in which I was the product owner.
-        <br/>•	Utilised Azure DevOps to enforce agile workflow, enabling me to take part in pull request reviews and better understand the whole system.
-        <br/>• Lead and owned the addition of the clearpay payment method to the high traffic site, utilising Test Driven Development alongside regular peer programming to both explain my process to the team and understand better methods of approaching the same problems
-             • During my time here I learned how to work on a massive piece of software and understand the methods used to keep a system like this running 24/7.
-        </>,
-        current:true,
-        image:"https://static.callummclu.co.uk/experience/guitarguitar-logo.webp"
+        period:"Aug 2021 - Apr 2022",
+        description:<>•	Developed a backend capable of performing user authentication as well as basic REST api calls using laravel.
+        <br/>•	Used React to develop a responsive front end site to allow users easy navigation to old copyright documents including search functionality and filtering.
+        <br/>•	Followed agile methodologies with heavy emphasis on retrospectives, scrum meetings and pair programming.
+        <br/>• During this position I learned how to adapt and overcome the usage of unknown technologies to solve a common problem</>,
+        current:false,
+        image:"https://static.callummclu.co.uk/experience/create-logo.webp"
     },
-
+    
 ]
 
    const cardVariants: Variants = {
@@ -108,7 +108,7 @@ export default function About(){
             <Container pb={50}>
                 <Card mt={75} p={50}>
             <Timeline color="green" >
-                {experiences.reverse().map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
+                {experiences.map((exp) => <Timeline.Item key={exp.period} bullet={<Avatar alt={exp.company} src={exp.image}/>} title={exp.company}>
                     <Stack spacing={0}>
             <Group spacing={5} w={"100%"}>
             <Text size="sm">{exp.title}</Text>
