@@ -1,6 +1,6 @@
 import styles from '../styles/sass/banner.module.scss'
 
-import { Avatar, Card, Container, Space, Text, Title } from '@mantine/core'
+import { Avatar, Container,Anchor, Space, Text, Title, Button, Center } from '@mantine/core'
 import { Loader, LoadingOverlay } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../api/posts"
@@ -75,6 +75,11 @@ export default function LandingPage(){
             <div className={styles.projects}>
             <Container py={75}>
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <ProjectItem key={item.id} {...item} />) : <p style={{textAlign:'center',color:'white'}}>No data :(</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
+
+
+            <Center style={{margin:0, marginTop:60}}>
+                <Anchor href={`${window.location.origin}/project`}><Button variant="outline" style={{color:"white", borderColor:"white"}}>view more</Button></Anchor>
+            </Center>
 
             </Container>
             </div>
