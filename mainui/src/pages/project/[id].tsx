@@ -8,6 +8,8 @@ import { getTechnologyBadgeContent } from "../../helpers/technologyBadges"
 import { SiGithub } from "react-icons/si"
 import {CgWebsite} from 'react-icons/cg'
 import rehypeRaw from "rehype-raw";
+import remarkGfm from 'remark-gfm'
+
 
 export default function PostPage(){
 
@@ -80,7 +82,7 @@ export default function PostPage(){
             <Box mt="xl" p={'md'} style={{background:'#f3f3f3', marginLeft:-50, width:"calc(100vw - 32px)"}}>
             <Text>
                 <Container>
-                {githubReadme ? <ReactMarkdown rehypePlugins={[rehypeRaw]} children={githubReadme as any}/> : <LoadingOverlay visible={true} overlayBlur={2} loader={<Loader color="green"/>}/>}
+                {githubReadme ? <ReactMarkdown rehypePlugins={[rehypeRaw,remarkGfm]} children={githubReadme as any}/> : <LoadingOverlay visible={true} overlayBlur={2} loader={<Loader color="green"/>}/>}
                 </Container>
             </Text>
             </Box>
