@@ -50,9 +50,9 @@ export default function MyApp({Component, pageProps}:any){
         }
         return (
     
-                <Affix style={{zIndex:1000}} position={{ bottom: 20, right: 30 }}>
+                <Affix style={{zIndex:1000}} position={{ bottom: 20, right: 20 }}>
                     <motion.div
-                        animate={{width:menuWidth, height, display,translateX:10}}
+                        animate={{width:menuWidth, height, display}}
                         className="mobile-menu" style={{position:"relative"}}>
                             <motion.div 
                             animate={{opacity}}
@@ -74,7 +74,7 @@ export default function MyApp({Component, pageProps}:any){
 
 
                             <button onClick={close} className='close'>
-                                <CgClose color="white" size={30}/>
+                                <CgClose color="white" size={40}/>
                             </button>
 
                     </motion.div>
@@ -93,9 +93,9 @@ export default function MyApp({Component, pageProps}:any){
                 variant='filled'
                 onClick={()=>setShowMobileMenu(true)}
                 color={'teal'}
-                size="xl"
+                size={60}
             >
-                <GiHamburgerMenu size={25} />
+                <GiHamburgerMenu size={30} />
             </ActionIcon>
       </Affix>}
             <MantineProvider>
