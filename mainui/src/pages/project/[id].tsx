@@ -34,7 +34,7 @@ export default function PostPage(){
     useEffect(()=>{
         if(id !== undefined){
 
-            getSinglePostByTitle((id as string).replace("-"," ")).then(async (res:any) => {
+            getSinglePostByTitle((id as string).replaceAll("-"," ")).then(async (res:any) => {
 
                 if(res.ok){
                     const res_json = await res.json()
