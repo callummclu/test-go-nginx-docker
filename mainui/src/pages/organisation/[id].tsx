@@ -46,7 +46,7 @@ export default function OrganisationView(){
         <Container mb={50}>
         <Card mb="xl" withBorder>
             <Anchor href={organisation?.github}><Text sx={{position:"absolute", top:10, right:10, fontSize:12}} color="dimmed">{organisation?.github.replace("https://","")}</Text></Anchor>
-            <ReactMarkdown rehypePlugins={[remarkGfm, rehypeRaw]}>{githubReadme}</ReactMarkdown>
+            <ReactMarkdown rehypePlugins={[remarkGfm, rehypeRaw]}>{githubReadme as string}</ReactMarkdown>
         </Card>
         
         <Title order={2}>Projects</Title>
