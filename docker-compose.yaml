@@ -17,10 +17,12 @@ services:
 
   goservice:
     container_name: api
-    build: "."
+    build: 
+      context: ./
+      dockerfile: ./webservice/Dockerfile
     ports:
       - "8080"
-    env_file: .env
+    env_file: ./webservice/.env
     depends_on:
       - db
 
