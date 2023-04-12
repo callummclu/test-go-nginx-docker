@@ -16,7 +16,7 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   goservice:
-    container_name: goBackend
+    container_name: api
     build: "."
     ports:
       - "8080"
@@ -25,7 +25,7 @@ services:
       - db
 
   frontend:
-    container_name: mainsite
+    container_name: client
     build: 
       context: ./
       dockerfile: ./mainui/Dockerfile
