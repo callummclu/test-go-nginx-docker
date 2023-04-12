@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Clear out any cached files and images from each individual rerun deployment
+docker system prune -a
+
 # gather new changes
 git pull
 
