@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
 
-  mainsite-frontend:
+  frontend:
     container_name: mainsite
     build: 
       context: ./
