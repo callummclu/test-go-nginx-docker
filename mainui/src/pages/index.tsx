@@ -1,6 +1,6 @@
 import styles from '../styles/sass/banner.module.scss'
 
-import { Avatar, Container,Anchor, Space, Text, Title, Button, Center } from '@mantine/core'
+import { Avatar, Container,Anchor, Space, Text, Title, Button, Center, Flex } from '@mantine/core'
 import { Loader, LoadingOverlay } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../api/posts"
@@ -77,10 +77,10 @@ export default function LandingPage(){
             {posts?.data ? posts.data.length> 0 ? posts?.data?.map((item) => <>{item.isspotlight && <ProjectItem isorganisation={item.isorganisation} key={item.id} {...item} />}</>) : <p style={{textAlign:'center',color:'white'}}>No data :(</p> : <LoadingOverlay loader={<Loader color="green" />} visible={true} overlayBlur={2} />}
 
 
-            <Center style={{margin:0, marginTop:60}}>
-            <Anchor mr="xl" href={`${window.location.origin}/project`}><Button variant="outline" style={{color:"white", borderColor:"white"}}>view all projects</Button></Anchor>
+            <Flex justify="center" align="center" wrap="wrap" gap={20} sx={{margin:0, marginTop:60, minWidth:250}}>
+            <Anchor href={`${window.location.origin}/project`}><Button variant="outline" style={{color:"white", borderColor:"white"}}>view all projects</Button></Anchor>
             <Anchor href={`${window.location.origin}/organisation`}><Button variant="outline" style={{color:"white", borderColor:"white"}}>view project organisations</Button></Anchor>
-            </Center>
+            </Flex>
 
             </Container>
             </div>
