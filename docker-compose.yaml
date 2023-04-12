@@ -19,7 +19,7 @@ services:
     container_name: api
     build: 
       context: ./
-      dockerfile: ./webservice/Dockerfile
+      dockerfile: ./webservice/.dockerfile
     ports:
       - "8080"
     env_file: ./webservice/.env
@@ -30,7 +30,7 @@ services:
     container_name: client
     build: 
       context: ./
-      dockerfile: ./mainui/Dockerfile
+      dockerfile: ./frontend.dockerfile
     ports:
       - "80:80"
       - "443:443"
