@@ -33,4 +33,5 @@ RUN mkdir /usr/share/nginx/cdn
 COPY /static/ /usr/share/nginx/cdn
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/sites/ /etc/nginx/sites
+COPY nginx/errorpages /etc/nginx/errorpages
 EXPOSE 80
