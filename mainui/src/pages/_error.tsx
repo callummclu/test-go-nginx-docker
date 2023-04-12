@@ -1,4 +1,4 @@
-import { Center, Stack, Text, Title } from "@mantine/core";
+import { Button, Center, Stack, Text, Title } from "@mantine/core";
 import { BiError } from "react-icons/bi";
 
 interface ErrorProps{
@@ -18,6 +18,9 @@ export default function Error({code=404,message="Page not found.",icon=<BiError 
             </Center>
             <Center>
                 <Text>{message}</Text>
+            </Center>
+            <Center mt="sm">
+                <Button variant="outline" color="teal">Return home</Button>
             </Center>
         </Stack>
     )
