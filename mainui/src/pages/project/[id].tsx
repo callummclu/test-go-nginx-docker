@@ -10,6 +10,7 @@ import {CgWebsite} from 'react-icons/cg'
 import rehypeRaw from "rehype-raw";
 import remarkGfm from 'remark-gfm'
 import { BiStar } from "react-icons/bi"
+import Error from "../_error"
 
 
 export default function PostPage(){
@@ -66,7 +67,7 @@ export default function PostPage(){
     return (
         <>
         {error ? 
-            <p>error</p>
+            <Error code={404} message={"This project does not exist"}/>
         :
         <>
         <Head>
