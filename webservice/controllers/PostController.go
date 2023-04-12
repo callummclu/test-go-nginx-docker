@@ -13,6 +13,7 @@ func PostController() {
 		api.GET("", services.ReadPosts)
 		api.GET(":id", services.ReadSinglePost)
 		api.GET("title/:title", services.ReadSinglePostByPostTitle)
+		api.GET("organisation", services.ReadAllPostsByOrganisation)
 		api.PUT(":id", services.UpdatePost)
 		api.DELETE(":id", services.DeletePost)
 	}

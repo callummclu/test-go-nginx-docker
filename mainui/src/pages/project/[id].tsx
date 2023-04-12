@@ -36,7 +36,6 @@ export default function PostPage(){
         if(id !== undefined){
 
             getSinglePostByTitle((id as string).replaceAll("-"," ")).then(async (res:any) => {
-
                 if(res.ok){
                     const res_json = await res.json()
                     setPost(res_json) 

@@ -127,5 +127,66 @@ func ReadSinglePostByPostTitle(c *gin.Context) {
 	c.JSON(200, gin.H{"data": post})
 }
 
+func ReadAllPostsByOrganisation(c *gin.Context) {
+	var posts []models.Post
+
+	var ids string = c.Query("ids")
+
+	db, err := configs.GetDB()
+	if err != nil {
+		err = errors.New("DB connection error")
+		c.JSON(400, gin.H{"error": err})
+	}
+
+	defer db.Close()
+
+	rows, err := db.Query("select id, title, description, image, technologies, github, site, isorganisation, organisation_dependencies,isspotlight from posts WHERE id = ANY($1::INT[])", "{"+ids+"}")
+
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var (
+			ID                       int64
+			Title                    string
+			Description              string
+			Image                    string
+			Technologies             []string
+			GithubLink               string
+			SiteLink                 string
+			IsOrganisation           bool
+			OrganisationDependencies []string
+			IsSpotlight              bool
+		)
+
+		if err := rows.Scan(&ID, &Title, &Description, &Image, pq.Array(&Technologies), &GithubLink, &SiteLink, &IsOrganisation, pq.Array(&OrganisationDependencies), &IsSpotlight); err != nil {
+			fmt.Print(err)
+		}
+
+		posts = append(posts, models.Post{
+			ID:                       ID,
+			Title:                    Title,
+			Description:              Description,
+			Image:                    Image,
+			Technologies:             Technologies,
+			GithubLink:               GithubLink,
+			SiteLink:                 SiteLink,
+			IsOrganisation:           IsOrganisation,
+			OrganisationDependencies: OrganisationDependencies,
+			IsSpotlight:              IsSpotlight,
+		})
+	}
+
+	if err != nil {
+		c.JSON(400, gin.H{"error": "Cannot get posts"})
+		return
+	}
+
+	c.JSON(200, gin.H{"data": posts})
+}
+
 func UpdatePost(c *gin.Context) { /* NOT IMPLEMENTED YET*/ }
 func DeletePost(c *gin.Context) { /* NOT IMPLEMENTED YET*/ }

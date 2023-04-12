@@ -19,6 +19,13 @@ export async function getSinglePostByTitle(title:string){
     return response
 }
 
+export async function getOrganisationDependencies(ids:number[]){
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/post/organisation?ids=${ids.join(',')}`, {
+        method:"GET"
+    })
+    return response
+}
+
 interface Post{
     title:string;
     description:string;
