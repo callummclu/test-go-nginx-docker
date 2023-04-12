@@ -3,7 +3,7 @@ FROM golang:1.19-alpine AS build
 RUN apk --no-cache add gcc g++ make
 RUN apk add git
 WORKDIR /go/src/app
-COPY . .
+COPY webservice .
 RUN go get github.com/joho/godotenv
 RUN go get github.com/lib/pq
 RUN go get github.com/gin-gonic/gin
@@ -24,6 +24,6 @@ FROM alpine:3.10
 RUN apk --no-cache add ca-certificates
 WORKDIR /usr/bin
 COPY --from=build /go/src/app/bin /go/bin
-COPY .env .
+COPY /webservice/.env .
 EXPOSE 8080
 ENTRYPOINT /go/bin/test --port 8080
