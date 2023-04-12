@@ -32,4 +32,5 @@ COPY --from=linkssite /linksui/out/ /usr/share/nginx/links
 RUN mkdir /usr/share/nginx/cdn
 COPY /cdn/ /usr/share/nginx/cdn
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/sites/ /etc/nginx/sites
 EXPOSE 80
