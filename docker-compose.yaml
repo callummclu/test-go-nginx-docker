@@ -23,11 +23,12 @@ services:
     env_file: .env
     depends_on:
       - db
-  frontend:
+
+  mainsite-frontend:
     container_name: mainsite
     build: 
       context: ./
-      dockerfile: ./nginx/Dockerfile
+      dockerfile: ./mainui/Dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -38,20 +39,20 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
 
+  linkssite-frontend:
+    container_name: linkssite
+    build:
+      context: ./
+      dockerfile: ./linksui/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+
   certbot:
     image: certbot/certbot
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
-  # jenkins:
-  #   container_name: jenkins
-  #   image: jenkins/jenkins:lts
-  #   privileged: true
-  #   env_file: .env
-  #   user: root
-  #   ports:
-  #     - 8081:8081
-  #     - 50000:50000
     
 volumes:
   db:

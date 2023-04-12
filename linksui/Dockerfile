@@ -1,4 +1,4 @@
-FROM node:19-alpine as build-stage
+FROM node:19-alpine as linkssite
 
 WORKDIR /linksui
 

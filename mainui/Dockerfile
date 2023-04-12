@@ -12,18 +12,6 @@ COPY /cdn /cdn
 
 RUN npm run build
 
-FROM node:19-alpine as linkssite
-
-WORKDIR /linksui
-
-COPY /linksui/package*.json /linksui/
-
-RUN npm install
-
-COPY /linksui /linksui/
-
-RUN npm run build
-
 # production environment
 FROM nginx:stable-alpine
 COPY --from=mainsite /mainui/out/ /usr/share/nginx/html
