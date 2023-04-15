@@ -1,3 +1,17 @@
+.text-elipsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: calc(60rem - 200px);
+
+}
+
+@media screen and (max-width: 61rem) {
+    .text-elipsis{
+        max-width: calc(84vw - 100px);
+    }
+}
+
 .page{
 
     background-color: white;
