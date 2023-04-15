@@ -14,6 +14,8 @@ func PostController() {
 		api.GET(":id", services.ReadSinglePost)
 		api.GET("title/:title", services.ReadSinglePostByPostTitle)
 		api.GET("organisation", services.ReadAllPostsByOrganisation)
+		api.GET("organisations", services.ReadOrganisation)
+		api.GET("spotlight", services.ReadSpotlight)
 		api.PUT(":id", services.UpdatePost)
 		api.DELETE(":id", services.DeletePost)
 	}

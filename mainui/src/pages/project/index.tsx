@@ -14,14 +14,20 @@ import {
 import Head from "next/head";
 
 export default function ProjectPage() {
-  const [posts, setPosts] = useState<{ data: ProjectPost[] }>({ data: [] });
+  const [posts, setPosts] = useState<{
+    data: ProjectPost[];
+    totalPages: number;
+    page: number;
+  }>({ data: [], totalPages: 0, page: 0 });
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getAllPosts().then(async (res: any) => {
+    getAllPosts(page).then(async (res: any) => {
       const res_json = await res.json();
       setPosts(res_json);
     });
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -78,7 +84,13 @@ export default function ProjectPage() {
           )}
         </Container>
         <Center>
-          <Pagination mb={50} total={1} color="teal" radius="md" />
+          <Pagination
+            mb={50}
+            total={posts?.totalPages}
+            color="teal"
+            radius="md"
+            onChange={setPage}
+          />
         </Center>
       </Box>
     </>

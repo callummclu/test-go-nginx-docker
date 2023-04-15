@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllPosts } from "../../api/posts";
+import { getAllOrganisations, getAllPosts } from "../../api/posts";
 import { ProjectItem, ProjectPost } from "../../components/project_item";
 import {
   LoadingOverlay,
@@ -14,14 +14,20 @@ import {
 import Head from "next/head";
 
 export default function OrganisationPage() {
-  const [posts, setPosts] = useState<{ data: ProjectPost[] }>({ data: [] });
+  const [page, setPage] = useState(1);
+
+  const [posts, setPosts] = useState<{
+    data: ProjectPost[];
+    totalPages: number;
+    page: number;
+  }>({ data: [], totalPages: 0, page: 0 });
 
   useEffect(() => {
-    getAllPosts().then(async (res: any) => {
+    getAllOrganisations(page).then(async (res: any) => {
       const res_json = await res.json();
       setPosts(res_json);
     });
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -78,7 +84,13 @@ export default function OrganisationPage() {
           )}
         </Container>
         <Center>
-          <Pagination mb={50} total={1} color="teal" radius="md" />
+          <Pagination
+            mb={50}
+            total={posts.totalPages}
+            onChange={setPage}
+            color="teal"
+            radius="md"
+          />
         </Center>
       </Box>
     </>
