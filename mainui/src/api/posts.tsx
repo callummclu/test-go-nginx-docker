@@ -1,6 +1,6 @@
 export async function getAllPosts(page = 1) {
   const response = fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post?itemPerPage=1&page=${page}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post?itemPerPage=5&page=${page}`,
     {
       method: "GET",
     }
@@ -10,7 +10,7 @@ export async function getAllPosts(page = 1) {
 
 export async function getAllOrganisations(page = 1) {
   const response = fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/organisations?itemPerPage=10&page=${page}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/organisations?itemPerPage=5&page=${page}`,
     {
       method: "GET",
     }
