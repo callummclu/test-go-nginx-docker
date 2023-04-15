@@ -16,19 +16,19 @@ The web application makes use of different subdomains to handle different aspect
 
 This is the main client facing site, this enables viewing of the main content on the site.
 
-#### admin.callummclu.co.uk
+#### [admin.callummclu.co.uk](https://admin.callummclu.co.uk)
 
 This allows me to control the content on the client facing site through a well contructed administrative portal
 
-#### links.callummclu.co.uk
+#### [links.callummclu.co.uk](https://links.callummclu.co.uk)
 
 Similar to linktree this site serves as a lightweight site to quickly provide access to all my relevant links including github, linkedin, medium and the main site.
 
-#### api.callummclu.co.uk
+#### [api.callummclu.co.uk](https://api.callummclu.co.uk)
 
 To enable access with the database and enable the administative portal the api site handles crud operations on posts as well as JWT enabled authentication to access the admin site.
 
-#### static.callummclu.co.uk
+#### [static.callummclu.co.uk](https://static.callummclu.co.uk)
 
 To ensure the site runs as fast as possible all static images are stored on the cdn site, this is fully equiped with life long caching and also stores the sites javascript and css files.
 
