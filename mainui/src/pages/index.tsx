@@ -1,6 +1,6 @@
 import styles from '../styles/sass/banner.module.scss'
 
-import { Avatar, Container,Anchor, Space, Text, Title, Button, Center, Flex } from '@mantine/core'
+import { Avatar, Container,Anchor, Space, Text, Title, Button, Flex } from '@mantine/core'
 import { Loader, LoadingOverlay } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { getAllPosts } from "../api/posts"
