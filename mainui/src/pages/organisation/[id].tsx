@@ -24,6 +24,7 @@ import {
 import { ProjectItem } from "../../components/project_item";
 import { SiGithub } from "react-icons/si";
 import { CgWebsite } from "react-icons/cg";
+import Head from "next/head";
 
 export default function OrganisationView() {
   const router = useRouter();
@@ -70,6 +71,10 @@ export default function OrganisationView() {
   }, [organisation]);
   return (
     <>
+      <Head>
+        <title>Callum McLuskey - {organisation?.title}</title>
+        <meta name="description" content={organisation?.description} />
+      </Head>
       <Stack spacing={0}>
         <Group>
           <Avatar

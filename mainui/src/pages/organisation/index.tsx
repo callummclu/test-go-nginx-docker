@@ -11,6 +11,7 @@ import {
   Pagination,
   Box,
 } from "@mantine/core";
+import Head from "next/head";
 
 export default function OrganisationPage() {
   const [posts, setPosts] = useState<{ data: ProjectPost[] }>({ data: [] });
@@ -24,6 +25,13 @@ export default function OrganisationPage() {
 
   return (
     <>
+      <Head>
+        <title>Callum McLuskey - Organisations</title>
+        <meta
+          name="description"
+          content="Some projects requiring their own organisations to correctly group work. Undertaken throughout my software development life."
+        />
+      </Head>
       <Title
         order={2}
         mt={40}
