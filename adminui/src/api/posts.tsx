@@ -55,6 +55,27 @@ export async function getSinglePostByTitle(title: string) {
   return response;
 }
 
+export async function deletePostapi(id: any) {
+  const response = fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/${id}/delete`,
+    {
+      method: "POST",
+    }
+  );
+  return response;
+}
+
+export async function updatePost(body: any, id: any) {
+  const response = fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/${id}/edit`,
+    {
+      method: "POST",
+      body: JSON.stringify(body),
+    }
+  );
+  return response;
+}
+
 export async function getDataForDependenciesMultiSelect() {
   const response = fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/allIdAndImage`,
@@ -80,15 +101,20 @@ export async function getOrganisationDependencies(ids: number[]) {
 interface Post {
   title: string;
   description: string;
-  body: string;
+  body?: string;
   image: string;
   technologies: string[];
+  isorganisation: boolean;
+  isspotlight: boolean;
+  organisation_dependencies: string[];
+  github: string;
+  site: string;
 }
 
 export async function createPost(post: Post) {
   const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/post`, {
     method: "POST",
-    body: JSON.stringify(post),
+    body: JSON.stringify({ ...post, body: "" }),
   });
   return response;
 }

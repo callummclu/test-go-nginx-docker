@@ -4,6 +4,7 @@ import {
   Button,
   Group,
   Modal,
+  Text,
   TextInput,
   Textarea,
   Checkbox,
@@ -14,16 +15,28 @@ import {
   Box,
   CloseButton,
   Flex,
+  Center,
 } from "@mantine/core";
 import { forwardRef, useEffect, useState } from "react";
-import { getDataForDependenciesMultiSelect, getSinglePost } from "@/api/posts";
+import {
+  deletePostapi,
+  getDataForDependenciesMultiSelect,
+  getSinglePost,
+  updatePost,
+} from "@/api/posts";
 import { AdminNav } from "@/components/adminnav";
 import { AdminProjectItem, ProjectPost } from "@/components/admin_project_item";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import { getTechnologyBadgeContent } from "@/helpers/technologyBadges";
+import { notifications } from "@mantine/notifications";
+import { BsTrash } from "react-icons/bs";
+import { BiSave } from "react-icons/bi";
+import { useDisclosure } from "@mantine/hooks";
 
 export default function Home() {
+  const [opened, { open, close }] = useDisclosure(false);
+
   function Value({
     value,
     label,
@@ -151,7 +164,7 @@ export default function Home() {
     "NPM",
   ]);
   const router = useRouter();
-  const { id } = router.query;
+  const { id, action } = router.query;
 
   const [imageHovered, setImageHovered] = useState(false);
   const [multiSelectDependencies, setMultiSelectDependencies] = useState<any>(
@@ -172,12 +185,56 @@ export default function Home() {
     }
   }, [id]);
 
+  const editPost = () => {
+    updatePost(post, id).then((res: any) => {
+      notifications.show({
+        title: "success",
+        message: "post updated successfully",
+      });
+    });
+  };
+
+  const deletePost = () => {
+    deletePostapi(id as string).then((res: any) => {
+      notifications.show({
+        title: "success",
+        message: "post deleted successfully",
+      });
+    });
+    window.location.replace(`${window.location.origin}/posts`);
+  };
+
+  useEffect(() => {
+    if (action !== undefined && action === "delete") {
+      open();
+    }
+  }, [action]);
+
   const { loggedIn } = useAuth();
 
   return (
     <>
       {loggedIn ? (
         <>
+          <Text>
+            <Modal
+              style={{ fontFamily: "helvetica" }}
+              opened={opened}
+              title="Are you sure you want to delete this Post"
+              onClose={close}
+              centered
+            >
+              <Text color="dimmed">
+                This will remove it from the database and will be gone forever
+              </Text>
+              <Button m="xs" color="red" onClick={deletePost}>
+                Yes delete this post
+              </Button>
+              <Button m="xs" color="gray" onClick={close}>
+                No go back
+              </Button>
+            </Modal>
+          </Text>
           <Container p="xl">
             <AdminNav />
             <Group mt={50} mb={20} position="apart">
@@ -208,7 +265,9 @@ export default function Home() {
                 />
                 <TextInput defaultValue={post?.title} />
               </Group>
-              <Button color="red">Delete</Button>
+              <Button leftIcon={<BsTrash />} color="red" onClick={open}>
+                Delete
+              </Button>
             </Group>
             <Textarea label="description" defaultValue={post?.description} />
             <TextInput
@@ -272,6 +331,11 @@ export default function Home() {
               label="Is this in the spotlight"
               defaultChecked={post?.isspotlight}
             />
+            <Center mt="xs">
+              <Button color="green" leftIcon={<BiSave />} onClick={editPost}>
+                Save Changes
+              </Button>
+            </Center>
           </Container>
         </>
       ) : (
