@@ -35,6 +35,12 @@ type AllPostsViewModel struct {
 	IsSpotlight              bool     `json:"isspotlight"`
 }
 
+type IdAndImageModel struct {
+	ID    int64  `json:"id"`
+	Title string `json:"title"`
+	Image string `json:"image"`
+}
+
 func NewPost() *Post {
 	return new(Post)
 }

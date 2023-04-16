@@ -101,7 +101,11 @@ export default function Home() {
                   {posts ? (
                     posts.map((post: any) => <AdminProjectItem {...post} />)
                   ) : (
-                    <Loader />
+                    <Box mt={40} w="100%">
+                      <Center>
+                        <Loader />
+                      </Center>
+                    </Box>
                   )}
                 </div>
 

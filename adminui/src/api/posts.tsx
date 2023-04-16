@@ -35,9 +35,29 @@ export async function getSinglePost(id: string | number) {
   return response;
 }
 
+export async function getEverythingPost(page = 1) {
+  const response = fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/both?itemPerPage=5&page=${page}`,
+    {
+      method: "GET",
+    }
+  );
+  return response;
+}
+
 export async function getSinglePostByTitle(title: string) {
   const response = fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/title/${title}`,
+    {
+      method: "GET",
+    }
+  );
+  return response;
+}
+
+export async function getDataForDependenciesMultiSelect() {
+  const response = fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URI}/post/allIdAndImage`,
     {
       method: "GET",
     }

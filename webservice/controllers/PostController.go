@@ -11,6 +11,8 @@ func PostController() {
 		api.Use(middleware.CORSMiddleware("*"))
 		api.POST("", services.CreatePost)
 		api.GET("", services.ReadPosts)
+		api.GET("both", services.ReadOrgansiationAndPost)
+		api.GET("allIdAndImage", services.ReadIdAndImageData)
 		api.GET(":id", services.ReadSinglePost)
 		api.GET("title/:title", services.ReadSinglePostByPostTitle)
 		api.GET("organisation", services.ReadAllPostsByOrganisation)
