@@ -32,11 +32,17 @@ export default function LandingPage() {
 
   const [posts, setPosts] = useState<{ data: ProjectPost[] }>({ data: [] });
 
+  const [origin, setOrigin] = useState<string>("");
+
   useEffect(() => {
     getAllSpotlights().then(async (res: any) => {
       const res_json = await res.json();
       setPosts(res_json);
     });
+
+    if (window !== undefined) {
+      setOrigin(window.location.origin);
+    }
   }, []);
 
   return (
@@ -149,7 +155,7 @@ export default function LandingPage() {
                 gap={20}
                 sx={{ margin: 0, marginTop: 60, minWidth: 250 }}
               >
-                <Anchor href={`${window.location.origin}/project`}>
+                <Anchor href={`${origin}/project`}>
                   <Button
                     variant="outline"
                     style={{ color: "white", borderColor: "white" }}
@@ -157,7 +163,7 @@ export default function LandingPage() {
                     view all projects
                   </Button>
                 </Anchor>
-                <Anchor href={`${window.location.origin}/organisation`}>
+                <Anchor href={`${origin}/organisation`}>
                   <Button
                     variant="outline"
                     style={{ color: "white", borderColor: "white" }}

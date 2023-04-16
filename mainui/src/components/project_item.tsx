@@ -13,6 +13,7 @@ import {
 
 import { getTechnologyBadgeContent } from "../helpers/technologyBadges";
 import styles from "../styles/sass/projects.module.scss";
+import { useEffect, useState } from "react";
 export interface ProjectPost {
   title: string;
   description: string;
@@ -32,6 +33,12 @@ export const ProjectItem = ({
   technologies,
   isorganisation,
 }: ProjectPost) => {
+  const [origin, setOrigin] = useState<string>("");
+  useEffect(() => {
+    if (window !== undefined) {
+      setOrigin(window.location.origin);
+    }
+  }, []);
   return (
     <>
       <div className={styles.card}>
@@ -55,7 +62,7 @@ export const ProjectItem = ({
                   <Title order={2} style={{ margin: 0 }}>
                     <Anchor
                       sx={{ color: "rgb(60,60,60)" }}
-                      href={`${window.location.origin}/${
+                      href={`${origin}/${
                         isorganisation ? "organisation" : "project"
                       }/${title.replaceAll(" ", "-")}`}
                     >
