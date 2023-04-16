@@ -9,6 +9,7 @@ git pull
 # move env files into repo
 cat ~/config/.env > webservice/.env
 cat ~/config/.frontend.env > mainui/.env
+cat ~/config/.frontend.env > adminui/.env
 
 # This will grab an .env file from the root directory config folder
 docker-compose build --no-cache
