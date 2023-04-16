@@ -211,6 +211,7 @@ export default function Home() {
             title="New post!"
           >
             <form onSubmit={newPost}>
+              <TextInput label="title" ref={newtitleRef} />
               <Textarea label="description" ref={newdescriptionRef} />
               <TextInput mt="sm" label="github link" ref={newgithubRef} />
               <TextInput mt="sm" label="site link" ref={sitelinkRef} />
