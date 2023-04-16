@@ -211,11 +211,25 @@ export default function Home() {
   }, [action]);
 
   const { loggedIn } = useAuth();
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
       {loggedIn ? (
         <>
+          <Modal
+            centered
+            style={{ fontFamily: "helvetica", marginLeft: -32 }}
+            opened={modalOpen}
+            onClose={() => setModalOpen(false)}
+            title="New post!"
+          >
+            <Avatar size="sm" src={post?.image} />
+            <TextInput
+              defaultValue={post?.image}
+              onChange={(e) => setPost({ ...post, image: e.target.value })}
+            />
+          </Modal>
           <Text>
             <Modal
               style={{ fontFamily: "helvetica" }}
@@ -262,20 +276,36 @@ export default function Home() {
                   src={post?.image}
                   onMouseEnter={() => setImageHovered(true)}
                   onMouseLeave={() => setImageHovered(false)}
+                  onClick={() => setModalOpen(true)}
                 />
-                <TextInput defaultValue={post?.title} />
+                <TextInput
+                  defaultValue={post?.title}
+                  onChange={(e) => setPost({ ...post, title: e.target.value })}
+                />
               </Group>
               <Button leftIcon={<BsTrash />} color="red" onClick={open}>
                 Delete
               </Button>
             </Group>
-            <Textarea label="description" defaultValue={post?.description} />
+            <Textarea
+              label="description"
+              onChange={(e) =>
+                setPost({ ...post, description: e.target.value })
+              }
+              defaultValue={post?.description}
+            />
             <TextInput
               mt="sm"
               label="github link"
               defaultValue={post?.github}
+              onChange={(e) => setPost({ ...post, github: e.target.value })}
             />
-            <TextInput mt="sm" label="site link" defaultValue={post?.site} />
+            <TextInput
+              mt="sm"
+              label="site link"
+              onChange={(e) => setPost({ ...post, site: e.target.value })}
+              defaultValue={post?.site}
+            />
 
             <MultiSelect
               itemComponent={ItemTech}

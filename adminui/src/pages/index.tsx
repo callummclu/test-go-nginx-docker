@@ -194,7 +194,9 @@ export default function Home() {
       site: sitelinkRef.current?.value as string,
       isspotlight: newIsSpotlightRef.current?.checked as boolean,
       github: newgithubRef.current?.value as string,
-      organisation_dependencies: multiSelectDependencies,
+      organisation_dependencies: multiSelectDependencies.map(
+        (dep: any) => `${dep.id}`
+      ),
       isorganisation: isorganisationpost,
     });
   };
@@ -211,6 +213,7 @@ export default function Home() {
             title="New post!"
           >
             <form onSubmit={newPost}>
+              <TextInput mt="sm" label="image link" ref={newimageRef} />
               <TextInput label="title" ref={newtitleRef} />
               <Textarea label="description" ref={newdescriptionRef} />
               <TextInput mt="sm" label="github link" ref={newgithubRef} />

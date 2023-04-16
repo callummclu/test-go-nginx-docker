@@ -112,9 +112,9 @@ interface Post {
 }
 
 export async function createPost(post: Post) {
-  const response = fetch(`${process.env.REACT_APP_BACKEND_URI}/post`, {
+  const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/post`, {
     method: "POST",
-    body: JSON.stringify({ ...post, body: "" }),
+    body: JSON.stringify({ ...post, body: "", image: "" }),
   });
   return response;
 }

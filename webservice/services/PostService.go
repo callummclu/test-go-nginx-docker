@@ -33,7 +33,7 @@ func CreatePost(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{
-			"error": "error saving post",
+			"error": "error saving post", "message": err.Error(),
 		})
 		return
 	}
@@ -524,5 +524,67 @@ func ReadAllPostsByOrganisation(c *gin.Context) {
 	c.JSON(200, gin.H{"data": posts, "page": page_num, "totalPages": math.Ceil(totalPages)})
 }
 
-func UpdatePost(c *gin.Context) { /* NOT IMPLEMENTED YET*/ }
-func DeletePost(c *gin.Context) { /* NOT IMPLEMENTED YET*/ }
+func UpdatePost(c *gin.Context) {
+	id := c.Param("id")
+	post := models.Post{}
+
+	if err := c.BindJSON(&post); err != nil {
+		c.JSON(400, gin.H{"error": "invalid body"})
+	}
+
+	post.Title = strings.TrimSpace(post.Title)
+	post.Description = strings.TrimSpace(post.Description)
+	post.Body = strings.TrimSpace(post.Body)
+	post.Image = strings.TrimSpace(post.Image)
+	post.GithubLink = strings.TrimSpace(post.GithubLink)
+	post.SiteLink = strings.TrimSpace(post.SiteLink)
+
+	err := post.EditPost(id)
+
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": "error editing post", "message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message": "Post edited created",
+	})
+
+}
+func DeletePost(c *gin.Context) {
+	id := c.Param("id")
+
+	db, err := configs.GetDB()
+	if err != nil {
+		err = errors.New("DB connection error")
+		c.JSON(500, gin.H{
+			"error": "error with database", "message": err.Error(),
+		})
+	}
+	defer db.Close()
+
+	insert_stmt, err := db.Prepare("DELETE FROM posts WHERE id=$1")
+
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": "error deleting post", "message": err.Error(),
+		})
+		return
+	}
+
+	defer insert_stmt.Close()
+	_, err = insert_stmt.Exec(id)
+
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": "error deleting post", "message": err.Error(),
+		})
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"message": "Post deleting created",
+	})
+}
