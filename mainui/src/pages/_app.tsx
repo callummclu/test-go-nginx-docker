@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { CgClose } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
+import Script from "next/script";
 
 export default function MyApp({ Component, pageProps }: any) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -75,6 +76,21 @@ export default function MyApp({ Component, pageProps }: any) {
 
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+
+      <Script strategy="lazyOnload">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+            page_path: window.location.pathname,
+            });
+        `}
+      </Script>
       {showMobileMenu && width < 500 && <Menu />}
       {width < 500 && (
         <Affix position={{ bottom: 20, right: 20 }}>
