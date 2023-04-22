@@ -17,6 +17,7 @@ import "../styles/sass/projects.module.scss";
 import { ProjectItem, ProjectPost } from "../components/project_item";
 import { motion, Variants } from "framer-motion";
 import Head from "next/head";
+import { useWindowEvent } from "@mantine/hooks";
 
 export default function LandingPage() {
   const cardVariants: Variants = {
@@ -44,6 +45,13 @@ export default function LandingPage() {
       setOrigin(window.location.origin);
     }
   }, []);
+
+  useWindowEvent("keydown", (event) => {
+    if (event.code === "KeyM" && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      window.location.replace("https://admin.callummclu.co.uk");
+    }
+  });
 
   return (
     <>
