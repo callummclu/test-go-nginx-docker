@@ -3,12 +3,41 @@
     white-space: nowrap;
     overflow: hidden;
     max-width: calc(60rem - 200px);
+}
 
+.text-elipsis-smaller{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: calc(60rem - 200px);
+}
+
+.badge-wrap{
+    max-width: calc(60rem - 200px); 
+}
+
+.badge-wrap-smaller{
+    max-width: calc(60rem - 200px); 
 }
 
 @media screen and (max-width: 61rem) {
-    .text-elipsis{
+    .text-elipsis,.badge-wrap{
         max-width: calc(84vw - 100px);
+    }
+    .text-elipsis-smaller,.badge-wrap-smaller{
+        max-width: calc(84vw - 125px);
+    }
+}
+
+@media screen and (max-width: 525px) {
+    .text-elipsis,.badge-wrap{
+        max-width: calc(84vw - 20px);
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .text-elipsis-smaller,.badge-wrap-smaller{
+        max-width: calc(84vw - 60px);
     }
 }
 

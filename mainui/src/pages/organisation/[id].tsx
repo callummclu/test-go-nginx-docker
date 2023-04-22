@@ -135,7 +135,14 @@ export default function OrganisationView() {
           {posts?.data ? (
             posts.data.length > 0 ? (
               posts?.data?.map((item: any) => (
-                <>{<ProjectItem key={item.id} {...item} />}</>
+                <>
+                  {
+                    <ProjectItem
+                      key={item.id}
+                      {...{ ...item, smaller: true }}
+                    />
+                  }
+                </>
               ))
             ) : (
               <p style={{ textAlign: "center", color: "white" }}>No data :(</p>

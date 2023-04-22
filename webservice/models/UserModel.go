@@ -87,7 +87,6 @@ func (u *User) SaveUser() error {
 		err = errors.New("User already exists")
 		return err
 	}
-	return err
 }
 
 func (u *LogInUser) UserLogin() (string, error) {
@@ -114,7 +113,7 @@ func (u *LogInUser) UserLogin() (string, error) {
 	err = auth.CheckPassword(password, u.Password)
 
 	if err != nil {
-		err = errors.New("Wrong password")
+		err = errors.New("wrong password")
 		return "", err
 	}
 	return username, err

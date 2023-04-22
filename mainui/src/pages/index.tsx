@@ -11,8 +11,8 @@ import {
   Flex,
 } from "@mantine/core";
 import { Loader, LoadingOverlay } from "@mantine/core";
-import { useEffect, useState } from "react";
-import { getAllPosts, getAllSpotlights } from "../api/posts";
+import { Fragment, useEffect, useState } from "react";
+import { getAllSpotlights } from "../api/posts";
 import "../styles/sass/projects.module.scss";
 import { ProjectItem, ProjectPost } from "../components/project_item";
 import { motion, Variants } from "framer-motion";
@@ -35,7 +35,7 @@ export default function LandingPage() {
   const [origin, setOrigin] = useState<string>("");
 
   useEffect(() => {
-    getAllSpotlights().then(async (res: any) => {
+    getAllSpotlights().then(async (res: Response) => {
       const res_json = await res.json();
       setPosts(res_json);
     });
@@ -125,15 +125,14 @@ export default function LandingPage() {
               {posts?.data ? (
                 posts.data.length > 0 ? (
                   posts?.data?.map((item) => (
-                    <>
+                    <Fragment key={item.id}>
                       {item.isspotlight && (
                         <ProjectItem
                           isorganisation={item.isorganisation}
-                          key={item.id}
                           {...item}
                         />
                       )}
-                    </>
+                    </Fragment>
                   ))
                 ) : (
                   <p style={{ textAlign: "center", color: "white" }}>

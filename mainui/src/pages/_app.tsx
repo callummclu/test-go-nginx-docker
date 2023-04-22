@@ -12,7 +12,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import Script from "next/script";
 
-export default function MyApp({ Component, pageProps }: any) {
+export default function MyApp({
+  Component,
+  pageProps,
+}: {
+  Component: any;
+  pageProps: any;
+}) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { width } = useViewportSize();
 

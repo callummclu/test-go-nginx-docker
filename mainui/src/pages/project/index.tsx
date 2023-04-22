@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getAllPosts } from "../../api/posts";
 import { ProjectItem, ProjectPost } from "../../components/project_item";
 import {
@@ -66,11 +66,11 @@ export default function ProjectPage() {
           {posts?.data ? (
             posts.data.length > 0 ? (
               posts?.data?.map((item) => (
-                <>
+                <Fragment key={item.id.toString()}>
                   {!item.isorganisation && (
-                    <ProjectItem key={item.id} {...item} />
+                    <ProjectItem {...{ ...item, smaller: true }} />
                   )}
-                </>
+                </Fragment>
               ))
             ) : (
               <p style={{ textAlign: "center", color: "white" }}>No data :(</p>

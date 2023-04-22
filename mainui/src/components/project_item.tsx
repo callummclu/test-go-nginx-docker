@@ -16,11 +16,13 @@ import styles from "../styles/sass/projects.module.scss";
 import { useEffect, useState } from "react";
 export interface ProjectPost {
   title: string;
+  key: string;
   description: string;
   image: string;
   id: string | number;
   technologies?: string[];
   isorganisation?: boolean;
+  smaller?: boolean;
   isspotlight?: boolean;
   organisation_dependencies?: string[];
 }
@@ -30,6 +32,8 @@ export const ProjectItem = ({
   description,
   image,
   id,
+  smaller,
+  key,
   technologies,
   isorganisation,
 }: ProjectPost) => {
@@ -69,10 +73,23 @@ export const ProjectItem = ({
                       {title}
                     </Anchor>
                   </Title>
-                  <Text className={styles["text-elipsis"]} color="dimmed">
+                  <Text
+                    className={
+                      smaller
+                        ? styles["text-elipsis-smaller"]
+                        : styles["text-elipsis"]
+                    }
+                    color="dimmed"
+                  >
                     {description}
                   </Text>
-                  <Box mt="sm" style={{ maxWidth: "calc(84vw - 100px)" }}>
+                  <Box
+                    mt="sm"
+                    key={`key-badge-${key}}`}
+                    className={
+                      smaller ? styles.badgeWrap : styles.badgeWrapSmaller
+                    }
+                  >
                     {technologies &&
                       technologies
                         .map((technology) =>

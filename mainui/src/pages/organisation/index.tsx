@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getAllOrganisations, getAllPosts } from "../../api/posts";
 import { ProjectItem, ProjectPost } from "../../components/project_item";
 import {
@@ -59,18 +59,18 @@ export default function OrganisationPage() {
         style={{
           background: "#f3f3f3",
           marginLeft: -50,
-          width: "calc(100vw - 32px)",
+          width: "calc(100vw - 42px)",
         }}
       >
         <Container py={75}>
           {posts?.data ? (
             posts.data.length > 0 ? (
               posts?.data?.map((item) => (
-                <>
+                <Fragment key={item.id}>
                   {item.isorganisation && (
-                    <ProjectItem key={item.id} {...item} />
+                    <ProjectItem {...{ ...item, smaller: true }} />
                   )}
-                </>
+                </Fragment>
               ))
             ) : (
               <p style={{ textAlign: "center", color: "white" }}>No data :(</p>
