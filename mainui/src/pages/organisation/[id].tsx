@@ -114,13 +114,13 @@ export default function OrganisationView() {
         </Group>
       </Stack>
       <Box
-        style={{ animation: "fadeMe 0.3s" }}
         mt="xl"
         p={"md"}
         style={{
           background: "#f3f3f3",
           marginLeft: -50,
           width: "100vw",
+          animation: "fadeMe 0.3s",
         }}
       >
         <Container mb={50}>
