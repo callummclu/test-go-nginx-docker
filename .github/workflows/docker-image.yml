@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Frontend Build Check (Main Site, Links Site, Admin Site)
 
 on:
   push:
