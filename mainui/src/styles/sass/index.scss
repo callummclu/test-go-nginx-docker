@@ -201,3 +201,15 @@ pre{
 code{
   word-break: break-all;
 }
+
+@keyframes fadeMe {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

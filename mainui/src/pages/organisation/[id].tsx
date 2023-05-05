@@ -75,7 +75,18 @@ export default function OrganisationView() {
         <title>Callum McLuskey - {organisation?.title}</title>
         <meta name="description" content={organisation?.description} />
       </Head>
-      <Stack spacing={0}>
+      <LoadingOverlay
+        loader={<Loader color="green" />}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+        }}
+        visible={!organisation}
+        overlayBlur={2}
+      />
+      <Stack spacing={0} style={{ animation: "fadeMe 0.3s" }}>
         <Group>
           <Avatar
             alt={organisation?.title}
@@ -103,12 +114,13 @@ export default function OrganisationView() {
         </Group>
       </Stack>
       <Box
+        style={{ animation: "fadeMe 0.3s" }}
         mt="xl"
         p={"md"}
         style={{
           background: "#f3f3f3",
           marginLeft: -50,
-          width: "calc(100vw - 32px)",
+          width: "100vw",
         }}
       >
         <Container mb={50}>

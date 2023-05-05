@@ -95,12 +95,19 @@ export default function PostPage() {
           <div className="page">
             <LoadingOverlay
               loader={<Loader color="green" />}
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,-50%)",
+              }}
               visible={!post}
               overlayBlur={2}
             />
 
             <Group>
               <Avatar
+                style={{ animation: "fadeMe 0.3s" }}
                 alt={post?.data?.title}
                 size={"xl"}
                 src={post?.data?.image}
@@ -108,13 +115,19 @@ export default function PostPage() {
               <Stack spacing={0}>
                 <Group>
                   <Title>{post?.data?.title}</Title>
-                  <Anchor href={post?.data?.github}>
+                  <Anchor
+                    href={post?.data?.github}
+                    style={{ animation: "fadeMe 0.3s" }}
+                  >
                     <ActionIcon aria-label="github">
                       <SiGithub />
                     </ActionIcon>
                   </Anchor>
                   {post?.data?.site.length > 0 && (
-                    <Anchor href={post?.data?.site}>
+                    <Anchor
+                      href={post?.data?.site}
+                      style={{ animation: "fadeMe 0.3s" }}
+                    >
                       <ActionIcon aria-label="site">
                         <CgWebsite />
                       </ActionIcon>
@@ -152,7 +165,8 @@ export default function PostPage() {
               style={{
                 background: "#f3f3f3",
                 marginLeft: -50,
-                width: "calc(100vw - 32px)",
+                width: "100vw",
+                animation: "fadeMe 0.3s",
               }}
             >
               <Text>
@@ -164,6 +178,7 @@ export default function PostPage() {
                     />
                   ) : (
                     <LoadingOverlay
+                      style={{ animation: "fadeMe 0.3s" }}
                       visible={true}
                       overlayBlur={2}
                       loader={<Loader color="green" />}

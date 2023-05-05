@@ -1,17 +1,11 @@
 import { ActionIcon, Affix, Anchor, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { Container } from "../components/Container";
 import { Nav } from "../components/nav";
 import "../styles/sass/index.scss";
 import * as serviceWorkerRegistration from "../serviceWorkerRegistration";
-import { useViewportSize, useWindowEvent } from "@mantine/hooks";
+import { useViewportSize } from "@mantine/hooks";
 import { motion } from "framer-motion";
 import { CgClose } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -118,7 +112,13 @@ export default function MyApp({
           </ActionIcon>
         </Affix>
       )}
-      <MantineProvider>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          colorScheme: "light",
+        }}
+      >
         <Notifications />
 
         <Nav />

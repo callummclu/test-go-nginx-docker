@@ -59,7 +59,7 @@ export default function OrganisationPage() {
         style={{
           background: "#f3f3f3",
           marginLeft: -50,
-          width: "calc(100vw - 42px)",
+          width: "100vw",
         }}
       >
         <Container py={75}>

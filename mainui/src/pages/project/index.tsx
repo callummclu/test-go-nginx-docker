@@ -59,7 +59,7 @@ export default function ProjectPage() {
         style={{
           background: "#f3f3f3",
           marginLeft: -50,
-          width: "calc(100vw - 32px)",
+          width: "100vw",
         }}
       >
         <Container py={75}>
@@ -73,7 +73,10 @@ export default function ProjectPage() {
                 </Fragment>
               ))
             ) : (
-              <p style={{ textAlign: "center", color: "white" }}>No data :(</p>
+              <p style={{ textAlign: "center", color: "rgb(60,60,60)" }}>
+                There are no results for this page, this may be a server error.
+                Please come back later
+              </p>
             )
           ) : (
             <LoadingOverlay
