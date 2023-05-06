@@ -24,23 +24,8 @@ import Head from "next/head";
 import { useWindowEvent } from "@mantine/hooks";
 import { SiTypescript, SiCsharp, SiJava, SiReact, SiGo } from "react-icons/si";
 import { TechnologyCard } from "../components/Technology";
-interface TechnologyProps {
-  name: string;
-  icon: ReactNode;
-}
 
-const tech_icon_props = { size: 50 };
-
-const technologies: TechnologyProps[] = [
-  { name: "React", icon: <SiReact {...tech_icon_props} /> },
-  {
-    name: "TypeScript",
-    icon: <SiTypescript {...tech_icon_props} />,
-  },
-  { name: "C#", icon: <SiCsharp {...tech_icon_props} /> },
-  { name: "Java", icon: <SiJava {...tech_icon_props} /> },
-  { name: "Go", icon: <SiGo {...tech_icon_props} /> },
-];
+const technologies = ["react", "typescript", "c#", "java", "go"];
 
 interface ExperienceProps {
   company: string;
@@ -244,7 +229,7 @@ export default function LandingPage() {
           <Container pb={25} mt={75}>
             <Flex wrap={"wrap"} justify="center">
               {technologies.map((tech) => (
-                <TechnologyCard {...tech} />
+                <TechnologyCard name={tech} />
               ))}
             </Flex>
             <div id="work"></div>
