@@ -10,6 +10,13 @@ export const Nav = () => {
 
   const openMenu = () => setMenuOpen(!menuOpen);
 
+  const redirectTo = (anchor: string): string => {
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}/#${anchor}`;
+    }
+    return `#${anchor}`;
+  };
+
   return (
     <div className={`${styles.nav} ${menuOpen && styles.open}`}>
       <UnstyledButton
@@ -26,7 +33,10 @@ export const Nav = () => {
       </UnstyledButton>
       <div className={`${styles.section} ${menuOpen && styles.show}`}>
         <a href="/">Home</a>
-        <a href="/about">About</a>
+        <a href={redirectTo("about")}>About</a>
+        <a href={redirectTo("technologies")}>Technologies</a>
+        <a href={redirectTo("work")}>Work</a>
+        <a href={redirectTo("projects")}>Projects</a>
       </div>
       <div
         className={`${styles.section} ${

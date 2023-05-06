@@ -32,9 +32,16 @@ export default function MyApp({
     }
   }, []);
 
+  const redirectTo = (anchor: string): string => {
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}/#${anchor}`;
+    }
+    return `#${anchor}`;
+  };
+
   const Menu = () => {
     const [menuWidth, setMenuWidth] = useState("calc(100vw - 45px)");
-    const [height, setHeight] = useState(250);
+    const [height, setHeight] = useState(400);
     const [opacity, setOpacity] = useState(1);
     const [display, setDisplay] = useState("block");
     const close = () => {
@@ -60,7 +67,10 @@ export default function MyApp({
             className="items"
           >
             <a href="/">Home</a>
-            <a href="/about">About</a>
+            <a href={redirectTo("about")}>About</a>
+            <a href={redirectTo("technologies")}>Technologies</a>
+            <a href={redirectTo("work")}>Work</a>
+            <a href={redirectTo("projects")}>Projects</a>
 
             <div className="icons">
               <Anchor href="https://github.com/callummclu">
@@ -97,8 +107,8 @@ export default function MyApp({
             });
         `}
       </Script>
-      {showMobileMenu && width < 500 && <Menu />}
-      {width < 500 && (
+      {showMobileMenu && width < 720 && <Menu />}
+      {width < 720 && (
         <Affix position={{ bottom: 20, right: 20 }}>
           <ActionIcon
             aria-label="open menu"
