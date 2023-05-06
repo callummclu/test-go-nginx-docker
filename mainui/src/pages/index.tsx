@@ -7,7 +7,6 @@ import {
   Space,
   Text,
   Title,
-  Button,
   Flex,
   Card,
   Timeline,
@@ -15,14 +14,13 @@ import {
   Group,
 } from "@mantine/core";
 import { Loader, LoadingOverlay } from "@mantine/core";
-import { Fragment, ReactNode, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { getAllSpotlights } from "../api/posts";
 import "../styles/sass/projects.module.scss";
 import { ProjectItem, ProjectPost } from "../components/project_item";
 import { motion, Variants } from "framer-motion";
 import Head from "next/head";
 import { useWindowEvent } from "@mantine/hooks";
-import { SiTypescript, SiCsharp, SiJava, SiReact, SiGo } from "react-icons/si";
 import { TechnologyCard } from "../components/Technology";
 
 const technologies = ["react", "typescript", "csharp", "java", "go"];
