@@ -25,7 +25,7 @@ import { useWindowEvent } from "@mantine/hooks";
 import { SiTypescript, SiCsharp, SiJava, SiReact, SiGo } from "react-icons/si";
 import { TechnologyCard } from "../components/Technology";
 
-const technologies = ["react", "typescript", "c#", "java", "go"];
+const technologies = ["react", "typescript", "csharp", "java", "go"];
 
 interface ExperienceProps {
   company: string;

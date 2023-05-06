@@ -2,14 +2,15 @@ import { Card, Center, Image, Stack, Text, Title } from "@mantine/core";
 
 export const TechnologyCard = ({ name }: { name: string }) => {
   return (
-    <Card m={20} w={"clamp(250px,25%, 400px)"} radius="xl">
+    <Card m={20} w={"clamp(250px,25%, 400px)"} radius="lg">
       <Stack align="center">
         <Image
+          fit="contain"
           src={`https://static.callummclu.co.uk/main/${name}.webp`}
           height={75}
         ></Image>
-        <Title order={4} ta="center">
-          {name[0].toUpperCase() + name.substring(1)}
+        <Title order={4} ta="center" fw={400}>
+          {(name[0].toUpperCase() + name.substring(1)).replace("sharp", "#")}
         </Title>
       </Stack>
     </Card>
