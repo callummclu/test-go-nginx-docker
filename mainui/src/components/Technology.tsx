@@ -1,17 +1,13 @@
-import { Card, Center, Stack, Text } from "@mantine/core";
-import { ReactNode } from "react";
+import { Card, Center, Image, Stack, Text } from "@mantine/core";
 
-export const TechnologyCard = ({
-  name,
-  icon,
-}: {
-  name: string;
-  icon: ReactNode;
-}) => {
+export const TechnologyCard = ({ name }: { name: string }) => {
   return (
     <Card m={20} w={"clamp(250px,25%, 400px)"}>
       <Stack align="center">
-        {icon}
+        <Image
+          src={`https://static.callummclu.co.uk/main/${name}.webp`}
+          height={75}
+        ></Image>
         <Text ta="center">{name}</Text>
       </Stack>
     </Card>
