@@ -2,8 +2,9 @@ name: Build and deploy
 
 on:
   push:
-    branches: ["main", "develop"]
+    branches: ["main"]
   pull_request:
+    types: [opened, synchronize, edited]
     branches: ["main", "develop"]
 
 jobs:
@@ -33,4 +34,4 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: root
           password: ${{ secrets.SSH_PASS }}
-          script: bash deploy.sh
+          script: cd callummclu.co.uk && git pull && bash deploy.sh
