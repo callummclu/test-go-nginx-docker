@@ -2,18 +2,17 @@ name: Build and deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main", "develop"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main", "develop"]
 
 jobs:
-
   build-backend:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file webservice/.dockerfile --tag my-image-name:$(date +%s)
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . --file webservice/.dockerfile --tag my-image-name:$(date +%s)
 
   build-frontend:
     needs: build-backend
@@ -22,16 +21,16 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build the Docker image
         run: docker build . --file frontend.dockerfile --tag my-image-name:$(date +%s)
-        
+
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: build-frontend
     runs-on: ubuntu-latest
     steps:
-    - name: ssh and run deploy script
-      uses: appleboy/ssh-action@v0.1.10
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: root
-        password: ${{ secrets.SSH_PASS }}
-        script: bash deploy.sh
+      - name: ssh and run deploy script
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: root
+          password: ${{ secrets.SSH_PASS }}
+          script: bash deploy.sh
