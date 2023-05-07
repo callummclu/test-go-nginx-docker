@@ -3,7 +3,7 @@ import styles from "../styles/sass/nav.module.scss";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { BiMenu } from "react-icons/bi";
 import { IoMdClose } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);

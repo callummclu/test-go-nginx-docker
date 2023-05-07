@@ -1,5 +1,4 @@
 import {
-  Divider,
   Loader,
   LoadingOverlay,
   Text,
@@ -14,7 +13,7 @@ import {
   Anchor,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { getSinglePost, getSinglePostByTitle } from "../../api/posts";
+import { getSinglePostByTitle } from "../../api/posts";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -23,7 +22,6 @@ import { SiGithub } from "react-icons/si";
 import { CgWebsite } from "react-icons/cg";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import { BiStar } from "react-icons/bi";
 import Error from "../_error";
 
 export default function PostPage() {
@@ -32,7 +30,6 @@ export default function PostPage() {
 
   const [post, setPost] = useState<any>();
   const [githubReadme, setGithubReadme] = useState<string>();
-  const [githubStats, setGithubStats] = useState<any>();
   const [error, setError] = useState(false);
 
   const formatGithubReadme = (url: string) => {
@@ -42,14 +39,10 @@ export default function PostPage() {
     );
   };
 
-  const formatGithubStats = (url: string) => {
-    return url?.replace("https://github.com", "https://api.github.com/repos");
-  };
-
   useEffect(() => {
     if (id !== undefined) {
       getSinglePostByTitle((id as string).replaceAll("-", " ")).then(
-        async (res: any) => {
+        async (res) => {
           if (res.ok) {
             const res_json = await res.json();
             setPost(res_json);
@@ -64,18 +57,11 @@ export default function PostPage() {
   useEffect(() => {
     if (post != null) {
       fetch(`${formatGithubReadme(post?.data?.github)}/main/README.md`)
-        .then(async (res: any) => {
+        .then(async (res) => {
           const res_text = await res.text();
           setGithubReadme(res_text);
         })
         .catch((error) => setGithubReadme(error.message.toString()));
-
-      fetch(`${formatGithubStats(post?.data?.github)}`).then(
-        async (res: any) => {
-          const res_json = await res.json();
-          setGithubStats(res_json);
-        }
-      );
     }
   }, [post]);
 
@@ -156,9 +142,6 @@ export default function PostPage() {
                 </Box>
               </Stack>
             </Group>
-            {/* <Box py="xs"  style={{marginLeft:-50, width:"calc(100vw)", background:'white',display:'flex',justifyContent:'center'}}>
-                <Text pt="xs" style={{color:'gray',display:"flex", justifyContent:"center", alignItems:"center", gap:5,width:"80%"}}><BiStar/> <b>{githubStats ? githubStats.stargazers_count : "?"}</b> stars</Text>
-            </Box> */}
             <Box
               mt="xl"
               p={"md"}

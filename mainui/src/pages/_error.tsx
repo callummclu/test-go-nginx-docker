@@ -1,11 +1,11 @@
 import { Anchor, Button, Center, Stack, Text, Title } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { BiError } from "react-icons/bi";
 
 interface ErrorProps {
   code: number;
   message: string;
-  icon?: any;
+  icon?: ReactNode;
 }
 
 export default function Error({
