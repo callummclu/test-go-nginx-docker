@@ -2,14 +2,13 @@ name: deploy callummclu.co.uk
 
 on:
   workflow_run:
-    workflows: [Frontend Build Check (Main Site & Links Site & Admin Site),WebService Build Check (golang backend)]
+    workflows: [Frontend Build Check (Main Site & Links Site & Admin Site)]
     types:
       - completed
-    branches:
-      - main
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Build
     runs-on: ubuntu-latest
     steps:
