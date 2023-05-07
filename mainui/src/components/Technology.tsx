@@ -1,4 +1,4 @@
-import { Card, Center, Image, Stack, Text, Title } from "@mantine/core";
+import { Card, Image, Stack, Title } from "@mantine/core";
 
 export const TechnologyCard = ({ name }: { name: string }) => {
   return (
