@@ -7,11 +7,14 @@ on:
       - completed
 
 jobs:
-  - name: ssh and run deploy script
-    uses: appleboy/ssh-action@v0.1.10
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: ssh and run deploy script
+      uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.SSH_HOST }}
         username: root
         password: ${{ secrets.SSH_PASS }}
         script: bash deploy.sh
-  
