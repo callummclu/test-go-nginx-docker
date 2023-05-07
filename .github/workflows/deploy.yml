@@ -5,6 +5,8 @@ on:
     workflows: [Frontend Build Check (Main Site & Links Site & Admin Site),WebService Build Check (golang backend)]
     types:
       - completed
+    branches:
+      - main
 
 jobs:
   build:
