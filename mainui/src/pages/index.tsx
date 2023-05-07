@@ -251,7 +251,7 @@ export default function LandingPage() {
           </Text>
 
           <Container pb={50}>
-            <Card mt={75} p={50} radius="lg">
+            <Card mt={75} p={50} radius="lg" shadow="md">
               <Timeline color="green">
                 {experiences.map((exp) => (
                   <Timeline.Item
