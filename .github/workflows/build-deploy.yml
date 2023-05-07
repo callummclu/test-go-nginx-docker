@@ -34,4 +34,4 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: root
           password: ${{ secrets.SSH_PASS }}
-          script: bash deploy.sh
+          script: cd callummclu.co.uk && git pull && bash deploy.sh
