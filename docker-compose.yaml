@@ -9,24 +9,28 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - '5432:5432'
+    storage_opt:
+      size: '5G'
     volumes:
       - db:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   goservice:
-    container_name: goBackend
-    build: "."
+    container_name: api
+    build: 
+      context: ./
+      dockerfile: ./webservice/.dockerfile
     ports:
       - "8080"
-    env_file: .env
+    env_file: ./webservice/.env
     depends_on:
       - db
 
-  nginx:
-    container_name: nginxWebserver
+  frontend:
+    container_name: client
     build: 
       context: ./
-      dockerfile: ./nginx/Dockerfile
+      dockerfile: ./frontend.dockerfile
     ports:
       - "80:80"
       - "443:443"
@@ -34,16 +38,6 @@ services:
       - goservice
     volumes:
       - /data/certs:/etc/nginx/certs
-
-  # jenkins:
-  #   container_name: jenkins
-  #   image: jenkins/jenkins:lts
-  #   privileged: true
-  #   env_file: .env
-  #   user: root
-  #   ports:
-  #     - 8081:8081
-  #     - 50000:50000
     
 volumes:
   db:

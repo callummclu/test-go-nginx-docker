@@ -1,0 +1,22 @@
+name: deploy callummclu.co.uk
+
+on:
+  workflow_run:
+    workflows: [Frontend Build Check (Main Site & Links Site & Admin Site),WebService Build Check (golang backend)]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: ssh and run deploy script
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: root
+        password: ${{ secrets.SSH_PASS }}
+        script: bash deploy.sh
