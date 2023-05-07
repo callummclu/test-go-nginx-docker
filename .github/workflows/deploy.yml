@@ -7,9 +7,11 @@ on:
       - completed
 
 jobs:
-  run_pull:
-    name: run pull
-    runs-on: ubuntu-latest
-    steps:
-      - name: connect and pull
-        run: ssh root@${{ secrets.SSH_HOST }} ${{ secrets.SSH_PASS }} "bash deploy.sh && exit"
+  - name: ssh and run deploy script
+    uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: root
+        password: ${{ secrets.SSH_PASS }}
+        script: bash deploy.sh
+  
