@@ -2,8 +2,9 @@ name: Build and deploy
 
 on:
   push:
-    branches: ["main", "develop"]
+    branches: ["main"]
   pull_request:
+    types: [opened, synchronize, edited]
     branches: ["main", "develop"]
 
 jobs:
