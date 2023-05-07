@@ -57,7 +57,7 @@ export default function ProjectPage() {
         mt="xl"
         p={"md"}
         style={{
-          background: "#f3f3f3",
+          background: "#f3f3f2",
           marginLeft: -50,
           width: "100vw",
         }}
