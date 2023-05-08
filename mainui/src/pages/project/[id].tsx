@@ -12,7 +12,7 @@ import {
   ActionIcon,
   Anchor,
 } from "@mantine/core";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSinglePostByTitle } from "../../api/posts";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
@@ -113,7 +113,7 @@ export default function PostPage() {
                       <SiGithub />
                     </ActionIcon>
                   </Anchor>
-                  {(post?.data?.site as string).length > 0 && (
+                  {((post?.data?.site as string) ?? "").length > 0 && (
                     <Anchor
                       href={post?.data?.site}
                       style={{ animation: "fadeMe 0.3s" }}
