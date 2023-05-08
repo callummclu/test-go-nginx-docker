@@ -23,12 +23,14 @@ import { CgWebsite } from "react-icons/cg";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import Error from "../_error";
+import { Post, ReturnData } from "../../types/post";
+import { Technology } from "../../types/technology";
 
 export default function PostPage() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [post, setPost] = useState<any>();
+  const [post, setPost] = useState<ReturnData<Post>>();
   const [githubReadme, setGithubReadme] = useState<string>();
   const [error, setError] = useState(false);
 
@@ -56,7 +58,9 @@ export default function PostPage() {
 
   useEffect(() => {
     if (post != null) {
-      fetch(`${formatGithubReadme(post?.data?.github)}/main/README.md`)
+      fetch(
+        `${formatGithubReadme(post?.data?.github as string)}/main/README.md`
+      )
         .then(async (res) => {
           const res_text = await res.text();
           setGithubReadme(res_text);
@@ -109,7 +113,7 @@ export default function PostPage() {
                       <SiGithub />
                     </ActionIcon>
                   </Anchor>
-                  {post?.data?.site.length > 0 && (
+                  {((post?.data?.site as string) ?? "").length > 0 && (
                     <Anchor
                       href={post?.data?.site}
                       style={{ animation: "fadeMe 0.3s" }}
@@ -127,7 +131,7 @@ export default function PostPage() {
                       .map((technology: string) =>
                         getTechnologyBadgeContent(technology)
                       )
-                      .map((technology: any) => (
+                      .map((technology: Technology) => (
                         <Badge
                           key={technology.technology}
                           leftSection={technology.icon}
@@ -157,7 +161,7 @@ export default function PostPage() {
                   {githubReadme ? (
                     <ReactMarkdown
                       rehypePlugins={[rehypeRaw, remarkGfm]}
-                      children={githubReadme as any}
+                      children={githubReadme as string}
                     />
                   ) : (
                     <LoadingOverlay

@@ -23,7 +23,7 @@ export default function ProjectPage() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getAllPosts(page).then(async (res: any) => {
+    getAllPosts(page).then(async (res: Response) => {
       const res_json = await res.json();
       setPosts(res_json);
     });

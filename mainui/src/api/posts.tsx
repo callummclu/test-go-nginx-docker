@@ -1,3 +1,5 @@
+import { Post } from "../types/post";
+
 export async function getAllPosts(page = 1) {
   const response = fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URI}/post?itemPerPage=5&page=${page}`,
@@ -55,14 +57,6 @@ export async function getOrganisationDependencies(ids: number[]) {
     }
   );
   return response;
-}
-
-interface Post {
-  title: string;
-  description: string;
-  body: string;
-  image: string;
-  technologies: string[];
 }
 
 export async function createPost(post: Post) {

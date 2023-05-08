@@ -31,7 +31,6 @@ export const ProjectItem = ({
   title,
   description,
   image,
-  id,
   smaller,
   key,
   technologies,

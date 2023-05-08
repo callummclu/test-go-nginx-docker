@@ -27,6 +27,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build-frontend
     runs-on: ubuntu-latest
+    environment:
+      name: callummclu.co.uk
+      url: https://callummclu.co.uk
     steps:
       - name: ssh and run deploy script
         uses: appleboy/ssh-action@v0.1.10
