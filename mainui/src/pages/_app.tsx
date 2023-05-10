@@ -89,9 +89,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                   download="Callum-McLuskey"
                   href={`${
                     process.env.NEXT_PUBLIC_BACKEND_URI?.includes("localhost")
-                      ? "http://localhost:3000"
-                      : "https://callummclu.co.uk"
-                  }/extras/Callum-Mcluskey.pdf`}
+                      ? "http://localhost:3000/extras/Callum-Mcluskey.pdf"
+                      : "https://callummclu.co.uk/cv"
+                  }`}
                   style={{ animation: "fadeMe 0.2s" }}
                 >
                   <BsDownload aria-label="CV" color={"white"} size={18} />
