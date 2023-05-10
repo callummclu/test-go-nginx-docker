@@ -1,4 +1,10 @@
-import { ActionIcon, Affix, Anchor, MantineProvider } from "@mantine/core";
+import {
+  ActionIcon,
+  Affix,
+  Anchor,
+  MantineProvider,
+  Tooltip,
+} from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { Container } from "../components/Container";
@@ -9,7 +15,7 @@ import { useViewportSize } from "@mantine/hooks";
 import { motion } from "framer-motion";
 import { CgClose } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { BsDownload, BsGithub, BsLinkedin } from "react-icons/bs";
 import Script from "next/script";
 import { AppProps } from "next/app";
 
@@ -68,16 +74,37 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             <a href={redirectTo("projects")}>Projects</a>
 
             <div className="icons">
-              <Anchor href="https://github.com/callummclu">
-                <BsGithub aria-label="github" color={"white"} size={18} />
-              </Anchor>
-              <Anchor href="https://www.linkedin.com/in/callummclu/">
-                <BsLinkedin aria-label="linkedin" color={"white"} size={18} />
-              </Anchor>
+              <Tooltip label="Github">
+                <Anchor href="https://github.com/callummclu">
+                  <BsGithub aria-label="github" color={"white"} size={18} />
+                </Anchor>
+              </Tooltip>
+              <Tooltip label="LinkedIn">
+                <Anchor href="https://www.linkedin.com/in/callummclu/">
+                  <BsLinkedin aria-label="linkedin" color={"white"} size={18} />
+                </Anchor>
+              </Tooltip>
+              <Tooltip label="Download my CV">
+                <Anchor
+                  download="Callum-McLuskey"
+                  href={`${
+                    process.env.NEXT_PUBLIC_BACKEND_URI?.includes("localhost")
+                      ? "http://localhost:3000"
+                      : "https://callummclu.co.uk"
+                  }/extras/Callum-Mcluskey.pdf`}
+                  style={{ animation: "fadeMe 0.2s" }}
+                >
+                  <BsDownload aria-label="CV" color={"white"} size={18} />
+                </Anchor>
+              </Tooltip>
             </div>
           </motion.div>
 
-          <button onClick={close} className="close">
+          <button
+            onClick={close}
+            className="close"
+            style={{ cursor: "pointer" }}
+          >
             <CgClose color="white" size={40} />
           </button>
         </motion.div>
@@ -102,8 +129,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             });
         `}
       </Script>
-      {showMobileMenu && width < 720 && <Menu />}
-      {width < 720 && (
+      {showMobileMenu && width < 760 && <Menu />}
+      {width < 760 && (
         <Affix position={{ bottom: 20, right: 20 }}>
           <ActionIcon
             aria-label="open menu"
