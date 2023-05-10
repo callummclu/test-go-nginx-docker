@@ -8,10 +8,11 @@ import {
   Text,
   Title,
   Flex,
-  Card,
   Timeline,
   Stack,
   Group,
+  Box,
+  Badge,
 } from "@mantine/core";
 import { Loader, LoadingOverlay } from "@mantine/core";
 import { Fragment, useEffect, useState } from "react";
@@ -22,8 +23,16 @@ import { motion, Variants } from "framer-motion";
 import Head from "next/head";
 import { useWindowEvent } from "@mantine/hooks";
 import { TechnologyCard } from "../components/Technology";
-
-const technologies = ["react", "typescript", "csharp", "java", "go"];
+import { RiArrowRightSLine } from "react-icons/ri";
+const technologies = [
+  "react",
+  "typescript",
+  "csharp",
+  "java",
+  "go",
+  "python",
+  "nodejs",
+];
 
 interface ExperienceProps {
   company: string;
@@ -66,7 +75,7 @@ const experiences: ExperienceProps[] = [
   },
   {
     company: "Evata",
-    title: "Intern Full-stack engineer",
+    title: "Full-stack engineer",
     period: "Mar 2022 - Jun 2022",
     description: (
       <>
@@ -204,78 +213,20 @@ export default function LandingPage() {
           marginTop: -100,
         }}
       >
-        <div id="technologies"></div>
+        <div id="work"></div>
         <div className={styles.wave}></div>
         <div style={{ background: "#009473", paddingTop: 100 }}>
-          <Title
-            className="dark-text"
-            order={2}
-            sx={{ textAlign: "center", fontSize: 35, marginBottom: 0 }}
-            px={40}
-          >
-            🤖 Technologies
-          </Title>
-          <Text
-            px={50}
-            className="dark-text"
-            sx={{ textAlign: "center", marginTop: 5, marginBottom: 0 }}
-            size="lg"
-          >
-            Technologies and languages im comfortable working with in a
-            professional environment.
-          </Text>
-          <Container pb={25} mt={75}>
-            <Flex wrap={"wrap"} justify="center">
-              {technologies.map((tech) => (
-                <TechnologyCard name={tech} />
-              ))}
-            </Flex>
-            <div id="work"></div>
-          </Container>
-          <Title
-            mt={75}
-            className="dark-text"
-            order={2}
-            sx={{ textAlign: "center", fontSize: 35, marginBottom: 0 }}
-            px={40}
-          >
-            💻 Work Experience
-          </Title>
-          <Text
-            px={50}
-            className="dark-text"
-            sx={{ textAlign: "center", marginTop: 5, marginBottom: 0 }}
-            size="lg"
-          >
-            Some commercial experience ive gained over the years.
-          </Text>
+          <ExperienceCard />
+          <div id="technologies"></div>
+        </div>
+        <div className={styles["wave--reverse"]}></div>
+        <div style={{ paddingTop: 100 }}>
+          <TechnologiesCard />
+        </div>
+        <div className={styles.wave}></div>
+        <div id="projects"></div>
 
-          <Container pb={50}>
-            <Card mt={75} p={50} radius="lg" shadow="md">
-              <Timeline color="green">
-                {experiences.map((exp) => (
-                  <Timeline.Item
-                    key={exp.period}
-                    bullet={<Avatar alt={exp.company} src={exp.image} />}
-                    title={exp.company}
-                  >
-                    <Stack spacing={0}>
-                      <Group spacing={5} w={"100%"}>
-                        <Text size="sm">{exp.title}</Text>
-                      </Group>
-                      <Text size="sm" color={"dimmed"}>
-                        {exp.period}
-                      </Text>
-                    </Stack>
-                    <Text size="xs" mt={3} color={"gray"} c={"rgb(60,60,60)"}>
-                      {exp.description}
-                    </Text>
-                  </Timeline.Item>
-                ))}
-              </Timeline>
-            </Card>
-            <div id="projects"></div>
-          </Container>
+        <div style={{ background: "#009473", paddingTop: 100 }}>
           <Title
             mt={25}
             className="dark-text"
@@ -353,3 +304,136 @@ export default function LandingPage() {
     </>
   );
 }
+
+const TechnologiesCard = () => {
+  return (
+    <>
+      <Title
+        order={2}
+        sx={{ textAlign: "center", fontSize: 35, marginBottom: 0 }}
+        px={40}
+      >
+        🤖 Technologies
+      </Title>
+      <Text
+        px={50}
+        sx={{ textAlign: "center", marginTop: 5, marginBottom: 0 }}
+        size="lg"
+      >
+        Technologies and languages im comfortable working with in a professional
+        environment.
+      </Text>
+      <Container pb={25} mt={75}>
+        <Flex wrap={"wrap"} justify="center">
+          {technologies.map((tech) => (
+            <TechnologyCard name={tech} />
+          ))}
+        </Flex>
+      </Container>
+    </>
+  );
+};
+
+const ExperienceCard = () => {
+  return (
+    <>
+      <Title
+        mt={50}
+        className="dark-text"
+        order={2}
+        sx={{ textAlign: "center", fontSize: 35, marginBottom: 0 }}
+        px={40}
+      >
+        💻 Work Experience
+      </Title>
+      <Text
+        px={50}
+        className="dark-text"
+        sx={{ textAlign: "center", marginTop: 5, marginBottom: 0 }}
+        size="lg"
+      >
+        Some commercial experience ive gained over the years.
+      </Text>
+
+      <Container pb={50}>
+        <Box mt={50} p={50}>
+          <Timeline color="white" active={3}>
+            {experiences.map((exp) => (
+              <Timeline.Item
+                key={exp.period}
+                className="dark-text"
+                bullet={
+                  <Avatar
+                    size={70}
+                    radius={"100%"}
+                    alt={exp.company}
+                    src={exp.image}
+                  />
+                }
+                title={exp.company}
+                bulletSize={75}
+                color="white"
+                radius={"100%"}
+                sx={{
+                  "& .mantine-Timeline-itemTitle": {
+                    marginLeft: 20,
+                    fontWeight: 500,
+                    fontSize: 24,
+                    marginBottom: 0,
+                  },
+                }}
+              >
+                <Stack spacing={0}>
+                  <Text
+                    mb={5}
+                    ml={20}
+                    className="dark-text"
+                    size="sm"
+                    fs="italic"
+                  >
+                    {exp.title}
+                  </Text>
+                  <Text ml={20} size="sm" className="dark-text" mb={5}>
+                    <Group align="center" spacing={0}>
+                      {exp.period
+                        .replace("-", "-to-")
+                        .split("-")
+
+                        .map((period) => (
+                          <>
+                            {period === "to" ? (
+                              <RiArrowRightSLine size={15} />
+                            ) : (
+                              <Badge
+                                className="white"
+                                key={period}
+                                variant="outline"
+                                color="green"
+                                mr={3}
+                              >
+                                {period}
+                              </Badge>
+                            )}
+                          </>
+                        ))}
+                    </Group>
+                  </Text>
+                </Stack>
+                <Text
+                  ml={20}
+                  size="sm"
+                  mt={3}
+                  className="dark-text"
+                  c={"rgb(60,60,60)"}
+                >
+                  {exp.description}
+                </Text>
+              </Timeline.Item>
+            ))}
+          </Timeline>
+        </Box>
+        <div id="technologies"></div>
+      </Container>
+    </>
+  );
+};

@@ -11,10 +11,12 @@ export const Nav = () => {
   const openMenu = () => setMenuOpen(!menuOpen);
 
   const redirectTo = (anchor: string): string => {
-    if (typeof window !== "undefined") {
-      return `${window.location.origin}/#${anchor}`;
-    }
-    return `#${anchor}`;
+    const site = (process.env.NEXT_PUBLIC_BACKEND_URI ?? "").includes(
+      "localhost"
+    )
+      ? "http://localhost:3000"
+      : "https://callummclu.co.uk";
+    return `${site}/#${anchor}`;
   };
 
   return (
@@ -34,8 +36,8 @@ export const Nav = () => {
       <div className={`${styles.section} ${menuOpen && styles.show}`}>
         <a href="/">Home</a>
         <a href={redirectTo("about")}>About</a>
-        <a href={redirectTo("technologies")}>Technologies</a>
         <a href={redirectTo("work")}>Work</a>
+        <a href={redirectTo("technologies")}>Technologies</a>
         <a href={redirectTo("projects")}>Projects</a>
       </div>
       <div

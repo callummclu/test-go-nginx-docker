@@ -5,7 +5,7 @@ export const TechnologyCard = ({ name }: { name: string }) => {
     <Tooltip
       label={name[0].toUpperCase() + name.substring(1).replace("sharp", "#")}
     >
-      <Card m={20} w={120} radius="lg" shadow="md">
+      <Card m={20} mb={50} w={120} radius="lg">
         <Stack align="center">
           <Image
             fit="contain"
