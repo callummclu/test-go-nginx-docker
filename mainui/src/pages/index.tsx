@@ -46,8 +46,29 @@ interface ExperienceProps {
 const experiences: ExperienceProps[] = [
   {
     company: "Guitarguitar",
-    title: "Software Engineer",
-    period: "Jun 2022 - Present",
+    title: "Graduate Software Engineer",
+    period: "Jun 2023 - Present",
+    description: (
+      <>
+        {" "}
+        • Aided in the development of interns, helping them get used to both the
+        technologies and systems used at guitarguitar whilst aiding their
+        personal growth.
+        <br />• Championed a change from React to Next.js in the companies many
+        business facing application working on all aspects of the system from
+        IIS web server to .NET backend to Next.js frontend.
+        <br />• Engaged in pipeline development and site deployments creating a
+        system that would allow low risk deployments to be made by all members
+        of the team in absence of a senior team member.
+      </>
+    ),
+    current: true,
+    image: "https://static.callummclu.co.uk/experience/guitarguitar-logo.webp",
+  },
+  {
+    company: "Guitarguitar",
+    title: "Intern Software Engineer",
+    period: "Jun 2022 - Jun 2023",
     description: (
       <>
         {" "}
